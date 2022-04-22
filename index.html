@@ -11,36 +11,59 @@
 </head>
 <body>
     <header>
-        <h1><a href="index.html" title="Main Page">The Spoon</a></h1>
-        <img src="images/dog.jpg" alt ="a dog" width="300" height="200">
+        <a href="index.html" title="Main Page">
+            <h1>The Spoon</h1>
+            <h5>Where you can eat until you roll!</h5>
+            <img src="images/dog.jpg" alt ="a dog" width="300" height="200">
+        </a>
         <div id="signup">
             <a href="register.html">Register</a>
             <a href="login.html">Login</a>
-          </div>
+        </div>
     </header>
     <form method="get">
         <label>&#128270;
-            <input id="search" type="text" name="search" value="search...">
+            <input id="search" type="text" name="search" placeholder="search...">
         </label>
         <select name="category">
-            <option value="default" selected>Categories</option>
+            <option value="" disabled selected>Categories</option>
             <option value="Burgers">Burgers</option>
             <option value="Pizza">Pizza</option>
             <option value="Sushi">Sushi</option>
             <option value="Pasta">Pasta</option>
         </select>
         <input type="submit" value="Search">
-          
-          
     </form>
     <nav>
-
+        <h3>Featured Restaurants</h3>
+        <ul>
+            <li>
+                <a href="index.html"><img src="images/dog.jpg" alt="A dog" width="250" height="200"></a>
+                <p>Pizza place</p>
+            </li>
+            <li>
+                <a href="index.html"><img src="images/dog.jpg" alt="A dog" width="250" height="200"></a>
+                <p>Not Sushi italian</p>
+            </li>
+            <li>
+                <a href="index.html"><img src="images/dog.jpg" alt="A dog" width="250" height="200"></a>
+                <p>I'm not hungry, whatever</p>
+            </li>
+            <li>
+                <a href="index.html"><img src="images/dog.jpg" alt="A dog" width="250" height="200"></a>
+                <p>Amy's Baking Company</p>
+            </li>
+        </ul>
     </nav>
     <section>
         <article>
 
         </article>
     </section>
+
+    <footer>
+        <h4>The Spoon &copy; 2022</h4>
+    </footer>
 </body>
 
 </html>
