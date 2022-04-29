@@ -12,8 +12,8 @@
 
 <body>
     <header>
-        <h1><a href="index.html" title="Main Page">The Spoon</a></h1>
-        <a href="index.html" title="Main Page"><img src="images/dog.jpg" alt ="a dog" width="300" height="200"></a>
+        <h1><a href="index.php" title="Main Page">The Spoon</a></h1>
+        <a href="index.php" title="Main Page"><img src="images/dog.jpg" alt ="a dog" width="300" height="200"></a>
     </header>
     <form>
         <h3>Sign In</h3>
@@ -27,7 +27,7 @@
         </label><br>
         <button type="submit">Sign In</button>
       </form>
-      <p>Don't have an account?<a href="register.html">Register</a></p>
+      <p>Don't have an account?<a href="register.php">Register</a></p>
       <footer>
         <p>Copyright &copy; Fake News, 2022</p>
       </footer>

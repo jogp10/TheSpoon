@@ -11,14 +11,14 @@
 </head>
 <body>
     <header>
-        <a href="index.html" title="Main Page">
+        <a href="index.php" title="Main Page">
             <h1>The Spoon</h1>
             <h5>Where you can eat until you roll!</h5>
             <img src="images/dog.jpg" alt ="a dog" width="300" height="200">
         </a>
         <div id="signup">
-            <a href="register.html">Register</a>
-            <a href="login.html">Login</a>
+            <a href="register.php">Register</a>
+            <a href="login.php">Login</a>
         </div>
     </header>
     <form method="get">
@@ -38,19 +38,19 @@
         <h3>Featured Restaurants</h3>
         <ul>
             <li>
-                <a href="index.html"><img src="images/dog.jpg" alt="A dog" width="250" height="200"></a>
+                <a href="index.php"><img src="images/dog.jpg" alt="A dog" width="250" height="200"></a>
                 <p>Pizza place</p>
             </li>
             <li>
-                <a href="index.html"><img src="images/dog.jpg" alt="A dog" width="250" height="200"></a>
+                <a href="index.php"><img src="images/dog.jpg" alt="A dog" width="250" height="200"></a>
                 <p>Not Sushi italian</p>
             </li>
             <li>
-                <a href="index.html"><img src="images/dog.jpg" alt="A dog" width="250" height="200"></a>
+                <a href="index.php"><img src="images/dog.jpg" alt="A dog" width="250" height="200"></a>
                 <p>I'm not hungry, whatever</p>
             </li>
             <li>
-                <a href="index.html"><img src="images/dog.jpg" alt="A dog" width="250" height="200"></a>
+                <a href="index.php"><img src="images/dog.jpg" alt="A dog" width="250" height="200"></a>
                 <p>Amy's Baking Company</p>
             </li>
         </ul>
