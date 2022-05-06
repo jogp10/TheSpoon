@@ -51,13 +51,33 @@ class databaseManagement {
      */
     public function insertAddress($state, $city, $street, $postalCode) {
         if ($state == NULL || $city == NULL || $street == NULL || $postalCode == NULL) return -1;
-        $stmt1 = $this->db->prepare('SELECT MAX(idAddress) FROM Address');
-        $stmt1->execute();
-        $idAddress = $stmt1->fetchAll() + 1;
-        echo $idAddress;
+        $stmt = $this->db->prepare('SELECT * FROM sqlite_master');
+        if(!$stmt) {
+            echo "Prepare failed: (". $this->db->errorCode().") ".$this->db->errorInfo()."<br>";
+            foreach($this->db->errorInfo() as $error){
+                echo ".$error ";
+            }
+            return -1;
+        }
+        $stmt->execute();
+        $idAddress = $stmt->fetchAll();
         $stmt = $this->db->prepare("INSERT INTO Address(idAddress, Street, City, State, PostalCode) values ('$idAddress', '$street', '$city', '$state', '$postalCode')");
         $stmt->execute();
         return $idAddress;
+    }
+
+    public function fetchCategories(){
+        $stmt = $this->db->prepare('SELECT * FROM RestCategory');
+        $stmt->execute();
+        $categories = $stmt->fetchAll();
+        return $categories;
+    }
+
+    public function fetchRestaurants(){
+        $stmt = $this->db->prepare('SELECT * FROM Restaurant');
+        $stmt->execute();
+        $restaurants = $stmt->fetchAll();
+        return $restaurants;
     }
 }
 
