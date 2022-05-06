@@ -56,15 +56,15 @@ class databaseManagement {
         $stmt->execute();
         $idAddress = (int) $stmt->fetch();
 
-        $stmt = $this->db->prepare("INSERT INTO Address values (':idAddress', ':street', ':city', ':state', ':postalCode')");
+        $stmt = $this->db->prepare("INSERT INTO Address values (:idAddress, ':street', ':city', ':state', :postalCode)");
         $stmt->bindParam(':idAddress', $idAddress);
         $stmt->bindParam(':street', $street);
         $stmt->bindParam(':city', $city);
         $stmt->bindParam(':state', $state);
         $stmt->bindParam(':postalCode', $postalCode);
         
-        if ($stmt->execute()) {
-            echo "success";
+        if ($stmt->execute() == FALSE) {
+            echo "false"; // error
         }
         return $idAddress;
     }

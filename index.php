@@ -14,8 +14,7 @@
     <?php
         include("database/database.php");
         $db = new databaseManagement();
-        $db->insertAddress('Porto', 'Porto', 'Rua do Jornal de Noticias', 4321123);
-        $restaurants = $db->fetch($db->getDefQuery('Restaurant'));
+        $restaurants = $db->fetch($db->getDefQuery('Restaurant')); /** example of fetch */
     ?>
     
     <header>
