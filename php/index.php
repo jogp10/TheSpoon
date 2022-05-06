@@ -1,3 +1,10 @@
+<?php
+    $db = new PDO('../theSpoon.db');
+    $stmt = $db->prepare('SELECT * FROM ####');
+    $stmt->execute();
+    $restaurants = $stmt->fetchAll(); 
+?>
+
 <!DOCTYPE html>
 <html lang="en-US">
 
