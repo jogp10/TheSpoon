@@ -12,8 +12,8 @@
 
 <body>
     <header>
-        <h1><a href="index.php" title="Main Page">The Spoon</a></h1>
-        <a href="index.php" title="Main Page"><img src="images/dog.jpg" alt ="a dog" width="300" height="200"></a>
+        <h1><a href="../index.php" title="Main Page">The Spoon</a></h1>
+        <a href="../index.php" title="Main Page"><img src="images/dog.jpg" alt ="a dog" width="300" height="200"></a>
     </header>
     <form>
         <h3>Register</h3>

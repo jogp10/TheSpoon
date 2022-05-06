@@ -11,8 +11,8 @@ class databaseManagement {
      * Initialize database
      */
     public function __construct() {
-        $this->db = new PDO('theSpoon.db');
-        if ($db == null)
+        $this->db = new PDO('sqlite:theSpoon.db');
+        if ($this->db == null)
           throw new Exception('Database not initialized');
     }
 
@@ -51,12 +51,12 @@ class databaseManagement {
      */
     public function insertAddress($state, $city, $street, $postalCode) {
         if ($state == NULL || $city == NULL || $street == NULL || $postalCode == NULL) return -1;
-        $stmt1 = $db->prepare('SELECT MAX(idAddress) FROM Address');
+        $stmt1 = $this->db->prepare('SELECT MAX(idAddress) FROM Address');
         $stmt1->execute();
         $idAddress = $stmt1->fetch() + 1;
-        $stmt = $db->prepare("INSERT INTO Address(idAddress, Street, City, State, PostalCode) values ('$idAddress', '$street', '$city', '$state', '$postalCode')");
-        $stmt->execute();
         echo $idAddress;
+        $stmt = $this->db->prepare("INSERT INTO Address(idAddress, Street, City, State, PostalCode) values ('$idAddress', '$street', '$city', '$state', '$postalCode')");
+        $stmt->execute();
         return $idAddress;
     }
 }
