@@ -39,7 +39,7 @@ class databaseManagement {
 
         return $this->pdo->lastInsertId();
     }
-    */
+    
 
     /**
      * Insert a new addreess
@@ -47,23 +47,48 @@ class databaseManagement {
      * @param string city
      * @param string street
      * @param string postalcode
-     * @return the id of the new address
+     * @return int the id of the new address
      */
     public function insertAddress($state, $city, $street, $postalCode) {
         if ($state == NULL || $city == NULL || $street == NULL || $postalCode == NULL) return -1;
-        $stmt = $this->db->prepare('SELECT * FROM sqlite_master');
-        if(!$stmt) {
-            echo "Prepare failed: (". $this->db->errorCode().") ".$this->db->errorInfo()."<br>";
-            foreach($this->db->errorInfo() as $error){
-                echo ".$error ";
-            }
-            return -1;
+
+        $stmt = $this->db->prepare('SELECT MAX(idAddress) FROM Address');
+        $stmt->execute();
+        $idAddress = (int) $stmt->fetch();
+
+        $stmt = $this->db->prepare("INSERT INTO Address values (':idAddress', ':street', ':city', ':state', ':postalCode')");
+        $stmt->bindParam(':idAddress', $idAddress);
+        $stmt->bindParam(':street', $street);
+        $stmt->bindParam(':city', $city);
+        $stmt->bindParam(':state', $state);
+        $stmt->bindParam(':postalCode', $postalCode);
+        
+        if ($stmt->execute()) {
+            echo "success";
         }
-        $stmt->execute();
-        $idAddress = $stmt->fetchAll();
-        $stmt = $this->db->prepare("INSERT INTO Address(idAddress, Street, City, State, PostalCode) values ('$idAddress', '$street', '$city', '$state', '$postalCode')");
-        $stmt->execute();
         return $idAddress;
+    }
+
+
+    /**
+     * Fetch through $query
+     * @param string query
+     * @return array data fetched
+     */
+    public function fetch($query) {
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    /**
+     * Get Default Query (SELECT * FROM table)
+     * @param string table
+     * @return string query
+     */
+    public function getDefQuery($table) {
+        $query = "SELECT * FROM $table";
+        return $query;
     }
 }
 
