@@ -27,21 +27,19 @@ create table Address (
 );
 
 create table Customer (
-	Username		VARCHAR PRIMARY KEY,
+	Email			VARCHAR PRIMARY KEY,
 	Password		VARCHAR NOT NULL,
 	Phone 			INTEGER UNIQUE,
 	Name 			VARCHAR NOT NULL,
-	EmailAddress		VARCHAR DEFAULT '',
 	idAddress		INTEGER		CONSTRAINT fk_customer_idaddress REFERENCES Address (idAddress)
 												ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 create table RestOwner (
-	Username		VARCHAR PRIMARY KEY,
+	Email		VARCHAR PRIMARY KEY,
 	Password		VARCHAR NOT NULL,
 	Phone 			INTEGER UNIQUE,
 	Name 			VARCHAR NOT NULL,
-	EmailAddress		VARCHAR DEFAULT '',
 	idAddress		INTEGER		CONSTRAINT fk_restowner_idaddress REFERENCES Address (idAddress)
 												ON DELETE SET NULL ON UPDATE CASCADE
 );
@@ -148,11 +146,12 @@ INSERT INTO Address values (1, "Rua da Constituicao 143 R/C", "Porto", "Porto", 
 INSERT INTO Address values (2, "Rua da Circunvalacao 9430 1ª esq", "Porto", "Porto",  4250120);
 INSERT INTO Address values (3, "Avenida D Joao II 2 2ª frt", "Gaia", "Porto",  4200140);
 
-INSERT INTO Customer values ("jas123", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 914989898, "Andre Neves", "andreneves98@gmail.com", 1);
-INSERT INTO RestOwner values ("Rsla55", "7110eda4d09e062aa5e4a390b0a572ac0d2c0222", 934545445, "Vasco Silva", "vascosilva55@gmail.com", 2);
+INSERT INTO Customer values ("andreneves98@gmail.com", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 914989898, "Andre Neves", 1);
+INSERT INTO RestOwner values ("vascosilva55@gmail.com", "7110eda4d09e062aa5e4a390b0a572ac0d2c0222", 934545445, "Vasco Silva", 2);
 
 INSERT INTO RestCategory values (5, "Pizzaria");
 INSERT INTO Restaurant values (4, "EatRoll", "Rsla55", 5, 3);
+INSERT INTO Restaurant values (14, "RockBy", "Rsla55", 5, 2);
 
 INSERT INTO Evaluation values (6, "jas123", 4, null, 4, null, null);
 

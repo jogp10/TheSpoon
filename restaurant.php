@@ -4,18 +4,19 @@
   session_start();
 
   require_once('database/connection.php');
+
   require_once('database/restaurant.class.php');
+  require_once('database/menu.class.php');
 
   require_once('templates/common.tpl.php');
   require_once('templates/restaurant.tpl.php');
 
-
-
   $db = getDatabaseConnection();
 
-  $restaurants = Restaurant::getRestaurants($db, 8);
+  $restaurant = Restaurant::getRestaurant($db, intval($_GET['id']));
+  $menu = array();// = Menu::getRestMenu($db, intval($_GET['id']));
 
   drawHeader();
-  drawRestaurants($restaurants);
+  drawRestaurant($restaurant, $menu);
   drawFooter();
 ?>
