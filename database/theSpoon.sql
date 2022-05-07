@@ -3,8 +3,7 @@
 PRAGMA foreign_keys = ON;
 
 drop table if exists Address;
-drop table if exists Customer;
-drop table if exists RestOwner;
+drop table if exists User;
 drop table if exists Restaurant;
 drop table if exists RestCategory;
 drop table if exists Evaluation;
@@ -26,21 +25,14 @@ create table Address (
 	PostalCode 		INTEGER NOT NULL
 );
 
-create table Customer (
-	Email			VARCHAR PRIMARY KEY,
+create table User (
+	Username		VARCHAR PRIMARY KEY,
+	Email			VARCHAR NOT NULL UNIQUE,
 	Password		VARCHAR NOT NULL,
 	Phone 			INTEGER UNIQUE,
 	Name 			VARCHAR NOT NULL,
-	idAddress		INTEGER		CONSTRAINT fk_customer_idaddress REFERENCES Address (idAddress)
-												ON DELETE SET NULL ON UPDATE CASCADE
-);
-
-create table RestOwner (
-	Email		VARCHAR PRIMARY KEY,
-	Password		VARCHAR NOT NULL,
-	Phone 			INTEGER UNIQUE,
-	Name 			VARCHAR NOT NULL,
-	idAddress		INTEGER		CONSTRAINT fk_restowner_idaddress REFERENCES Address (idAddress)
+	RestOwner       BOOLEAN NOT NULL,
+	idAddress		INTEGER		CONSTRAINT fk_user_idaddress REFERENCES Address (idAddress)
 												ON DELETE SET NULL ON UPDATE CASCADE
 );
 
@@ -53,7 +45,7 @@ create table RestCategory (
 create table Restaurant (
 	idRestaurant 		INTEGER PRIMARY KEY,
 	Name 			VARCHAR NOT NULL,
-	idRestOwner		VARCHAR NOT NULL 	CONSTRAINT fk_restaurant_idrestowner REFERENCES RestOwner (Username)
+	idUser		VARCHAR NOT NULL 	CONSTRAINT fk_restaurant_iduser REFERENCES User (Username)
 												ON DELETE CASCADE ON UPDATE CASCADE,
 	idRestCategory		INTEGER NOT NULL 	CONSTRAINT fk_restaurant_idrestcategory REFERENCES RestCategory (idRestCategory)
 												ON DELETE CASCADE ON UPDATE CASCADE,
@@ -63,16 +55,13 @@ create table Restaurant (
 
 create table Evaluation (
 	idEvaluation		INTEGER PRIMARY KEY,
-	idCustomer 		VARCHAR NOT NULL 	CONSTRAINT fk_evaluation_idCustomer REFERENCES Customer (Username) 
+	idUser 		VARCHAR NOT NULL 	CONSTRAINT fk_evaluation_idUser REFERENCES User (Username) 
 												ON DELETE CASCADE ON UPDATE CASCADE,
 	idRestaurant	 	INTEGER NOT NULL 	CONSTRAINT fk_evaluation_idrestaurant REFERENCES Restaurant (idRestaurant) 
-												ON DELETE CASCADE ON UPDATE CASCADE,
-	idRestOwner		VARCHAR 		CONSTRAINT fk_evaluation_idrestowner REFERENCES RestOwner (Username)
 												ON DELETE CASCADE ON UPDATE CASCADE,
 	Rating 		INTEGER NOT NULL,
 	Message		VARCHAR DEFAULT '',
 	Comments		VARCHAR DEFAULT '',
-	
 	CONSTRAINT evaluation_rating CHECK ((Rating >= 0) and (Rating <= 5))					
 );
 
@@ -106,7 +95,7 @@ create table MenuItemCategories (
 
 create table ItemFavorite (
 	idItemFavorite		INTEGER PRIMARY KEY,
-	idCustomer		VARCHAR NOT NULL 	CONSTRAINT fk_itemfavorite_idcustomer REFERENCES Customer (Username)
+	idUser		VARCHAR NOT NULL 	CONSTRAINT fk_itemfavorite_iduser REFERENCES User (Username)
 												ON DELETE CASCADE ON UPDATE CASCADE,
 	idMenuItem		INTEGER NOT NULL 	CONSTRAINT fk_itemfavorite_idmenuitem REFERENCES MenuItem (idMenuItem)
 												ON DELETE CASCADE ON UPDATE CASCADE
@@ -114,7 +103,7 @@ create table ItemFavorite (
 
 create table RestFavorite (
 	idRestFavorite		INTEGER PRIMARY KEY,
-	idCustomer		VARCHAR NOT NULL 	CONSTRAINT fk_restfavorite_idcustomer REFERENCES Customer (Username)
+	idUser		VARCHAR NOT NULL 	CONSTRAINT fk_restfavorite_iduser REFERENCES User (Username)
 												ON DELETE CASCADE ON UPDATE CASCADE,
 	idRestaurant		INTEGER NOT NULL 	CONSTRAINT fk_restfavorite_idrestaurant REFERENCES Restaurant (idRestaurant)
 												ON DELETE CASCADE ON UPDATE CASCADE
@@ -124,7 +113,7 @@ create table Orders (
 	idOrders		INTEGER PRIMARY KEY,
 	OrderTime		DATE	NOT NULL,
 	PriceTotal		INTEGER,
-	idCustomer		VARCHAR NOT NULL 	CONSTRAINT fk_orders_idcustomer REFERENCES Customer (Username)
+	idUser		VARCHAR NOT NULL 	CONSTRAINT fk_orders_iduser REFERENCES User (Username)
 												ON DELETE CASCADE ON UPDATE CASCADE,
 	idRestaurant		INTEGER NOT NULL 	CONSTRAINT fk_orders_idrestaurant REFERENCES Restaurant (idRestaurant)
 );
@@ -146,14 +135,14 @@ INSERT INTO Address values (1, "Rua da Constituicao 143 R/C", "Porto", "Porto", 
 INSERT INTO Address values (2, "Rua da Circunvalacao 9430 1ª esq", "Porto", "Porto",  4250120);
 INSERT INTO Address values (3, "Avenida D Joao II 2 2ª frt", "Gaia", "Porto",  4200140);
 
-INSERT INTO Customer values ("andreneves98@gmail.com", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 914989898, "Andre Neves", 1);
-INSERT INTO RestOwner values ("vascosilva55@gmail.com", "7110eda4d09e062aa5e4a390b0a572ac0d2c0222", 934545445, "Vasco Silva", 2);
+INSERT INTO User values ("jas123", "andreneves98@gmail.com", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 914989898, "Andre Neves", false, 1);
+INSERT INTO User values ("Rsla55", "vascosilva55@gmail.com", "7110eda4d09e062aa5e4a390b0a572ac0d2c0222", 934545445, "Vasco Silva", true, 2);
 
 INSERT INTO RestCategory values (5, "Pizzaria");
 INSERT INTO Restaurant values (4, "EatRoll", "Rsla55", 5, 3);
 INSERT INTO Restaurant values (14, "RockBy", "Rsla55", 5, 2);
 
-INSERT INTO Evaluation values (6, "jas123", 4, null, 4, null, null);
+INSERT INTO Evaluation values (6, "jas123", 4, 4, null, null);
 
 INSERT INTO Menu values (7, 4);
 
@@ -166,5 +155,3 @@ INSERT INTO RestFavorite values (12, "jas123", 4);
 
 INSERT INTO Orders values (12, '2022-04-22 15:33', 45, "jas123", 4);
 INSERT INTO Promotion values (13, 8, 12, null);
-
-

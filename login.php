@@ -14,6 +14,6 @@
   $db = getDatabaseConnection();
 
   drawHeader();
-  drawRegisterForm();
+  drawLogInForm();
   drawFooter();
 ?>
