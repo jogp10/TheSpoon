@@ -31,7 +31,7 @@ create table User (
 	Password		VARCHAR NOT NULL,
 	Phone 			INTEGER UNIQUE,
 	Name 			VARCHAR NOT NULL,
-	RestOwner       BOOLEAN NOT NULL,
+	RestOwner       BOOLEAN DEFAULT FALSE,
 	idAddress		INTEGER		CONSTRAINT fk_user_idaddress REFERENCES Address (idAddress)
 												ON DELETE SET NULL ON UPDATE CASCADE
 );
@@ -129,7 +129,6 @@ create table Promotion (
 
 
 --- povoar
-
 
 INSERT INTO Address values (1, "Rua da Constituicao 143 R/C", "Porto", "Porto", 4250341);
 INSERT INTO Address values (2, "Rua da Circunvalacao 9430 1ª esq", "Porto", "Porto",  4250120);
