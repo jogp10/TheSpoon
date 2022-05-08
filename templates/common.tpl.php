@@ -65,9 +65,6 @@
       <h1>Create your account</h1>
       <hr>
 
-      <label for="username"><b>Username</b></label>
-      <input type="text" placeholder="Username" name="username" id="username" required>
-
       <label for="email"><b>Email</b></label>
       <input type="text" placeholder="Email" name="email" id="email" required>
 

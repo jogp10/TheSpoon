@@ -22,6 +22,10 @@
       $this->email = $email;
     }
 
+    public function name() {
+      return $this->name;
+    }
+
     function save($db) {
       $stmt = $db->prepare('
         UPDATE Customer SET Name = ?

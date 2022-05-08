@@ -7,12 +7,12 @@
 
   $db = getDatabaseConnection();
 
-//  $customer = Customer::getCustomerWithPassword($db, $_POST['email'], $_POST['password']);
+  $customer = Customer::getCustomerWithPassword($db, $_POST['email'], $_POST['password']);
 
-//  if ($customer) {
-//    $_SESSION['id'] = $customer->id;
-//    $_SESSION['name'] = $customer->name();
-//  }
+  if ($customer) {
+    $_SESSION['id'] = $customer->id;
+    $_SESSION['name'] = $customer->name();
+  }
 
 
   header('Location: ' . $_SERVER['HTTP_REFERER']);
