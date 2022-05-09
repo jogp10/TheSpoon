@@ -14,7 +14,7 @@
   $db = getDatabaseConnection();
 
   $restaurant = Restaurant::getRestaurant($db, intval($_GET['id']));
-  $menu = array();// = Menu::getRestMenu($db, intval($_GET['id']));
+  $menu = Menu::getMenu($db, intval($_GET['id']));
 
   drawHeader();
   drawRestaurant($restaurant, $menu);

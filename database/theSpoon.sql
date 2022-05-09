@@ -145,9 +145,13 @@ INSERT INTO Evaluation values (6, "jas123", 4, 4, null, null);
 
 INSERT INTO Menu values (7, 4);
 
-INSERT INTO MenuItem values (8, "Rojão à bolhão pato", 23, "rojao.png", 7);
+INSERT INTO MenuItem values (8, "Rojão à bolhão pato", 23, "https://picsum.photos/200?8", 7);
 INSERT INTO ItemCategory values (9, "Carne");
 INSERT INTO MenuItemCategories values (10, 8, 9);
+
+INSERT INTO MenuItem values (15, "Bacalhau à Braga", 23, "https://picsum.photos/200?15", 7);
+INSERT INTO ItemCategory values (16, "Peixe");
+INSERT INTO MenuItemCategories values (17, 15, 16);
 
 INSERT INTO ItemFavorite values (11, "jas123", 8);
 INSERT INTO RestFavorite values (12, "jas123", 4);

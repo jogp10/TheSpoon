@@ -17,9 +17,10 @@
   <section id="menuItems">
     <?php foreach ($menuItems as $menuItem) { ?>
     <article>
-      <img src="https://picsum.photos/200?<?=$menuItem['idMenuItem']?>">
-      <a href="restaurant.php?id=<?=$menuItem['idMenuItem']?>"><?=$menuItem['Name']?></a>
+      <img src=<?=$menuItem->photo?>>
+      <a href="restaurant.php?id=<?=$menuItem->id?>"><?=$menuItem->name?></a>
     </article>
     <?php } ?>
   </section>
 <?php } ?>
+
