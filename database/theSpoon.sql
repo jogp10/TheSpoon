@@ -136,6 +136,7 @@ INSERT INTO Address values (3, "Avenida D Joao II 2 2ª frt", "Gaia", "Porto",  
 
 INSERT INTO User values ("jas123", "andreneves98@gmail.com", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 914989898, "Andre Neves", false, 1);
 INSERT INTO User values ("Rsla55", "vascosilva55@gmail.com", "7110eda4d09e062aa5e4a390b0a572ac0d2c0222", 934545445, "Vasco Silva", true, 2);
+INSERT INTO User values ("ocon", "ocon@gmail.com", "1234", 934545446, "Vasco Silva", false, 3);
 
 INSERT INTO RestCategory values (5, "Pizzaria");
 INSERT INTO Restaurant values (4, "EatRoll", "Rsla55", 5, 3);

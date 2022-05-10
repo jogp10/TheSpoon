@@ -18,7 +18,7 @@
       <img src="images/dog.jpg" alt ="a dog" width="300" height="200">
       <?php 
         if (isset($_SESSION['id'])) drawLogoutForm($_SESSION['name']);
-        else drawLogin();
+        else drawLogInForm();
       ?>
     </header>
   

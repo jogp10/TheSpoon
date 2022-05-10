@@ -37,18 +37,18 @@
     
     static function getCustomerWithPassword(PDO $db, string $email, string $password) : ?Customer {
       $stmt = $db->prepare('
-        SELECT Email, Name, Address, City, State, PostalCode, Phone
-        FROM Customer JOIN Address USING (idAddress)
+        SELECT Email, Name, Street, City, State, PostalCode, Phone
+        FROM User JOIN Address USING (idAddress)
         WHERE lower(email) = ? AND Password = ?
       ');
 
-      $stmt->execute(array(strtolower($email), sha1($password)));
+      $stmt->execute(array(strtolower($email), $password));
   
       if ($customer = $stmt->fetch()) {
         return new Customer(
           $customer['Email'],
           $customer['Name'],
-          $customer['Address'],
+          $customer['Street'],
           $customer['City'],
           $customer['State'],
           (int)$customer['PostalCode'],
@@ -57,20 +57,20 @@
       } else return null;
     }
 
-    static function getCustomer(PDO $db, int $id) : Customer {
+    static function getCustomer(PDO $db, string $email) : Customer {
       $stmt = $db->prepare('
         SELECT Email, Name, Address, City, State, PostalCode, Phone
-        FROM Customer JOIN Address USING (idAddress)
-        WHERE CustomerId = ?
+        FROM User JOIN Address USING (idAddress)
+        WHERE Email = ?
       ');
 
-      $stmt->execute(array($id));
+      $stmt->execute(array($email));
       $customer = $stmt->fetch();
       
       return new Customer(
         $customer['Email'],
         $customer['Name'],
-        $customer['Address'],
+        $customer['Street'],
         $customer['City'],
         $customer['State'],
         (int)$customer['PostalCode'],
