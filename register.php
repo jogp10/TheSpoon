@@ -10,7 +10,6 @@
   require_once('templates/restaurant.tpl.php');
 
 
-
   $db = getDatabaseConnection();
 
   drawHeader();

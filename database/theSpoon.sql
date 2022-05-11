@@ -26,7 +26,7 @@ create table Address (
 );
 
 create table User (
-	Username		VARCHAR PRIMARY KEY,
+	idUser			INTEGER PRIMARY KEY,
 	Email			VARCHAR NOT NULL UNIQUE,
 	Password		VARCHAR NOT NULL,
 	Phone 			INTEGER UNIQUE,
@@ -45,7 +45,7 @@ create table RestCategory (
 create table Restaurant (
 	idRestaurant 		INTEGER PRIMARY KEY,
 	Name 			VARCHAR NOT NULL,
-	idUser		VARCHAR NOT NULL 	CONSTRAINT fk_restaurant_iduser REFERENCES User (Username)
+	idUser		INTEGER NOT NULL 	CONSTRAINT fk_restaurant_iduser REFERENCES User (idUser)
 												ON DELETE CASCADE ON UPDATE CASCADE,
 	idRestCategory		INTEGER NOT NULL 	CONSTRAINT fk_restaurant_idrestcategory REFERENCES RestCategory (idRestCategory)
 												ON DELETE CASCADE ON UPDATE CASCADE,
@@ -55,7 +55,7 @@ create table Restaurant (
 
 create table Evaluation (
 	idEvaluation		INTEGER PRIMARY KEY,
-	idUser 		VARCHAR NOT NULL 	CONSTRAINT fk_evaluation_idUser REFERENCES User (Username) 
+	idUser 		VARCHAR NOT NULL 	CONSTRAINT fk_evaluation_idUser REFERENCES User (idUser) 
 												ON DELETE CASCADE ON UPDATE CASCADE,
 	idRestaurant	 	INTEGER NOT NULL 	CONSTRAINT fk_evaluation_idrestaurant REFERENCES Restaurant (idRestaurant) 
 												ON DELETE CASCADE ON UPDATE CASCADE,
@@ -95,7 +95,7 @@ create table MenuItemCategories (
 
 create table ItemFavorite (
 	idItemFavorite		INTEGER PRIMARY KEY,
-	idUser		VARCHAR NOT NULL 	CONSTRAINT fk_itemfavorite_iduser REFERENCES User (Username)
+	idUser		VARCHAR NOT NULL 	CONSTRAINT fk_itemfavorite_iduser REFERENCES User (idUser)
 												ON DELETE CASCADE ON UPDATE CASCADE,
 	idMenuItem		INTEGER NOT NULL 	CONSTRAINT fk_itemfavorite_idmenuitem REFERENCES MenuItem (idMenuItem)
 												ON DELETE CASCADE ON UPDATE CASCADE
@@ -103,7 +103,7 @@ create table ItemFavorite (
 
 create table RestFavorite (
 	idRestFavorite		INTEGER PRIMARY KEY,
-	idUser		VARCHAR NOT NULL 	CONSTRAINT fk_restfavorite_iduser REFERENCES User (Username)
+	idUser		VARCHAR NOT NULL 	CONSTRAINT fk_restfavorite_iduser REFERENCES User (idUser)
 												ON DELETE CASCADE ON UPDATE CASCADE,
 	idRestaurant		INTEGER NOT NULL 	CONSTRAINT fk_restfavorite_idrestaurant REFERENCES Restaurant (idRestaurant)
 												ON DELETE CASCADE ON UPDATE CASCADE
@@ -113,7 +113,7 @@ create table Orders (
 	idOrders		INTEGER PRIMARY KEY,
 	OrderTime		DATE	NOT NULL,
 	PriceTotal		INTEGER,
-	idUser		VARCHAR NOT NULL 	CONSTRAINT fk_orders_iduser REFERENCES User (Username)
+	idUser		VARCHAR NOT NULL 	CONSTRAINT fk_orders_iduser REFERENCES User (idUser)
 												ON DELETE CASCADE ON UPDATE CASCADE,
 	idRestaurant		INTEGER NOT NULL 	CONSTRAINT fk_orders_idrestaurant REFERENCES Restaurant (idRestaurant)
 );
@@ -134,15 +134,14 @@ INSERT INTO Address values (1, "Rua da Constituicao 143 R/C", "Porto", "Porto", 
 INSERT INTO Address values (2, "Rua da Circunvalacao 9430 1ª esq", "Porto", "Porto",  4250120);
 INSERT INTO Address values (3, "Avenida D Joao II 2 2ª frt", "Gaia", "Porto",  4200140);
 
-INSERT INTO User values ("jas123", "andreneves98@gmail.com", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 914989898, "Andre Neves", false, 1);
-INSERT INTO User values ("Rsla55", "vascosilva55@gmail.com", "7110eda4d09e062aa5e4a390b0a572ac0d2c0222", 934545445, "Vasco Silva", true, 2);
-INSERT INTO User values ("ocon", "ocon@gmail.com", "1234", 934545446, "Vasco Silva", false, 3);
+INSERT INTO User values (6, "andreneves98@gmail.com", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 914989898, "Andre Neves", false, 1);
+INSERT INTO User values (7, "vascosilva55@gmail.com", "7110eda4d09e062aa5e4a390b0a572ac0d2c0222", 934545445, "Vasco Silva", true, 2);
 
 INSERT INTO RestCategory values (5, "Pizzaria");
-INSERT INTO Restaurant values (4, "EatRoll", "Rsla55", 5, 3);
-INSERT INTO Restaurant values (14, "RockBy", "Rsla55", 5, 2);
+INSERT INTO Restaurant values (4, "EatRoll", 7, 5, 3);
+INSERT INTO Restaurant values (14, "RockBy", 7, 5, 2);
 
-INSERT INTO Evaluation values (6, "jas123", 4, 4, null, null);
+INSERT INTO Evaluation values (6, 6, 4, 4, null, null);
 
 INSERT INTO Menu values (7, 4);
 
@@ -154,8 +153,8 @@ INSERT INTO MenuItem values (15, "Bacalhau à Braga", 23, "https://picsum.photos
 INSERT INTO ItemCategory values (16, "Peixe");
 INSERT INTO MenuItemCategories values (17, 15, 16);
 
-INSERT INTO ItemFavorite values (11, "jas123", 8);
-INSERT INTO RestFavorite values (12, "jas123", 4);
+INSERT INTO ItemFavorite values (11, 6, 8);
+INSERT INTO RestFavorite values (12, 6, 4);
 
-INSERT INTO Orders values (12, '2022-04-22 15:33', 45, "jas123", 4);
+INSERT INTO Orders values (12, '2022-04-22 15:33', 45, 6, 4);
 INSERT INTO Promotion values (13, 8, 12, null);
