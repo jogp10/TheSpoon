@@ -5,17 +5,17 @@
 
   if (!isset($_SESSION['id'])) die(header('Location: /'));
 
-  require_once('database/connection.db.php');
+  require_once('database/connection.php');
+
   require_once('database/user.class.php');
 
   require_once('templates/common.tpl.php');
   require_once('templates/user.tpl.php');
 
   $db = getDatabaseConnection();
-
-  //$user = User::getCustomer($db, $_SESSION['id']);
+  $user = User::getUser($db, $_SESSION['email']);
 
   drawHeader();
-  //drawProfile($user);
+  drawProfile($user);
   drawFooter();
 ?>

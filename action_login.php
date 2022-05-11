@@ -8,15 +8,16 @@
 
   $db = getDatabaseConnection();
 
-  $user = User::getCustomerWithPassword($db, $_POST['email'], $_POST['password']);
+  $user = User::getUserWithPassword($db, $_POST['email'], $_POST['password']);
 
   if ($user) {
     $_SESSION['id'] = $user->idUser;
-    $_SESSION['name'] = $user->name(); 
+    $_SESSION['name'] = $user->name;
+    $_SESSION['email'] = $user->email;
     header('Location: index.php');
   } else {
     header('Location: ' . $_SERVER['HTTP_REFERER']);
-    // Error message displaying user already does not exists
+    // Error message displaying user does not exists
   }
 
 ?>

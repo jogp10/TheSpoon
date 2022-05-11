@@ -1,6 +1,8 @@
 <?php
   declare(strict_types = 1);
 
+  class NoUserFound extends Exception {}
+
   class User {
     public int $idUser;
     public string $email;
@@ -13,7 +15,7 @@
     public bool $restOwner;
 
 
-    public function __construct(int $idUser, string $email, string $name, string $street, string $city, string $state, int $postalcode, int $phone)
+    public function __construct(int $idUser, string $email, string $name, string $street, string $city, string $state, int $postalcode, int $phone, bool $restOwner = false)
     {
       $this->idUser = $idUser;
       $this->email = $email;
@@ -23,6 +25,7 @@
       $this->state = $state;
       $this->postalcode = $postalcode;
       $this->phone = $phone;
+      $this->restOwner = $restOwner;
     }
 
     public function name() {
@@ -38,7 +41,7 @@
       $stmt->execute(array($this->name, $this->email));
     }
     
-    static function getCustomerWithPassword(PDO $db, string $email, string $password) : ?User
+    static function getUserWithPassword(PDO $db, string $email, string $password) : ?User
  {
       $stmt = $db->prepare('
         SELECT idUser, Email, Name, Street, City, State, PostalCode, Phone, RestOwner
@@ -64,7 +67,7 @@
       } else return null;
     }
 
-    static function getCustomer(PDO $db, string $email) {
+    static function getUser(PDO $db, string $email): User {
       $stmt = $db->prepare('
         SELECT idUser, Email, Name, Street, City, State, PostalCode, Phone, RestOwner
         FROM User JOIN Address USING (idAddress)
@@ -74,7 +77,7 @@
       $stmt->execute(array($email));
       $user = $stmt->fetch();
       
-      if ($user==null) return null;
+      if ($user==false) throw new NoUserFound();
       return new User
      (
         (int)$user['idUser'],
@@ -89,8 +92,8 @@
       );
     }
 
-    static function addCustomer(PDO $db, string $email, string $password, int $phone, string $name, bool $restOwner, string $street, string $city, string $state, int $postalCode): User {
-      if(User::getCustomer($db, $email)!=null) return null;
+    static function addUser(PDO $db, string $email, string $password, int $phone, string $name, bool $restOwner, string $street, string $city, string $state, int $postalCode): User {
+      if(User::getUser($db, $email)!=null) return null;
 
       $stmt = $db->prepare(
         'SELECT * 
