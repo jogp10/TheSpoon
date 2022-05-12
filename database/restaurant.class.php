@@ -38,6 +38,22 @@
         $restaurant['Name']
       );
     }
+
+    static function getRestaurantsFromUser(PDO $db, int $id) : array {
+      $stmt = $db->prepare('SELECT idRestaurant, Name FROM Restaurant JOIN User USING (idUser) WHERE idUser = ?');
+      $stmt->execute(array($id));
+
+      $restaurants = array();
+
+      while ($restaurant = $stmt->fetch()) {
+        $restaurants[] = new Restaurant(
+          (int) $restaurant['idRestaurant'],
+          $restaurant['Name']
+        );
+      }
+
+      return $restaurants;
+    }
   }
 
 ?>

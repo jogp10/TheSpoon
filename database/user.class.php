@@ -93,49 +93,52 @@
     }
 
     static function addUser(PDO $db, string $email, string $password, int $phone, string $name, bool $restOwner, string $street, string $city, string $state, int $postalCode): User {
-      if(User::getUser($db, $email)!=null) return null;
+      try {
+        User::getUser($db, $email);
+      } catch (NoUserFound $e) {
 
-      $stmt = $db->prepare(
-        'SELECT * 
-        FROM    Address
-        WHERE   idAddress = (SELECT MAX(idAddress)  FROM Address)'
-      );
-      $stmt->execute();
-      $idAddress = $stmt->fetch()['idAddress'] + 1;
-      echo '$idAddress';
+        $stmt = $db->prepare(
+          'SELECT * 
+          FROM    Address
+          WHERE   idAddress = (SELECT MAX(idAddress)  FROM Address)'
+        );
+        $stmt->execute();
+        $idAddress = $stmt->fetch()['idAddress'] + 1;
+        echo '$idAddress';
 
-      $stmt = $db->prepare(
-        'SELECT * 
-        FROM    User
-        WHERE   idUser = (SELECT MAX(idUser)  FROM User)'
-      );
-      $stmt->execute();
-      $idUser = $stmt->fetch()['idUser'] + 1;
-      echo '$idUser';
+        $stmt = $db->prepare(
+          'SELECT * 
+          FROM    User
+          WHERE   idUser = (SELECT MAX(idUser)  FROM User)'
+        );
+        $stmt->execute();
+        $idUser = $stmt->fetch()['idUser'] + 1;
+        echo '$idUser';
 
-      $stmt = $db->prepare(
-        'INSERT INTO Address values (?, ?, ?, ?, ?)'
-      );
-      $stmt->execute(array($idAddress, $street, $city, $state, $postalCode));
+        $stmt = $db->prepare(
+          'INSERT INTO Address values (?, ?, ?, ?, ?)'
+        );
+        $stmt->execute(array($idAddress, $street, $city, $state, $postalCode));
 
-      $stmt = $db->prepare(
-        'INSERT INTO User values (?, ?, ?, ?, ?, ?, ?)'
-      );
-      $stmt->execute(array($idUser, $email, sha1($password), $phone, $name, $restOwner, $idAddress));
+        $stmt = $db->prepare(
+          'INSERT INTO User values (?, ?, ?, ?, ?, ?, ?)'
+        );
+        $stmt->execute(array($idUser, $email, sha1($password), $phone, $name, $restOwner, $idAddress));
 
-      return new User (
-        $idUser, 
-        $email,
-        $name,
-        $street,
-        $city,
-        $state,
-        $postalCode,
-        $phone,
-        $restOwner
+        return new User (
+          $idUser, 
+          $email,
+          $name,
+          $street,
+          $city,
+          $state,
+          $postalCode,
+          $phone,
+          $restOwner
 
-      );
+        );
+      }
+      return null;
     }
-
   }
 ?>

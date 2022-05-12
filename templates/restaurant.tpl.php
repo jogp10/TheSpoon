@@ -18,7 +18,7 @@
     <?php foreach ($menuItems as $menuItem) { ?>
     <article>
       <img src=<?=$menuItem->photo?>>
-      <a href="restaurant.php?id=<?=$menuItem->id?>"><?=$menuItem->name?></a>
+      <a href="item.php?id=<?=$menuItem->id?>"><?=$menuItem->name?></a>
     </article>
     <?php } ?>
   </section>
