@@ -1,13 +1,17 @@
 a {
     text-decoration: none;
+    color: #2a2f33;
 }
 
+body a:hover {
+    color: #c4cdca;
+}
 
 /* header */
 
 body>header {
-    background-color: #046dd5;
-    color: white;
+    color: #000;
+    background-color: #fff;
     padding: 1em;
 }
 
@@ -16,14 +20,7 @@ body>header h2 {
     margin: 0;
 }
 
-body>header a {
-    color: white;
-    text-decoration: none;
-}
 
-body>header #signup a:first-child {
-    border-right: 1px solid white;
-}
 
 body>header #signup {
     margin-top: 1em;
@@ -52,6 +49,7 @@ body>footer {
 
 body>footer p {
     margin: 0;
+    text-align: center;
 }
 
 

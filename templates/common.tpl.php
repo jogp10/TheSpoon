@@ -9,15 +9,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/layout.css">
     <script src="cart.js" defer=""></script>
     <script src="search.js" defer=""></script>
   </head>
   <body>
 
     <header>
-      <h1><a href="/">The Spoon</a></h1>
-      <h5><a href="/">Where you can eat until you roll!</a></h5>
-      <img src="images/dog.jpg" alt ="a dog" width="300" height="200">
+      <a id="logo" href="index.php"><img src="images/dog.jpg" alt ="theSpoon logo" width="300" height="200"></a>
       <?php 
         if (isset($_SESSION['id'])) drawLogoutForm($_SESSION['name']);
         else drawLogInForm();
