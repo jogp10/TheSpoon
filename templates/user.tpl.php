@@ -16,8 +16,10 @@
       
     <?php if($user->restOwner) { ?>
       <p>Restaurants</p>
+    <?php } else { ?>
+      <p>Orders</p>
     <?php } ?>
-      <button>Change password</button>
+    <button>Change password</button>
     
   </section>
 <?php } ?>

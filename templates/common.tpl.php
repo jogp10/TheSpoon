@@ -9,6 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <script src="cart.js" defer=""></script>
+    <script src="search.js" defer=""></script>
   </head>
   <body>
 
@@ -27,17 +29,11 @@
 
 <?php function drawFooter() { ?>
     </main>
-
     <footer>
       The Spoon &copy; 2022
     </footer>
   </body>
 </html>
-<?php } ?>
-
-<?php function drawLogin() { ?>
-  <a href="login.php">Login</a>
-  <a href="register.php">Register</a>
 <?php } ?>
 
 <?php function drawLogInForm() { ?> 
