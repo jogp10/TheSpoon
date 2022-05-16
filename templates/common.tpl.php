@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/layout.css">
-    <script src="script.js" defer=""></script>
+    <script src="javascript/script.js" defer=""></script>
   </head>
   <body>
 
@@ -104,5 +104,11 @@
 <?php function drawSearchBar() { ?>
   <div class="topnav" id="searchRestaurant">
     <input type="text" placeholder="Search..">
+  </div>
+<?php } ?>
+
+<?php function drawCart() { ?>
+  <div>
+    <a id="cart" href="cart.php"><img src="images/cart.png" alt ="cart icon" width="30" height="30">(0<?php ?>)</a>
   </div>
 <?php } ?>

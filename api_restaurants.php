@@ -10,5 +10,5 @@
 
   $restaurants = Restaurant::searchRestaurants($db, $_GET['search'], 8);
 
-  echo json_encode($artists);
+  echo json_encode($restaurants);
 ?>

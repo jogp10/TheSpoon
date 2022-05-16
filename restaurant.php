@@ -17,6 +17,7 @@
   $menu = Menu::getMenu($db, intval($_GET['id']));
 
   drawHeader();
+  drawCart();
   drawRestaurant($restaurant, $menu);
   drawFooter();
 ?>

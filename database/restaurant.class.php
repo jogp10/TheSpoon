@@ -56,13 +56,13 @@
     }
 
     static function searchRestaurants(PDO $db, string $search, int $count) : array {
-      $stmt = $db->prepare('SELECT idRestaurant, Name FROM Restaurant WHERE Name ? LIMIT ?');
-      $stmt->execute(array($search . '%', $count));
+      $stmt = $db->prepare('SELECT idRestaurant, Name FROM Restaurant WHERE Name LIKE ? LIMIT ?');
+      $stmt->execute(array('%' . $search . '%', $count));
 
       $restaurants = array();
       while ($restaurant = $stmt->fetch()) {
         $restaurant[] = new Restaurant(
-          $restaurant['idRestaurant'],
+          (int) $restaurant['idRestaurant'],
           $restaurant['Name']
         );
       }

@@ -1,4 +1,4 @@
-const searchRestaurant = document.querySelector('#searchRestaurant')
+const searchRestaurant = document.querySelector('#searchRestaurant input')
 if (searchRestaurant) {
     searchRestaurant.addEventListener('input', async function() {
         const response = await fetch('api_restaurants.php?search=' + this.value)
@@ -7,7 +7,9 @@ if (searchRestaurant) {
         const section = document.querySelector('#restaurants')
         section.innerHTML = ''
 
+        console.log(this.value)
         for (const restaurant of restaurants) {
+            console.log('found')
             const img = document.createElement('img')
             const article = document.createElement('article')
             img.src = 'https://picsum.phots/200?' + restaurant.id

@@ -5,8 +5,9 @@
   <section id="restaurants">
     <?php foreach($restaurants as $restaurant) { ?> 
       <article>
+        <a href="restaurant.php?id=<?=$restaurant->id?>">
         <img src="https://picsum.photos/200?<?=$restaurant->id?>">
-        <a href="restaurant.php?id=<?=$restaurant->id?>"><?=$restaurant->name?></a>
+        <?=$restaurant->name?></a>
       </article>
     <?php } ?>
   </section>
@@ -17,8 +18,10 @@
   <section id="menuItems">
     <?php foreach ($menuItems as $menuItem) { ?>
     <article>
+      <a href="item.php?id=<?=$menuItem->id?>">
       <img src=<?=$menuItem->photo?>>
-      <a href="item.php?id=<?=$menuItem->id?>"><?=$menuItem->name?></a>
+      <?=$menuItem->name?></a>
+      <button>Buy</button>
     </article>
     <?php } ?>
   </section>
