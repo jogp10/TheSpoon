@@ -58,38 +58,19 @@
   <form action="action_register.php" method="post" class="register">
     <h1>Create your account</h1>
     <hr>
-
-    <label for="Email"><b></b></label>
-    <input type="text" placeholder="Email" name="Email" id="Email" required>
-
-    <label for="password"><b></b></label>
+    
+    <input type="email" placeholder="Email" name="Email" id="Email" required>
     <input type="password" placeholder="Enter Password" name="password" id="password" required>
-
-    <label for="password-repeat"><b></b></label>
     <input type="password" placeholder="Repeat Password" name="password-repeat" id="password-repeat" required>
-
-    <label for="name"><b></b></label>
     <input type="text" placeholder="Name" name="name" id="name" required>
-    
-    <label for="phone"><b></b></label>
     <input type="tel" placeholder="Phone Number" name="phone" id="phone" pattern="[0-9]{9}" required>
-
-    <label for="state"><b></b></label>
     <input type="text" placeholder="State" name="state" id="state" required>
-    
-    <label for="city"><b></b></label>
     <input type="text" placeholder="City" name="city" id="city" required>
-
-    <label for="street"><b></b></label>
     <input type="text" placeholder="Street" name="street" id="street" required>
-
-    <label for="postal-code"><b></b></label>
     <input type="text" placeholder="Postal Code" name="postal-code" id="postal-code" required>
-
     <label for="restaurant-owner" value="true"><b>Restaurant Owner</b></label>
     <input type="checkbox" name="restaurant-owner" id="restaurant-owner">
 
-  
     <button type="submit">Submit</button>
   </form>
 <?php } ?>
