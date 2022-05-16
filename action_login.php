@@ -14,6 +14,7 @@
     $_SESSION['id'] = $user->idUser;
     $_SESSION['name'] = $user->name;
     $_SESSION['email'] = $user->email;
+    $_SESSION['owner'] = $user->restOwner;
     header('Location: index.php');
   } else {
     header('Location: ' . $_SERVER['HTTP_REFERER']);

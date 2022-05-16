@@ -2,7 +2,7 @@
 
 <?php function drawRestaurants(array $restaurants) { ?>
   <h2>Restaurants</h2>
-  <section id="artists">
+  <section id="restaurants">
     <?php foreach($restaurants as $restaurant) { ?> 
       <article>
         <img src="https://picsum.photos/200?<?=$restaurant->id?>">

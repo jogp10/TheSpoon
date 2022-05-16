@@ -10,8 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/layout.css">
-    <script src="cart.js" defer=""></script>
-    <script src="search.js" defer=""></script>
+    <script src="script.js" defer=""></script>
   </head>
   <body>
 
@@ -36,26 +35,21 @@
 <?php } ?>
 
 <?php function drawLogInForm() { ?> 
-  <form action="action_register_rest.php" method="post" class="registerRest">
-    <button type="submit">Register Your Restaurant</button>
-  </form>
   <form action="action_login.php" method="post" class="login">
-    <label for="email"><b></b></label>
-    <input type="text" placeholder="Email" name="email" id="email" required>
-
-    <label for="password"><b></b></label>
-    <input type="password" placeholder="Enter Password" name="password" id="password" required>
-
+    <input type="email" placeholder="Email" name="email" id="email">
+    <input type="password" placeholder="Enter Password" name="password" id="password">
     <button type="submit">Login</button>
-  </form>
-  <form action="register.php" method="post" class="register">
-    <button type="submit" formaction="register.php">Register</button>
+
+    <button><a href="register.php">Register</a></button>
   </form>
 <?php } ?>
 
 <?php function drawLogoutForm(string $name) { ?>
   <form action="action_logout.php" method="post" class="logout">
     <a href="profile.php"><?=$name?></a>
+    <?php if($_SESSION['owner']) { ?>
+      <button><a href="register_rest.php">Register Your Restaurant</a></button>
+    <?php } ?>
     <button type="submit">Logout</button>
   </form>
 <?php } ?>
@@ -104,4 +98,11 @@
   <form action="action_register_restaraunt.php" method="post" class="registerRestaraunt">
 
   </form>
+<?php } ?>
+
+
+<?php function drawSearchBar() { ?>
+  <div class="topnav" id="searchRestaurant">
+    <input type="text" placeholder="Search..">
+  </div>
 <?php } ?>

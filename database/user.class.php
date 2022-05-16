@@ -67,14 +67,14 @@
       } else return null;
     }
 
-    static function getUser(PDO $db, string $email): User {
+    static function getUser(PDO $db, int $id): User {
       $stmt = $db->prepare('
         SELECT idUser, Email, Name, Street, City, State, PostalCode, Phone, RestOwner
         FROM User JOIN Address USING (idAddress)
-        WHERE Email = ?
+        WHERE idUser = ?
       ');
 
-      $stmt->execute(array($email));
+      $stmt->execute(array($id));
       $user = $stmt->fetch();
       
       if ($user==false) throw new NoUserFound();
