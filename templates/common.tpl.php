@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/register.css">
     <script src="javascript/script.js" defer=""></script>
   </head>
   <body>
@@ -55,23 +56,24 @@
 <?php } ?>
 
 <?php function drawRegisterForm() { ?>
-    <h1>Create your account</h1>
+  <section id="register">
+    <h1>Register</h1>
     <hr>
-  <form action="action_register.php" method="post" class="register">
-    <input type="email" placeholder="Email" name="Email" id="Email" required>
-    <input type="password" placeholder="Enter Password" name="password" id="password" required>
-    <input type="password" placeholder="Repeat Password" name="password-repeat" id="password-repeat" required>
-    <input type="text" placeholder="Name" name="name" id="name" required>
-    <input type="tel" placeholder="Phone Number" name="phone" id="phone" pattern="[0-9]{9}" required>
-    <input type="text" placeholder="State" name="state" id="state" required>
-    <input type="text" placeholder="City" name="city" id="city" required>
-    <input type="text" placeholder="Street" name="street" id="street" required>
-    <input type="text" placeholder="Postal Code" name="postal-code" id="postal-code" required>
-    <label for="restaurant-owner" value="true"><b>Restaurant Owner</b></label>
-    <input type="checkbox" name="restaurant-owner" id="restaurant-owner">
-    
-    <button type="submit">Submit</button>
-  </form>
+    <form action="action_register.php" method="post" class="register" id="register">
+      <label>Name<input type="text" name="name"></label>   
+      <label>Email<input type="email" name="email"></label>
+      <label>Password<input type="password" name="password"></label>
+      <label>Repeat<input type="password" name="password-repeat"></label>
+      <label>Phone<input type="phone" name="phone"></label>
+      <label>State<input type="text" name="state"></label>   
+      <label>City<input type="text" name="city"></label>   
+      <label>Street<input type="text" name="street"></label>   
+      <label>Postal Code<input type="text" name="postal-code"></label>   
+      <label>Restaurant Owner<input type="checkbox" name="restaurant-owner" id="restaurant-owner"></label>
+      
+      <button type="submit">Register</button>
+    </form>
+  </section>
 
 <?php } ?>
 
