@@ -15,7 +15,7 @@ if (searchRestaurant) {
             img.src = 'https://picsum.photos/200?' + restaurant.id
             const link = document.createElement('a')
             link.href = 'restaurant.php?id=' + restaurant.id
-            link.textContent = restaurant.name
+            link.textContent = ' ' + restaurant.name
             article.appendChild(img)
             article.appendChild(link)
             section.appendChild(article)

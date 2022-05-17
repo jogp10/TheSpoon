@@ -11,11 +11,13 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/register.css">
-    <script src="javascript/script.js" defer=""></script>
+    <script src="javascript/search.js" defer=""></script>
+    <script src="javascript/header.js" defer=""></script>
+    <script src="javascript/cart.js" defer=""></script>
   </head>
   <body>
 
-    <header>
+    <header id="header">
       <a id="logo" href="index.php"><img src="images/The Spoon.png" alt ="theSpoon logo" width="300" height="200"></a>
       <?php 
         if (isset($_SESSION['id'])) drawLogoutForm($_SESSION['name']);
@@ -23,7 +25,7 @@
       ?>
     </header>
   
-    <main>
+    <main class="content">
 <?php } ?>
 
 <?php function drawFooter() { ?>

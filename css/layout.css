@@ -6,7 +6,27 @@ body {
 }
 
 body>header {
-    grid-column: start / end;
+    padding: 10px 16px;
+    position: relative;
+    top: 0;
+    width: 100%;
+    padding-left: 0%;
+    padding-right: 0%;
+    margin: auto;
+}
+
+.content {
+    padding: 16px;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.sticky+.content {
+    padding-top: 102px;
 }
 
 

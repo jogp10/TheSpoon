@@ -23,15 +23,20 @@
       $stmt = $db->prepare('SELECT idEvaluation, Rating, Message, idUser, Comments, idRestaurant  FROM Evaluation WHERE idRestaurant = ?');
       $stmt->execute(array($id));
 
+      $stmt2 = $db->prepare('SELECT idUser, idRestaurant FROM Restaurant WHERE idRestaurant = ?');
+      $stmt2->execute(array($id));
+      $restOwner = User::getUser($db, $stmt2->fetch()['idUser']);
+
       $reviews = array();
       while ($review = $stmt->fetch()) {
+        $user = User::getUser($db, $review['idUser']);
         $reviews[] = new Review(
-          (int) $restaurant['idEvaluation'],
-          (int) $restaurant['Rating'],
+          (int) $review['idEvaluation'],
+          (int) $review['Rating'],
           $review['Message'],
-          $review[''],
+          $user->name,
           $review['Comments'],
-          $review['']
+          $restOwner->name()
         );
       }
 
@@ -42,15 +47,21 @@
       $stmt = $db->prepare('SELECT idEvaluation, Rating, Message, idUser, Comments, idRestaurant  FROM Evaluation WHERE idUser = ?');
       $stmt->execute(array($id));
 
+      $user = User::getUser($db, $id);      
+
       $reviews = array();
       while ($review = $stmt->fetch()) {
+        $stmt2 = $db->prepare('SELECT idUser, idRestaurant FROM Restaurant WHERE idRestaurant = ?');
+        $stmt2->execute(array($review['idRestaurant']));
+        $restOwner = User::getUser($db, $stmt2->fetch()['idUser']);
+
         $reviews[] = new Review(
           (int) $restaurant['idEvaluation'],
           (int) $restaurant['Rating'],
           $review['Message'],
-          $review[''],
+          $user->name(),
           $review['Comments'],
-          $review['']
+          $restOwner->name()
         );
       }
 
