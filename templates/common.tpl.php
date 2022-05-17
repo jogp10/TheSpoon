@@ -55,10 +55,9 @@
 <?php } ?>
 
 <?php function drawRegisterForm() { ?>
-  <form action="action_register.php" method="post" class="register">
     <h1>Create your account</h1>
     <hr>
-    
+  <form action="action_register.php" method="post" class="register">
     <input type="email" placeholder="Email" name="Email" id="Email" required>
     <input type="password" placeholder="Enter Password" name="password" id="password" required>
     <input type="password" placeholder="Repeat Password" name="password-repeat" id="password-repeat" required>
@@ -70,9 +69,10 @@
     <input type="text" placeholder="Postal Code" name="postal-code" id="postal-code" required>
     <label for="restaurant-owner" value="true"><b>Restaurant Owner</b></label>
     <input type="checkbox" name="restaurant-owner" id="restaurant-owner">
-
+    
     <button type="submit">Submit</button>
   </form>
+
 <?php } ?>
 
 <?php function drawRegisterFormRestaurant() { ?>

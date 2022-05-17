@@ -5,8 +5,7 @@
     public int $id;
     public string $name;
 
-    public function __construct(int $id, string $name)
-    { 
+    public function __construct(int $id, string $name) { 
       $this->id = $id;
       $this->name = $name;
     }
@@ -61,7 +60,7 @@
 
       $restaurants = array();
       while ($restaurant = $stmt->fetch()) {
-        $restaurant[] = new Restaurant(
+        $restaurants[] = new Restaurant(
           (int) $restaurant['idRestaurant'],
           $restaurant['Name']
         );

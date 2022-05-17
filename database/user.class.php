@@ -92,9 +92,34 @@
       );
     }
 
+    static function getUserWithEmail(PDO $db, string $email): User {
+      $stmt = $db->prepare('
+        SELECT idUser, Email, Name, Street, City, State, PostalCode, Phone, RestOwner
+        FROM User JOIN Address USING (idAddress)
+        WHERE Email = ?
+      ');
+
+      $stmt->execute(array($email));
+      $user = $stmt->fetch();
+      
+      if ($user==false) throw new NoUserFound();
+      return new User
+     (
+        (int)$user['idUser'],
+        $user['Email'],
+        $user['Name'],
+        $user['Street'],
+        $user['City'],
+        $user['State'],
+        (int)$user['PostalCode'],
+        (int)$user['Phone'],
+        (bool)$user['RestOwner']
+      );
+    }
+
     static function addUser(PDO $db, string $email, string $password, int $phone, string $name, bool $restOwner, string $street, string $city, string $state, int $postalCode): User {
       try {
-        User::getUser($db, $email);
+        User::getUserWithEmail($db, $email);
       } catch (NoUserFound $e) {
 
         $stmt = $db->prepare(
