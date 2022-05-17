@@ -26,6 +26,21 @@
       return $restaurants;
     }
 
+    static function getRestaurantsFromCategory(PDO $db, int $count,  string $category) : array {
+      $stmt = $db->prepare('SELECT idRestaurant, Restaurant.Name as Name FROM Restaurant JOIN RestCategory USING (idRestCategory) WHERE RestCategory.Name = ? LIMIT ?');
+      $stmt->execute(array($category, $count));
+
+      $restaurants = array();
+      while ($restaurant = $stmt->fetch()) {
+        $restaurants[] = new Restaurant(
+          (int) $restaurant['idRestaurant'],
+          $restaurant['Name']
+        );
+      }
+
+      return $restaurants;
+    }
+
     static function getRestaurant(PDO $db, int $id) : Restaurant {
       $stmt = $db->prepare('SELECT idRestaurant, Name FROM Restaurant WHERE idRestaurant = ?');
       $stmt->execute(array($id));
