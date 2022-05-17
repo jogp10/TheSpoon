@@ -23,6 +23,7 @@
       <?=$menuItem->name?></a>
       <button>Buy</button>
     </article>
+
     <?php } ?>
   </section>
 <?php } ?>

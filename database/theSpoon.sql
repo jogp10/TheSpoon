@@ -2,22 +2,7 @@
 .headers on
 PRAGMA foreign_keys = ON;
 
-drop table if exists Address;
-drop table if exists User;
-drop table if exists Restaurant;
-drop table if exists RestCategory;
-drop table if exists Evaluation;
-drop table if exists Menu;
-drop table if exists MenuItem;
-drop table if exists ItemCategory;
-drop table if exists MenuItemCategories;
-drop table if exists ItemFavorite;
-drop table if exists RestFavorite;
-drop table if exists Orders;
-drop table if exists Promotion;
-
-
-create table Address (
+create table if not exists Address (
 	idAddress 		INTEGER PRIMARY KEY,
 	Street 		VARCHAR NOT NULL,
 	City			VARCHAR NOT NULL,
@@ -25,7 +10,7 @@ create table Address (
 	PostalCode 		INTEGER NOT NULL
 );
 
-create table User (
+create table if not exists User (
 	idUser			INTEGER PRIMARY KEY,
 	Email			VARCHAR NOT NULL UNIQUE,
 	Password		VARCHAR NOT NULL,
@@ -36,13 +21,13 @@ create table User (
 												ON DELETE SET NULL ON UPDATE CASCADE
 );
 
-create table RestCategory (
+create table if not exists RestCategory (
 	idRestCategory		INTEGER PRIMARY KEY,
 	Name 			VARCHAR NOT NULL
 );
 
 
-create table Restaurant (
+create table if not exists Restaurant (
 	idRestaurant 		INTEGER PRIMARY KEY,
 	Name 			VARCHAR NOT NULL,
 	idUser		INTEGER NOT NULL 	CONSTRAINT fk_restaurant_iduser REFERENCES User (idUser)
@@ -53,7 +38,7 @@ create table Restaurant (
 												ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-create table Evaluation (
+create table if not exists Evaluation (
 	idEvaluation		INTEGER PRIMARY KEY,
 	idUser 		VARCHAR NOT NULL 	CONSTRAINT fk_evaluation_idUser REFERENCES User (idUser) 
 												ON DELETE CASCADE ON UPDATE CASCADE,
@@ -65,13 +50,13 @@ create table Evaluation (
 	CONSTRAINT evaluation_rating CHECK ((Rating >= 0) and (Rating <= 5))					
 );
 
-create table Menu (
+create table if not exists Menu (
 	idMenu			INTEGER PRIMARY KEY,
 	idRestaurant		INTEGER UNIQUE		CONSTRAINT fk_menu_idrestaurant REFERENCES Restaurant (idRestaurant)
 												ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-create table MenuItem (
+create table if not exists MenuItem (
 	idMenuItem	 	INTEGER PRIMARY KEY,
 	Name 			VARCHAR 	NOT NULL,
 	Price 			INTEGER NOT NULL,
@@ -80,12 +65,12 @@ create table MenuItem (
 												ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-create table ItemCategory (
+create table if not exists ItemCategory (
 	idItemCategory		INTEGER PRIMARY KEY,
 	Name 			VARCHAR 	NOT NULL
 );
 
-create table MenuItemCategories (
+create table if not exists MenuItemCategories (
 	idMenuItemCategories	INTEGER PRIMARY KEY,
 	idMenuItem		INTEGER NOT NULL 	CONSTRAINT fk_menuitemcategories_idmenuitem REFERENCES MenuItem (idMenuItem)
 												ON DELETE CASCADE ON UPDATE CASCADE,
@@ -93,7 +78,7 @@ create table MenuItemCategories (
 												ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-create table ItemFavorite (
+create table if not exists ItemFavorite (
 	idItemFavorite		INTEGER PRIMARY KEY,
 	idUser		VARCHAR NOT NULL 	CONSTRAINT fk_itemfavorite_iduser REFERENCES User (idUser)
 												ON DELETE CASCADE ON UPDATE CASCADE,
@@ -109,7 +94,7 @@ create table RestFavorite (
 												ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-create table Orders (
+create table if not exists Orders (
 	idOrders		INTEGER PRIMARY KEY,
 	OrderTime		DATE	NOT NULL,
 	PriceTotal		INTEGER,
@@ -118,7 +103,7 @@ create table Orders (
 	idRestaurant		INTEGER NOT NULL 	CONSTRAINT fk_orders_idrestaurant REFERENCES Restaurant (idRestaurant)
 );
 
-create table Promotion (
+create table if not exists Promotion (
 	idPromotion		INTEGER PRIMARY KEY,
 	idMenuItem		INTEGER NOT NULL 	CONSTRAINT fk_promotion_idmenuitem REFERENCES MenuItem (idMenuItem)
 												ON DELETE CASCADE ON UPDATE CASCADE,
@@ -141,7 +126,7 @@ INSERT INTO RestCategory values (5, "Pizzaria");
 INSERT INTO Restaurant values (4, "EatRoll", 7, 5, 3);
 INSERT INTO Restaurant values (14, "RockBy", 7, 5, 2);
 
-INSERT INTO Evaluation values (6, 6, 4, 4, null, null);
+INSERT INTO Evaluation values (6, 6, 4, 4, 'Mo bamba', 'Gratos pela sua escolha!!!');
 
 INSERT INTO Menu values (7, 4);
 
