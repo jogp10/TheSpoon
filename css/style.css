@@ -43,13 +43,12 @@ body>header #signup a:first-child {
 body>footer {
     background-color: #2a2f33;
     color: white;
-    padding: 1em;
+    padding: 2em;
     height: 2.5em;
 }
 
 body>footer p {
     margin: 0;
-    text-align: center;
 }
 
 

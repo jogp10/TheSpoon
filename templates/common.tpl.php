@@ -28,8 +28,8 @@
 
 <?php function drawFooter() { ?>
     </main>
-    <footer>
-      The Spoon &copy; 2022
+    <footer class="site-footer">
+      <p>The Spoon &copy; 2022</p>
     </footer>
   </body>
 </html>

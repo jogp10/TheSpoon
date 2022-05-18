@@ -3,6 +3,9 @@
 body {
     background-color: #a7f9db;
     margin: 0 auto;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
 body>header {
@@ -23,9 +26,9 @@ body>header .login {
     grid-row: 2;
 }
 
+
 body footer {
-    background-color: #90EE90;
-    color: white;
+    margin-top: auto;
     text-align: center;
     left: 0;
     bottom: 0;
