@@ -34,6 +34,7 @@ create table if not exists Restaurant (
 												ON DELETE CASCADE ON UPDATE CASCADE,
 	idRestCategory		INTEGER NOT NULL 	CONSTRAINT fk_restaurant_idrestcategory REFERENCES RestCategory (idRestCategory)
 												ON DELETE CASCADE ON UPDATE CASCADE,
+	Photo			VARCHAR	DEFAULT '',
 	idAddress		INTEGER NOT NULL 	CONSTRAINT fk_restaurant_idaddress REFERENCES Address (idAddress)
 												ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -86,7 +87,7 @@ create table if not exists ItemFavorite (
 												ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-create table RestFavorite (
+create table if not exists RestFavorite (
 	idRestFavorite		INTEGER PRIMARY KEY,
 	idUser		VARCHAR NOT NULL 	CONSTRAINT fk_restfavorite_iduser REFERENCES User (idUser)
 												ON DELETE CASCADE ON UPDATE CASCADE,
@@ -103,43 +104,171 @@ create table if not exists Orders (
 	idRestaurant		INTEGER NOT NULL 	CONSTRAINT fk_orders_idrestaurant REFERENCES Restaurant (idRestaurant)
 );
 
-create table if not exists Promotion (
-	idPromotion		INTEGER PRIMARY KEY,
-	idMenuItem		INTEGER NOT NULL 	CONSTRAINT fk_promotion_idmenuitem REFERENCES MenuItem (idMenuItem)
-												ON DELETE CASCADE ON UPDATE CASCADE,
-	idOrders		INTEGER NOT NULL 	CONSTRAINT fk_promotion_idorder REFERENCES Orders (idOrders)
-												ON DELETE CASCADE ON UPDATE CASCADE,
-	PercentageDisc		INTEGER DEFAULT 0
-);
-
 
 --- povoar
 
+-- Address (id, Street, City, State, PostalCode)
 INSERT INTO Address values (1, "Rua da Constituicao 143 R/C", "Porto", "Porto", 4250341);
 INSERT INTO Address values (2, "Rua da Circunvalacao 9430 1ª esq", "Porto", "Porto",  4250120);
 INSERT INTO Address values (3, "Avenida D Joao II 2 2ª frt", "Gaia", "Porto",  4200140);
+INSERT INTO Address values (4, "Rua 5 de Outubro 3ª frt", "Porto", "Porto",  4250140);
+INSERT INTO Address values (5, "Rua S. Victor", "Porto", "Porto",  4450530);
+INSERT INTO Address values (6, "Rua do Meida", "Estela", "Povoa",  4270207);
+INSERT INTO Address values (7, "Rua de Camoes", "Rio Tinto", "Porto",  4435530);
 
-INSERT INTO User values (6, "andreneves98@gmail.com", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 914989898, "Andre Neves", false, 1);
-INSERT INTO User values (7, "vascosilva55@gmail.com", "7110eda4d09e062aa5e4a390b0a572ac0d2c0222", 934545445, "Vasco Silva", true, 2);
+-- User (id, Email, pw, phone, name, restaurant owner, idAddress)
+INSERT INTO User values (1, "andreneves98@gmail.com", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 914989898, "Andre Neves", false, 1);
+INSERT INTO User values (2, "vascosilva55@gmail.com", "7110eda4d09e062aa5e4a390b0a572ac0d2c0222", 934545445, "Vasco Silva", true, 2);
+INSERT INTO User values (3, "dinis@macaca.co", "5f38b4f79c3cd43edef7d674200fe230f7cc70e8", 938888888, "Dinis Sousa", true, 2);
+INSERT INTO User values (4, "ocon@gmail.com", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 938888885, "Estebán Gutierrez", false, 2);
+INSERT INTO User values (5, "ricardo_cavalheiro@gma", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 938888887, "Ricardo Cavalheiro", false, 2);
+  
+-- RestCategory (id, Name)
+INSERT INTO RestCategory values (1, "Pizzaria");
+INSERT INTO RestCategory values (2, "Sushi");
+INSERT INTO RestCategory values (3, "Chinês");
+INSERT INTO RestCategory values (4, "Hamburgaria");
+INSERT INTO RestCategory values (5, "Gelataria");
+INSERT INTO RestCategory values (6, "Tasca");
+INSERT INTO RestCategory values (7, "Tailandês");
+INSERT INTO RestCategory values (8, "Churrasqueira");
+INSERT INTO RestCategory values (9, "Marisqueira");
+INSERT INTO RestCategory values (10, "Tradicional");
 
-INSERT INTO RestCategory values (5, "Pizzaria");
-INSERT INTO Restaurant values (4, "EatRoll", 7, 5, 3);
-INSERT INTO Restaurant values (14, "RockBy", 7, 5, 2);
+-- Restaurant (id, Name, idUser, idRestCategory, Photo, idAddress)
+INSERT INTO Restaurant values (1, "EatRoll", 2, 2, "https://picsum.photos/200?1", 3);
+INSERT INTO Restaurant values (2, "RockBy", 2, 2, "https://picsum.photos/200?2", 4);
+INSERT INTO Restaurant values (3, "MCAlfredos", 2, 4, "https://picsum.photos/200?3", 5);
+INSERT INTO Restaurant values (4, "Tasca do tio Quim", 2, 6, "https://picsum.photos/200?4", 3);
+INSERT INTO Restaurant values (5, "Churrasqueira Portuguesa", 2, 8, "https://picsum.photos/200?5", 4);
+INSERT INTO Restaurant values (6, "Tasca do Toni", 2, 6, "https://picsum.photos/200?6", 5);
+INSERT INTO Restaurant values (7, "Churrasqueira Toni Torpedo", 2, 8, "https://picsum.photos/200?7", 2);
+INSERT INTO Restaurant values (8, "Camelo", 2, 10, "https://picsum.photos/200?8", 1);
+INSERT INTO Restaurant values (9, "Stramontana", 2, 10, "https://picsum.photos/200?9", 3);
+INSERT INTO Restaurant values (10, "Transmontano", 2, 10, "https://picsum.photos/200?10", 4);
+INSERT INTO Restaurant values (11, "Thai Food", 2, 7, "https://picsum.photos/200?11", 1);
+INSERT INTO Restaurant values (12, "Restaurante Amizade", 2, 3, "https://picsum.photos/200?12", 5);
+INSERT INTO Restaurant values (13, "Restaurante Grão D'Ouro", 2, 10, "https://picsum.photos/200?13", 4);
+INSERT INTO Restaurant values (14, "Assim Assado", 2, 8, "https://picsum.photos/200?14", 3);
+INSERT INTO Restaurant values (15, "Ramirinho 1", 2, 6, "https://picsum.photos/200?15", 1);
+INSERT INTO Restaurant values (16, "Ramirinho 2", 2, 6, "https://picsum.photos/200?16", 2);
+INSERT INTO Restaurant values (17, "Ramirinho 3", 2, 6, "https://picsum.photos/200?17", 3);
+INSERT INTO Restaurant values (18, "Lado B", 2, 10, "https://picsum.photos/200?18", 4);
+INSERT INTO Restaurant values (19, "Santiago", 2, 10, "https://picsum.photos/200?19", 5);
+INSERT INTO Restaurant values (20, "Venham mais 5!", 2, 4, "https://picsum.photos/200?20", 4);
+INSERT INTO Restaurant values (21, "Mr Pizza", 2, 1, "https://picsum.photos/200?21", 3);
+INSERT INTO Restaurant values (22, "Las Bichas", 2, 6, "https://picsum.photos/200?22", 2);
+INSERT INTO Restaurant values (23, "Sincello", 2, 5, "https://picsum.photos/200?23", 1);
+INSERT INTO Restaurant values (24, "Marisqueira João Camarão", 2, 9, "https://picsum.photos/200?24", 3);
+INSERT INTO Restaurant values (25, "Madureira's", 2, 8, "https://picsum.photos/200?25", 4);
 
-INSERT INTO Evaluation values (6, 6, 4, 4, 'Mo bamba', 'Gratos pela sua escolha!!!');
+-- Evaluation (id, idUser, idRestaurant, Rating, Message, Comments)
+INSERT INTO Evaluation values (1, 1, 7, 4, 'Mo bamba', 'Gratos pela sua escolha!!!');
 
-INSERT INTO Menu values (7, 4);
+-- Menu (id, idRestaurant)
+INSERT INTO Menu values (1, 1);
+INSERT INTO Menu values (2, 2);
+INSERT INTO Menu values (3, 3);
+INSERT INTO Menu values (4, 4);
+INSERT INTO Menu values (5, 5);
+INSERT INTO Menu values (6, 6);
+INSERT INTO Menu values (7, 7);
+INSERT INTO Menu values (8, 8);
+INSERT INTO Menu values (9, 9);
+INSERT INTO Menu values (10, 10);
+INSERT INTO Menu values (11, 11);
+INSERT INTO Menu values (12, 12);
+INSERT INTO Menu values (13, 13);
+INSERT INTO Menu values (14, 14);
+INSERT INTO Menu values (15, 15);
+INSERT INTO Menu values (16, 16);
+INSERT INTO Menu values (17, 17);
+INSERT INTO Menu values (18, 18);
+INSERT INTO Menu values (19, 19);
+INSERT INTO Menu values (20, 20);
+INSERT INTO Menu values (21, 21);
+INSERT INTO Menu values (22, 22);
+INSERT INTO Menu values (23, 23);
+INSERT INTO Menu values (24, 24);
+INSERT INTO Menu values (25, 25);
 
-INSERT INTO MenuItem values (8, "Rojão à bolhão pato", 23, "https://picsum.photos/200?8", 7);
-INSERT INTO ItemCategory values (9, "Carne");
-INSERT INTO MenuItemCategories values (10, 8, 9);
+-- ItemCategory (id, Name)
+INSERT INTO ItemCategory values (1, "Carne");
+INSERT INTO ItemCategory values (2, "Peixe");
+INSERT INTO ItemCategory values (3, "Vegetariano");
+INSERT INTO ItemCategory values (4, "Vegan");
+INSERT INTO ItemCategory values (5, "FreeGluten");
 
-INSERT INTO MenuItem values (15, "Bacalhau à Braga", 23, "https://picsum.photos/200?15", 7);
-INSERT INTO ItemCategory values (16, "Peixe");
-INSERT INTO MenuItemCategories values (17, 15, 16);
+-- MenuItem (id, Name, Price, Photo, idMenu)
+-- MenuItemCategories (id, idMenuItem, idItemCategory)
+INSERT INTO MenuItem values (1, "Rojão à bolhão pato", 12, "https://picsum.photos/200?1111", 7);
+INSERT INTO MenuItemCategories values (1, 1, 1);
 
-INSERT INTO ItemFavorite values (11, 6, 8);
-INSERT INTO RestFavorite values (12, 6, 4);
+INSERT INTO MenuItem values (2, "Bacalhau à Braga", 12, "https://picsum.photos/200?1112", 13);
+INSERT INTO MenuItemCategories values (2, 2, 2);
 
-INSERT INTO Orders values (12, '2022-04-22 15:33', 45, 6, 4);
-INSERT INTO Promotion values (13, 8, 12, null);
+INSERT INTO MenuItem values (3, "Bacalhau à Braz", 15, "https://picsum.photos/200?11119", 13);
+INSERT INTO MenuItemCategories values (3, 3, 2);
+
+INSERT INTO MenuItem values (4, "Bacalhau com Natas", 10, "https://picsum.photos/200?1113", 13);
+INSERT INTO MenuItemCategories values (4, 4, 2);
+
+INSERT INTO MenuItem values (5, "Temaki", 8, "https://picsum.photos/200?1114", 1);
+INSERT INTO MenuItemCategories values (5, 5, 2);
+
+INSERT INTO MenuItem values (6, "Prego no Prato", 20, "https://picsum.photos/200?1115", 19);
+INSERT INTO MenuItemCategories values (6, 6, 1);
+
+INSERT INTO MenuItem values (7, "Francesinha Especial", 11, "https://picsum.photos/200?1116", 19);
+INSERT INTO MenuItemCategories values (7, 7, 1);
+
+INSERT INTO MenuItem values (8, "Pure de batata", 15, "https://picsum.photos/200?1117", 25);
+INSERT INTO MenuItemCategories values (8, 8, 3);
+INSERT INTO MenuItemCategories values (9, 8, 4);
+
+INSERT INTO MenuItem values (9, "Entrecosto", 13, "https://picsum.photos/200?1118", 25);
+INSERT INTO MenuItemCategories values (10, 9, 1);
+
+INSERT INTO MenuItem values (10, "Strogonoff", 12, "https://picsum.photos/200?1119", 25);
+INSERT INTO MenuItemCategories values (11, 10, 1);
+
+INSERT INTO MenuItem values (11, "Rissol Misto", 5, "https://picsum.photos/200?11110", 7);
+INSERT INTO MenuItemCategories values (12, 11, 1);
+
+INSERT INTO MenuItem values (12, "Mexilhoes", 24, "https://picsum.photos/200?11111", 7);
+INSERT INTO MenuItemCategories values (13, 12, 2);
+
+INSERT INTO MenuItem values (13, "Ovas", 10, "https://picsum.photos/200?11112", 7);
+INSERT INTO MenuItemCategories values (14, 13, 2);
+
+INSERT INTO MenuItem values (14, "Tremocos", 3, "https://picsum.photos/200?11113", 7);
+INSERT INTO MenuItemCategories values (15, 14, 3);
+INSERT INTO MenuItemCategories values (16, 14, 4);
+
+INSERT INTO MenuItem values (15, "Mixórdia Marisco", 45, "https://picsum.photos/200?11114", 24);
+INSERT INTO MenuItemCategories values (17, 15, 2);
+
+INSERT INTO MenuItem values (16, "TomaHawk", 30, "https://picsum.photos/200?11115", 20);
+INSERT INTO MenuItemCategories values (18, 16, 1);
+
+INSERT INTO MenuItem values (17, "Lagosta", 20, "https://picsum.photos/200?11116", 24);
+INSERT INTO MenuItemCategories values (19, 17, 2);
+
+INSERT INTO MenuItem values (18, "Ameijoas", 12, "https://picsum.photos/200?11117", 7);
+INSERT INTO MenuItemCategories values (20, 18, 2);
+
+INSERT INTO MenuItem values (19, "Salada de Pimentos", 12, "https://picsum.photos/200?11118", 7);
+INSERT INTO MenuItemCategories values (21, 19, 3);
+INSERT INTO MenuItemCategories values (22, 19, 4);
+
+
+-- ItemFavorite (id, idUser, idMenuItem)
+INSERT INTO ItemFavorite values (1, 1, 1);
+
+-- RestFavorite (id, idUser, idRestaurant)
+INSERT INTO RestFavorite values (1, 1, 7);
+INSERT INTO RestFavorite values (2, 1, 25);
+
+-- Orders (id, ordertime, pricetotal, idUser, idRestaurant)
+INSERT INTO Orders values (1, '2022-04-22 15:33', 36, 1, 7);
+INSERT INTO Orders values (2, '2022-05-15 03:33', 12, 1, 7);
