@@ -7,6 +7,7 @@
 
   require_once('database/restaurant.class.php');
   require_once('database/menu.class.php');
+  require_once('database/review.class.php');
 
   require_once('templates/common.tpl.php');
   require_once('templates/restaurant.tpl.php');
@@ -15,8 +16,10 @@
 
   $restaurant = Restaurant::getRestaurant($db, intval($_GET['id']));
   $menu = Menu::getMenu($db, intval($_GET['id']));
+  $comments = Review::getReviewsFromRestaurant($db, intval($_GET['id']));
 
   drawHeader();
-  drawRestaurant($restaurant, $menu);
+  drawCart();
+  drawRestaurant($restaurant, $menu, $comments);
   drawFooter();
 ?>

@@ -12,6 +12,5 @@
   $db = getDatabaseConnection();
 
   drawHeader();
-  //drawRestaurant($restaurant, $menu);
   drawFooter();
 ?>

@@ -13,7 +13,7 @@
   require_once('templates/user.tpl.php');
 
   $db = getDatabaseConnection();
-  $user = User::getUser($db, $_SESSION['email']);
+  $user = User::getUser($db, $_SESSION['id']);
 
   drawHeader();
   drawProfile($user);
