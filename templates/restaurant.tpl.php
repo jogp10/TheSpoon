@@ -11,7 +11,7 @@
 <?php } ?>
 
 <?php function drawRestaurantsCategory(array $restaurants, Category $category) { ?>
-  <section id="restaurants-category">
+  <section id=<?=$category->name?>>
     <h2><?=$category->name?></h2>
     <?php foreach($restaurants as $restaurant) { ?> 
       <article>

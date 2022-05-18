@@ -86,9 +86,15 @@
 <?php } ?>
 
 
-<?php function drawSearchBar() { ?>
+<?php function drawSearchBar($categories) { ?>
   <div class="topnav" id="searchRestaurant">
     <input type="text" placeholder="Search..">
+    <select id="select-category">
+      <?php foreach ($categories as $category) {?>
+        <option value=<?=$category->name?>><?=$category->name?></option>
+      <?php } ?>
+    </select>
+    <input type="submit" value="Search">
   </div>
 <?php } ?>
 

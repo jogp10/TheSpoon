@@ -14,9 +14,9 @@
   $db = getDatabaseConnection();
 
   $categories = Category::getRestaurantsCategories($db, 8);
-
+  $allcategories = Category::getRestaurantsCategories($db, 20);
   drawHeader();
-  drawSearchBar();
+  drawSearchBar($allcategories);
   drawRestaurants($db, $categories);
   drawFooter();
 ?>
