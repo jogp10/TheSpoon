@@ -7,6 +7,10 @@ if (searchRestaurant) {
         const section = document.querySelector('#restaurants')
         section.innerHTML = ''
 
+        const title = document.createElement('h1')
+        title.textContent = 'Restaurants'
+        section.append(title)
+
         console.log(this.value)
         for (const restaurant of restaurants) {
             console.log('found')

@@ -1,6 +1,8 @@
 <?php
   declare(strict_types = 1);
 
+  require_once('database/user.class.php');
+
   class Review {
     public int $id;
     public int $rating;
@@ -25,11 +27,11 @@
 
       $stmt2 = $db->prepare('SELECT idUser, idRestaurant FROM Restaurant WHERE idRestaurant = ?');
       $stmt2->execute(array($id));
-      $restOwner = User::getUser($db, $stmt2->fetch()['idUser']);
+      $restOwner = User::getUser($db, intval($stmt2->fetch()['idUser']));
 
       $reviews = array();
       while ($review = $stmt->fetch()) {
-        $user = User::getUser($db, $review['idUser']);
+        $user = User::getUser($db, intval($review['idUser']));
         $reviews[] = new Review(
           (int) $review['idEvaluation'],
           (int) $review['Rating'],
@@ -43,7 +45,7 @@
       return $reviews;
     }
 
-    static function getReviewsFromUser(PDO $db, int $id) : Restaurant {
+    static function getReviewsFromUser(PDO $db, int $id) : array {
       $stmt = $db->prepare('SELECT idEvaluation, Rating, Message, idUser, Comments, idRestaurant  FROM Evaluation WHERE idUser = ?');
       $stmt->execute(array($id));
 
@@ -53,11 +55,11 @@
       while ($review = $stmt->fetch()) {
         $stmt2 = $db->prepare('SELECT idUser, idRestaurant FROM Restaurant WHERE idRestaurant = ?');
         $stmt2->execute(array($review['idRestaurant']));
-        $restOwner = User::getUser($db, $stmt2->fetch()['idUser']);
+        $restOwner = User::getUser($db, intval($stmt2->fetch()['idUser']));
 
         $reviews[] = new Review(
-          (int) $restaurant['idEvaluation'],
-          (int) $restaurant['Rating'],
+          (int) $review['idEvaluation'],
+          (int) $review['Rating'],
           $review['Message'],
           $user->name(),
           $review['Comments'],
@@ -67,5 +69,6 @@
 
       return $reviews;
     }
+  }
 
 ?>
