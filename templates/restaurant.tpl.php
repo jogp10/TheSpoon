@@ -18,6 +18,7 @@
         <a href="restaurant.php?id=<?=$restaurant->id?>">
         <img src="https://picsum.photos/200?<?=$restaurant->id?>">
         <?=$restaurant->name?></a>
+        <p><?=$restaurant->description?></p>
       </article>
     <?php } ?>
   </section>
