@@ -15,3 +15,11 @@ function myFunction() {
         header.classList.remove("sticky");
     }
 }
+
+function openForm() {
+    document.getElementById("loginForm").style.display = "block";
+  }
+  
+function closeForm() {
+    document.getElementById("loginForm").style.display = "none";
+}

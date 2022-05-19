@@ -38,13 +38,23 @@
 <?php } ?>
 
 <?php function drawLogInForm() { ?> 
-  <form action="action_login.php" method="post" class="login">
-    <input type="email" placeholder="Email" name="email" id="email">
-    <input type="password" placeholder="Enter Password" name="password" id="password">
-    <button type="submit">Login</button>
+  <button type="button" class="open-button" onclick="openForm()">Login</button>
+  <div class="form-popup" id="loginForm">
+    <form action="action_login.php" method="post" class="form-container">
+      <h1>Login</h1>
 
-    <button><a href="register.php">Register</a></button>
-  </form>
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" id="email" required>
+      
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" id="password" required>
+      
+      <p>Don't have an account? No problem, <a href="register.php" class="registerLink">register.</a></p>
+
+      <button type="submit" class="btn">Login</button>
+      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
+  </div>
 <?php } ?>
 
 <?php function drawLogoutForm(string $name) { ?>
