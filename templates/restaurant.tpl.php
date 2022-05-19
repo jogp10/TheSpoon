@@ -1,7 +1,7 @@
 <?php declare(strict_types = 1); ?>
 
 <?php function drawRestaurants(PDO $db, array $categories) { ?>
-  <section id="restaurants">
+  <section class="style-restaraunts" id="restaurants">
     <h1>Restaurants</h1>
     <?php foreach($categories as $category) { 
       $restaurants = Restaurant::getRestaurantsFromCategory($db, 8, $category->id);
