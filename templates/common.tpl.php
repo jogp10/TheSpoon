@@ -61,27 +61,46 @@
 
 <?php function drawLogoutForm(string $name) { ?>
   <form action="action_logout.php" method="post" class="logout">
-    <a href="profile.php"><?=$name?></a>
-    <?php if($_SESSION['owner']) { ?>
-      <button><a href="register_rest.php">Register Your Restaurant</a></button>
-    <?php } ?>
-    <button type="submit">Logout</button>
+    <div class="userName">
+      <a href="profile.php"><?=$name?></a>
+      <button type="submit">Logout</button>
+      <?php if($_SESSION['owner']) { ?>
+        <button id="restRegister"><a href="register_rest.php">Register Your Restaurant</a></button>
+      <?php } ?>
+    </div>
   </form>
 <?php } ?>
 
 <?php function drawRegisterForm() { ?>
   <button type="button" class="open-button" id="registerButton" onclick="openRegisterForm()">Register</button>
-  <div class="form-popup" id="registerForm">
-    <form action="action_register.php" method="post" class="form-container" id="register">
+  <div class="form-popup-reg" id="registerForm">
+    <form action="action_register.php" method="post" class="form-container-reg" id="register">
       <h1>Register</h1>
-      <label><b>Name</b><input type="text" name="name"></label>   
-      <label><b>Email</b><input type="email" name="email" required></label>
-      <label><b>Password</b><input type="password" name="password" required></label>
-      <label><b>Phone</b><input type="phone" name="phone"></label>
-      <label><b>State</b><input type="text" name="state"></label>   
-      <label><b>City</b><input type="text" name="city"></label>   
-      <label><b>Street</b><input type="text" name="street"></label>   
-      <label><b>Postal Code</b><input type="text" name="postal-code"></label>   
+      <div id="name">
+        <label><b>Name</b><input type="text" placeholder="Enter Name" name="name"></label>   
+      </div>
+      <div id="phone">  
+        <label><b>Phone</b><input type="phone" placeholder="Enter Phone Nr" name="phone"></label>
+      </div>
+      <div id="email">
+        <label><b>Email</b><input type="email" placeholder="Enter Email" name="email" required></label>
+      </div>
+      <div id="password">
+        <label><b>Password</b><input type="password" placeholder="Enter Password" name="password" required></label>
+      </div>
+      <div id="state"> 
+        <label><b>State</b><input type="text" placeholder="Enter State" name="state"></label>   
+      </div>
+      <div id="city"> 
+        <label><b>City</b><input type="text" placeholder="Enter City" name="city"></label>   
+      </div>
+      <div id="street"> 
+        <label><b>Street</b><input type="text" placeholder="Enter Street" name="street"></label>   
+      </div>
+      <div id="postal-code">  
+        <label><b>Postal Code</b><input type="text" placeholder="Enter Postal-code" name="postal-code"></label>   
+      </div>
+
       <label><b>Restaurant Owner</b><input type="checkbox" name="restaurant-owner" id="restaurant-owner"></label>
 
       <p>Have an account? No problem, <a onclick="closeRegisterForm(); openLogInForm()" class="loginLink">log in.</a></p>
