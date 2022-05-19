@@ -86,7 +86,7 @@ body>header h2 {
     border: none;
     cursor: pointer;
     opacity: 0.8;
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 28px;
     width: 200px;
@@ -206,7 +206,6 @@ body>header h2 {
     width: 17%;
 }
 
-<<<<<<< HEAD
 
 /* Logged in corner section of the header */
 
@@ -267,7 +266,7 @@ body>header h2 {
     border: none;
     cursor: pointer;
     opacity: 0.8;
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 28px;
     width: 200px;
@@ -394,5 +393,19 @@ body>header h2 {
     flex-direction: row;
     border-radius: 15px;
     margin: 10px;
+}
+
+#goToTop {
+    background-color: #2a2f33; 
+    color: white;
+    cursor: pointer; 
+    padding: 15px; 
+    border-radius: 10px; 
+    font-size: 18px; 
+}
+
+#goToTop:hover {
+    background-color: #555;
+    color: white;
 }
 

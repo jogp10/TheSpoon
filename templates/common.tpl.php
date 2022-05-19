@@ -15,6 +15,7 @@
     <script src="javascript/search.js" defer=""></script>
     <script src="javascript/header.js" defer=""></script>
     <script src="javascript/cart.js" defer=""></script>
+    <script src="javascript/top.js" defer=""></script>
   </head>
   <body>
 
@@ -31,6 +32,7 @@
 
 <?php function drawFooter() { ?>
     </main>
+    <button onclick="toTopFunc()" id="goToTop" title="Go to top">Top</button> 
     <footer class="footer">
       The Spoon &copy; 2022
     </footer>
