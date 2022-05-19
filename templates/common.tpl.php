@@ -38,7 +38,7 @@
 <?php } ?>
 
 <?php function drawLogInForm() { ?> 
-  <button type="button" class="open-button" onclick="openForm()">Login</button>
+  <button type="button" class="open-button" id="logInButton" onclick="openLogInForm()">Login</button>
   <div class="form-popup" id="loginForm">
     <form action="action_login.php" method="post" class="form-container">
       <h1>Login</h1>
@@ -49,12 +49,13 @@
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="password" id="password" required>
       
-      <p>Don't have an account? No problem, <a href="register.php" class="registerLink">register.</a></p>
+      <p>Don't have an account? No problem, <a onclick="closeLogInForm(); openRegisterForm()" class="registerLink">register.</a></p>
 
       <button type="submit" class="btn">Login</button>
-      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+      <button type="button" class="btn cancel" onclick="closeLogInForm()">Close</button>
     </form>
   </div>
+  <?=drawRegisterForm();?>
 <?php } ?>
 
 <?php function drawLogoutForm(string $name) { ?>
@@ -68,22 +69,24 @@
 <?php } ?>
 
 <?php function drawRegisterForm() { ?>
-  <section id="register">
-    <h1>Register</h1>
-    <hr>
-    <form action="action_register.php" method="post" class="register" id="register">
-      <label>Name<input type="text" name="name"></label>   
-      <label>Email<input type="email" name="email"></label>
-      <label>Password<input type="password" name="password"></label>
-      <label>Repeat<input type="password" name="password-repeat"></label>
-      <label>Phone<input type="phone" name="phone"></label>
-      <label>State<input type="text" name="state"></label>   
-      <label>City<input type="text" name="city"></label>   
-      <label>Street<input type="text" name="street"></label>   
-      <label>Postal Code<input type="text" name="postal-code"></label>   
-      <label>Restaurant Owner<input type="checkbox" name="restaurant-owner" id="restaurant-owner"></label>
+  <button type="button" class="open-button" id="registerButton" onclick="openRegisterForm()">Register</button>
+  <div class="form-popup" id="registerForm">
+    <form action="action_register.php" method="post" class="form-container" id="register">
+      <h1>Register</h1>
+      <label><b>Name</b><input type="text" name="name"></label>   
+      <label><b>Email</b><input type="email" name="email" required></label>
+      <label><b>Password</b><input type="password" name="password" required></label>
+      <label><b>Phone</b><input type="phone" name="phone"></label>
+      <label><b>State</b><input type="text" name="state"></label>   
+      <label><b>City</b><input type="text" name="city"></label>   
+      <label><b>Street</b><input type="text" name="street"></label>   
+      <label><b>Postal Code</b><input type="text" name="postal-code"></label>   
+      <label><b>Restaurant Owner</b><input type="checkbox" name="restaurant-owner" id="restaurant-owner"></label>
+
+      <p>Have an account? No problem, <a onclick="closeRegisterForm(); openLogInForm()" class="loginLink">log in.</a></p>
       
-      <button type="submit">Register</button>
+      <button type="submit" class="btn">Register</button>
+      <button type="button" class="btn cancel" onclick="closeRegisterForm()">Close</button>
     </form>
   </section>
 
