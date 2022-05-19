@@ -218,3 +218,23 @@ body>header h2 {
 .topnav > button {
     width: 17%;
 }
+
+.style-restaraunts {
+    display: block;
+}
+
+.style-restaraunts > section {
+    margin: 20px;
+    background-color: antiquewhite;
+    border-radius: 15px;
+    padding: 16px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.style-restaraunts > section > article {
+    display: flex;
+    flex-direction: row;
+    border-radius: 15px;
+    margin: 10px;
+}
+
