@@ -20,8 +20,11 @@ if (searchRestaurant) {
             const link = document.createElement('a')
             link.href = 'restaurant.php?id=' + restaurant.id
             link.textContent = ' ' + restaurant.name
+            const phrase = document.createElement('p')
+            phrase.textContent = restaurant.description
             article.appendChild(img)
             article.appendChild(link)
+            article.appendChild(phrase)
             section.appendChild(article)
         }
     })

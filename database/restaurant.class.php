@@ -121,7 +121,7 @@
     
       $categories = array();
       while ($category = $stmt->fetch()) {
-        $categories[] = new Restaurant(
+        $categories[] = new Category(
           (int) $category['idItemCategory'],
           $category['Name']
         );
