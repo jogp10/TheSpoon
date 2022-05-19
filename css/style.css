@@ -190,3 +190,31 @@ body>header h2 {
 .open-button:hover {
     opacity: 1;
 }
+
+.topnav {
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.6);
+    max-height: 550px;
+    max-width: 100%;
+    padding: 8px;
+    border-radius: 15px;
+    display:flex;
+}
+
+.topnav > input[type=text] {
+    font-weight: bold;
+    width: 140%;
+    border-radius: 5px;
+    padding: 15px 20px;
+    border: none;
+}
+.topnav > select {
+    font-weight: bold;
+    width: 45%;
+    border-radius: 5px;
+    padding: 15px 20px;
+}
+
+.topnav > button {
+    width: 17%;
+}

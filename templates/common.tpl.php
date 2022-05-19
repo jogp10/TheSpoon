@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="javascript/search.js" defer=""></script>
     <script src="javascript/header.js" defer=""></script>
     <script src="javascript/cart.js" defer=""></script>
@@ -107,7 +108,7 @@
         <option value=<?=$category->name?>><?=$category->name?></option>
       <?php } ?>
     </select>
-    <input type="submit" value="Search">
+    <button type="submit"><i class="fa fa-search"></i></button>
   </div>
 <?php } ?>
 
