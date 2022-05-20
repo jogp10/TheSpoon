@@ -20,7 +20,7 @@
   <body>
 
     <header id="header">
-      <a id="logo" href=""><img src="images/The Spoon.png" alt ="theSpoon logo" width="300" height="200"></a>
+      <a id="logo" href="/"><img src="images/The Spoon.png" alt ="theSpoon logo" width="300" height="200"></a>
       <?php 
         if (isset($_SESSION['id'])) drawLogoutForm($_SESSION['name']);
         else drawLogInForm();
