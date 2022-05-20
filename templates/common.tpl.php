@@ -10,7 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/register.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="javascript/search.js" defer=""></script>
     <script src="javascript/header.js" defer=""></script>
@@ -20,7 +19,7 @@
   <body>
 
     <header id="header">
-      <a id="logo" href="/"><img src="images/The Spoon.png" alt ="theSpoon logo" width="300" height="200"></a>
+      <a id="logo" href="/"><img src="images/TheSpoon.png" alt ="theSpoon logo" width="300" height="200"></a>
       <?php 
         if (isset($_SESSION['id'])) drawLogoutForm($_SESSION['name']);
         else drawLogInForm();
@@ -46,11 +45,11 @@
     <form action="action_login.php" method="post" class="form-container">
       <h1>Login</h1>
 
-      <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="email" id="email" required>
+      <label><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" class="email" required>
       
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="password" id="password" required>
+      <label><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" class="password" required>
       
       <p>Don't have an account? No problem, <a onclick="closeLogInForm(); openRegisterForm()" class="registerLink">register.</a></p>
 
@@ -82,13 +81,13 @@
         <label><b>Name</b><input type="text" placeholder="Enter Name" name="name"></label>   
       </div>
       <div id="phone">  
-        <label><b>Phone</b><input type="phone" placeholder="Enter Phone Nr" name="phone"></label>
+        <label><b>Phone</b><input type="tel" placeholder="Enter Phone Nr" name="phone"></label>
       </div>
       <div id="email">
-        <label><b>Email</b><input type="email" placeholder="Enter Email" name="email" required></label>
+        <label><b>Email</b><input type="email" placeholder="Enter Email" name="email-reg" required></label>
       </div>
       <div id="password">
-        <label><b>Password</b><input type="password" placeholder="Enter Password" name="password" required></label>
+        <label><b>Password</b><input type="password" placeholder="Enter Password" name="password-reg" required></label>
       </div>
       <div id="state"> 
         <label><b>State</b><input type="text" placeholder="Enter State" name="state"></label>   

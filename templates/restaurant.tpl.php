@@ -2,7 +2,7 @@
 
 <?php function drawRestaurants(PDO $db, array $categories) { ?>
   <section class="style-restaraunts" id="restaurants">
-    <h1>Restaurants</h1>
+    <h2>Restaurants</h2>
     <?php foreach($categories as $category) { 
       $restaurants = Restaurant::getRestaurantsFromCategory($db, 8, $category->id);
       drawRestaurantsCategory($restaurants, $category);
@@ -13,14 +13,14 @@
 <?php function drawRestaurantsCategory(array $restaurants, Category $category) { ?>
   <section id=<?=$category->name?>>
     <div>
-      <h2><?=$category->name?></h2>
+      <h3><?=$category->name?></h3>
       <p><?=$category->description?></p>
     </div>
     <?php foreach($restaurants as $restaurant) { ?> 
       <article>
-        <div id="restImageName">
-          <a href="restaurant.php?id=<?=$restaurant->id?>" class="restImage" id="restImage"><img src="https://picsum.photos/200?<?=$restaurant->id?>"></a>
-          <a href="restaurant.php?id=<?=$restaurant->id?>" class="restName" id="restName"><?=$restaurant->name?></a>
+        <div class="restImageName">
+          <a href="restaurant.php?id=<?=$restaurant->id?>" class="restImage" id="restImage-<?=$restaurant->id?>"><img src="https://picsum.photos/200?<?=$restaurant->id?>" alt=""></a>
+          <a href="restaurant.php?id=<?=$restaurant->id?>" class="restName" id="restName-<?=$restaurant->id?>"><?=$restaurant->name?></a>
           <p class="restDesc" id="restDesc-<?=$restaurant->id?>"><?=$restaurant->description?></p>
           <button type="button" class="descClose" id="descClose-<?=$restaurant->id?>" onclick="closeDescription(<?=$restaurant->id?>)">-</button>
           <button type="button" class="descOpen" id="descOpen-<?=$restaurant->id?>" onclick="openDescription(<?=$restaurant->id?>)">+</button>

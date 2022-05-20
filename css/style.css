@@ -1,8 +1,10 @@
-.loginLink, .registerLink {
+.loginLink,
+.registerLink {
     text-decoration: underline;
 }
 
-a:not(.loginLink), a:not(.registerLink) {
+a:not(.loginLink),
+a:not(.registerLink) {
     text-decoration: none;
     color: #2a2f33;
 }
@@ -91,6 +93,7 @@ body>header h2 {
     background-color: #2a2f33;
 }
 
+
 /* The popup form - hidden by default */
 
 .form-popup {
@@ -176,24 +179,25 @@ body>header h2 {
     max-width: 100%;
     padding: 8px;
     border-radius: 15px;
-    display:flex;
+    display: flex;
 }
 
-.topnav > input[type=text] {
+.topnav>input[type=text] {
     font-weight: bold;
     width: 140%;
     border-radius: 5px;
     padding: 15px 20px;
     border: none;
 }
-.topnav > select {
+
+.topnav>select {
     font-weight: bold;
     width: 45%;
     border-radius: 5px;
     padding: 15px 20px;
 }
 
-.topnav > button {
+.topnav>button {
     width: 17%;
 }
 
@@ -226,7 +230,7 @@ body>header h2 {
     background-color: #c4cdca;
 }
 
-#restRegister{
+#restRegister {
     background-color: #555;
     padding: 0.4em 0.5em;
     right: 0;
@@ -249,7 +253,7 @@ body>header h2 {
 
 
 /* Register in pop-up form */
- 
+
 #registerButton {
     background-color: #555;
     color: white;
@@ -261,6 +265,7 @@ body>header h2 {
 #registerButton:hover {
     background-color: #2a2f33;
 }
+
 
 /* The popup form - hidden by default */
 
@@ -294,7 +299,7 @@ body>header h2 {
 /* Full-width input fields */
 
 .form-container-reg input[type=email],
-.form-container-reg input[type=phone],
+.form-container-reg input[type=tel],
 .form-container-reg input[type=text],
 .form-container-reg input[type=password] {
     padding: 15px;
@@ -304,15 +309,17 @@ body>header h2 {
     background: #f1f1f1;
 }
 
-.form-container-reg #state, .form-container-reg #street, .form-container-reg #name {
+.form-container-reg #state,
+.form-container-reg #street,
+.form-container-reg #name {
     margin-right: 1em;
 }
 
 .form-container-reg #state,
-.form-container-reg #city, 
-.form-container-reg #postal-code, 
-.form-container-reg #street, 
-.form-container-reg #name, 
+.form-container-reg #city,
+.form-container-reg #postal-code,
+.form-container-reg #street,
+.form-container-reg #name,
 .form-container-reg #phone {
     width: 45%;
     display: inline-block;
@@ -321,7 +328,7 @@ body>header h2 {
 
 /* When the inputs get focus, do something */
 
-.form-container-reg input[type=phone]:focus,
+.form-container-reg input[type=tel]:focus,
 .form-container-reg input[type=email]:focus,
 .form-container-reg input[type=text]:focus,
 .form-container-reg input[type=password]:focus {
@@ -362,7 +369,7 @@ body>header h2 {
     display: block;
 }
 
-.style-restaraunts > section {
+.style-restaraunts>section {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -373,23 +380,24 @@ body>header h2 {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.style-restaraunts > section > div {
+.style-restaraunts>section>div {
     background-color: white;
     width: 25em;
     padding: 23px;
     border-radius: 15px;
 }
 
-.style-restaraunts > section > article {
+.style-restaraunts>section>article {
     display: flex;
     flex-direction: row;
     border-radius: 15px;
     margin: 10px;
 }
 
+
 /* Description pop-up */
 
-#restImageName {
+.restImageName {
     position: relative;
     text-align: center;
     color: #2a2f33;
@@ -408,7 +416,8 @@ a.restName {
     color: white;
 }
 
-.descClose, .descOpen{
+.descClose,
+.descOpen {
     color: white;
     background-color: #000;
     opacity: 0.8;
@@ -420,24 +429,47 @@ a.restName {
     padding-left: 0.4em;
 }
 
-.descOpen {display: block;}
+.descOpen {
+    display: block;
+}
+
 
 /************************/
+
+
 /* Go to the top button */
 
 #goToTop {
-    background-color: #2a2f33; 
+    background-color: #2a2f33;
     color: white;
-    cursor: pointer; 
-    padding: 15px; 
-    border-radius: 10px; 
-    font-size: 18px; 
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 18px;
 }
 
 #goToTop:hover {
     background-color: #555;
     color: white;
 }
+
+
 /************************/
 
 
+/************************/
+
+
+/* Scroll fix search bar */
+
+.sticky {
+    position: fixed;
+    top: 0;
+}
+
+.sticky+.content {
+    padding-top: 102px;
+}
+
+
+/************************/

@@ -2,17 +2,17 @@
 window.onscroll = function() { myFunction() };
 
 // Get the header
-var header = document.getElementById("header");
+var searchBar = document.getElementById("searchRestaurant");
 
 // Get the offset position of the navbar
-var sticky = header.offsetTop;
+var sticky = searchBar.offsetTop;
 
 // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
 function myFunction() {
     if (window.pageYOffset > sticky) {
-        header.classList.add("sticky");
+        searchBar.classList.add("sticky");
     } else {
-        header.classList.remove("sticky");
+        searchBar.classList.remove("sticky");
     }
 }
 
