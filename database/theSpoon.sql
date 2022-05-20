@@ -23,7 +23,8 @@ create table if not exists User (
 
 create table if not exists RestCategory (
 	idRestCategory		INTEGER PRIMARY KEY,
-	Name 			VARCHAR NOT NULL
+	Name 			VARCHAR NOT NULL,
+	Description		VARCHAR NOT NULL
 );
 
 
@@ -124,17 +125,17 @@ INSERT INTO User values (3, "dinis@macaca.co", "5f38b4f79c3cd43edef7d674200fe230
 INSERT INTO User values (4, "ocon@gmail.com", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 938888885, "Estebán Gutierrez", false, 2);
 INSERT INTO User values (5, "ricardo_cavalheiro@gma", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 938888887, "Ricardo Cavalheiro", false, 2);
   
--- RestCategory (id, Name)
-INSERT INTO RestCategory values (1, "Pizzaria");
-INSERT INTO RestCategory values (2, "Sushi");
-INSERT INTO RestCategory values (3, "Chinês");
-INSERT INTO RestCategory values (4, "Hamburgaria");
-INSERT INTO RestCategory values (5, "Gelataria");
-INSERT INTO RestCategory values (6, "Tasca");
-INSERT INTO RestCategory values (7, "Tailandês");
-INSERT INTO RestCategory values (8, "Churrasqueira");
-INSERT INTO RestCategory values (9, "Marisqueira");
-INSERT INTO RestCategory values (10, "Tradicional");
+-- RestCategory (id, Name, Description)
+INSERT INTO RestCategory values (1, "Pizzaria", "The best Pizza");
+INSERT INTO RestCategory values (2, "Sushi", "The best Sushi");
+INSERT INTO RestCategory values (3, "Chinês", "The best Chinese");
+INSERT INTO RestCategory values (4, "Hamburgaria", "The best Hamburgers");
+INSERT INTO RestCategory values (5, "Gelataria", "The best Icecreams");
+INSERT INTO RestCategory values (6, "Tasca", "The best Tavern");
+INSERT INTO RestCategory values (7, "Tailandês", "The best Thai");
+INSERT INTO RestCategory values (8, "Churrasqueira", "The best Barbecue");
+INSERT INTO RestCategory values (9, "Marisqueira", "The best Seafood");
+INSERT INTO RestCategory values (10, "Tradicional", "The best Traditional food");
 
 -- Restaurant (id, Name, idUser, idRestCategory, Photo, Description, idAddress)
 INSERT INTO Restaurant values (1, "EatRoll", 2, 2, "https://picsum.photos/200?1", "All you can eat", 3);

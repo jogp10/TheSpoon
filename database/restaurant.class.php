@@ -94,21 +94,24 @@
   class Category {
     public int $id;
     public string $name;
+    public string $description;
 
-    public function __construct(int $id, string $name) { 
+    public function __construct(int $id, string $name, string $description) { 
       $this->id = $id;
       $this->name = $name;
+      $this->description = $description;
     }
 
     static function getRestaurantsCategories(PDO $db, int $count) : array {
-      $stmt = $db->prepare('SELECT idRestCategory, Name FROM RestCategory LIMIT ?');
+      $stmt = $db->prepare('SELECT idRestCategory, Name, Description FROM RestCategory LIMIT ?');
       $stmt->execute(array($count));
 
       $categories = array();
       while ($category = $stmt->fetch()) {
         $categories[] = new Category(
           (int) $category['idRestCategory'],
-          $category['Name']
+          $category['Name'],
+          $description['Description']
         );
       }
 
@@ -129,8 +132,6 @@
 
       return $categories;
     }
-
-
   }
 
 ?>
