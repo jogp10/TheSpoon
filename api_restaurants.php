@@ -13,7 +13,7 @@
   foreach($categories as $category) {
     $restaurants = Restaurant::searchRestaurantsbyCategory($db, $_GET['search'], $category->id, 8);
     if(count($restaurants)==0) continue;
-    array_push($byCategory, [$restaurants, $category->name]);
+    array_push($byCategory, [$restaurants, [$category->name, $category->description]]);
   }
 
   echo json_encode($byCategory);

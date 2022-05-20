@@ -14,11 +14,19 @@ if (searchRestaurant) {
 
         console.log(this.value)
         for (const category of categories) {
-            const catSection = document.createElement('section')
             const catName = document.createElement('h3')
-            catName.textContent = category[1]
-            catSection.appendChild(catName)
-            catSection.setAttribute('id', category[1])
+            catName.textContent = category[1][0]
+
+            const catDesc = document.createElement('p')
+            catDesc.textContent = category[1][1]
+
+            const catDiv = document.createElement('div')
+            catDiv.appendChild(catName)
+            catDiv.appendChild(catDesc)
+
+            const catSection = document.createElement('section')
+            catSection.setAttribute('id', category[1][0])
+            catSection.appendChild(catDiv)
 
             for (const restaurant of category[0]) {
                 console.log('found')
@@ -73,7 +81,6 @@ if (searchRestaurant) {
                     document.getElementById(descClose).style.display = "block";
                 }
 
-
                 const div = document.createElement('div')
                 div.appendChild(link1)
                 div.appendChild(link2)
@@ -87,7 +94,6 @@ if (searchRestaurant) {
                 catSection.appendChild(article)
             }
             section.append(catSection)
-
         }
     })
 }

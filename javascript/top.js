@@ -1,15 +1,15 @@
 topbutton = document.getElementById("goToTop");
-window.onscroll = function() {scroll()};
+window.onscroll = function() { scroll() };
 
 function scroll() {
     if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
         topbutton.style.display = "block";
-    }
-    else {
+    } else {
         topbutton.style.display = "none";
     }
 }
-function toTopFunc(){
+
+function toTopFunc() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
