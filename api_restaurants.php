@@ -11,7 +11,7 @@
   $categories = Category::getRestaurantsCategories($db, 8);
   $byCategory = array();
   foreach($categories as $category) {
-    $restaurants = Restaurant::searchRestaurantsbyCategory($db, $_GET['search'], $category->id, 8);
+    $restaurants = Restaurant::searchRestaurantsbyCategory($db, $_GET['search'], $category->id, 5);
     if(count($restaurants)==0) continue;
     array_push($byCategory, [$restaurants, [$category->name, $category->description]]);
   }

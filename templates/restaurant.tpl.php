@@ -4,7 +4,7 @@
   <section class="style-restaraunts" id="restaurants">
     <h2>Restaurants</h2>
     <?php foreach($categories as $category) { 
-      $restaurants = Restaurant::getRestaurantsFromCategory($db, 8, $category->id);
+      $restaurants = Restaurant::getRestaurantsFromCategory($db, 5, $category->id);
       drawRestaurantsCategory($restaurants, $category);
     } ?>
   </section>
