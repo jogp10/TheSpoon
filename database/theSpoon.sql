@@ -139,8 +139,8 @@ INSERT INTO RestCategory values (10, "Tradicional", "The best Traditional food")
 
 -- Restaurant (id, Name, idUser, idRestCategory, Photo, Description, idAddress)
 INSERT INTO Restaurant values (1, "EatRoll", 2, 2, "https://picsum.photos/200?1", "All you can eat", 3);
-INSERT INTO Restaurant values (2, "RockBy", 2, 2, "https://picsum.photos/200?2", "All you can eat", 4);
-INSERT INTO Restaurant values (3, "MCAlfredos", 2, 4, "https://picsum.photos/200?3", "All you can eat", 5);
+INSERT INTO Restaurant values (2, "RockBy", 2, 2, "https://picsum.photos/200?2", "Rocks that crack your teeth", 4);
+INSERT INTO Restaurant values (3, "MCAlfredos", 2, 4, "https://picsum.photos/200?3", "Eat so much, get so fat, dont run, keep eating, eat more and continue eating, there is no possible limit to how much you can eat.", 5);
 INSERT INTO Restaurant values (4, "Tasca do tio Quim", 2, 6, "https://picsum.photos/200?4", "All you can eat", 3);
 INSERT INTO Restaurant values (5, "Churrasqueira Portuguesa", 2, 8, "https://picsum.photos/200?5", "All you can eat", 4);
 INSERT INTO Restaurant values (6, "Tasca do Toni", 2, 6, "https://picsum.photos/200?6", "All you can eat", 5);
