@@ -12,7 +12,10 @@
 
 <?php function drawRestaurantsCategory(array $restaurants, Category $category) { ?>
   <section id=<?=$category->name?>>
-    <h2><?=$category->name?></h2>
+    <div>
+      <h2><?=$category->name?></h2>
+      <p><?=$category->description?></p>
+    </div>
     <?php foreach($restaurants as $restaurant) { ?> 
       <article>
         <div id="restImageName">
