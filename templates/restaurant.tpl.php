@@ -16,11 +16,11 @@
     <?php foreach($restaurants as $restaurant) { ?> 
       <article>
         <div id="restImageName">
-          <a href="restaurant.php?id=<?=$restaurant->id?>" id="restImage"><img src="https://picsum.photos/200?<?=$restaurant->id?>"></a>
-          <a href="restaurant.php?id=<?=$restaurant->id?>" id="restName"><?=$restaurant->name?></a>
-          <p id="restDesc"><?=$restaurant->description?></p>
-          <button type="button" class="descClose" id="descClose" onclick="closeDescription()">-</button>
-          <button type="button" class="descOpen" id="descOpen" onclick="openDescription()">+</button>
+          <a href="restaurant.php?id=<?=$restaurant->id?>" class="restImage" id="restImage"><img src="https://picsum.photos/200?<?=$restaurant->id?>"></a>
+          <a href="restaurant.php?id=<?=$restaurant->id?>" class="restName" id="restName"><?=$restaurant->name?></a>
+          <p class="restDesc" id="restDesc-<?=$restaurant->id?>"><?=$restaurant->description?></p>
+          <button type="button" class="descClose" id="descClose-<?=$restaurant->id?>" onclick="closeDescription(<?=$restaurant->id?>)">-</button>
+          <button type="button" class="descOpen" id="descOpen-<?=$restaurant->id?>" onclick="openDescription(<?=$restaurant->id?>)">+</button>
         </div>      
         
       </article>

@@ -385,13 +385,13 @@ body>header h2 {
     color: #2a2f33;
 }
 
-a#restName {
+a.restName {
     color: #2a2f33;
     background-color: #eecea5;
     width: 100%;
 }
 
-#restDesc {
+.restDesc {
     display: none;
     background-color: #2a2f33;
     opacity: 0.8;

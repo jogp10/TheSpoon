@@ -93,13 +93,13 @@ body footer {
 
 /* description pop-up */
 
-a#restName {
+a.restName {
     position: absolute;
     bottom: 2%;
     left: 0;
 }
 
-#restDesc {
+.restDesc {
     position: absolute;
     width: 100%;
     height: 89%;
