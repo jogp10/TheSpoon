@@ -96,10 +96,12 @@
     public string $name;
     public string $description;
 
-    public function __construct(int $id, string $name, string $description) { 
-      $this->id = $id;
-      $this->name = $name;
-      $this->description = $description;
+    public function __construct() { 
+      $argc = func_num_args();
+      $argv = func_get_args();
+      $this->id = $argv[0];
+      $this->name = $argv[1];
+      if($argc==3) $this->description = $argv[2];
     }
 
     static function getRestaurantsCategories(PDO $db, int $count) : array {
