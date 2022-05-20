@@ -39,9 +39,6 @@ body>header #signup a:first-child {
 }
 
 
-/* navigation */
-
-
 /* footer */
 
 body>footer {
@@ -170,6 +167,21 @@ body>header h2 {
 .form-container .btn:hover,
 .open-button:hover {
     opacity: 1;
+}
+
+
+/* navigation */
+
+
+/* Scroll fix search bar */
+
+.sticky {
+    position: fixed;
+    top: 0;
+}
+
+.sticky+.content {
+    padding-top: 102px;
 }
 
 .topnav {
@@ -451,24 +463,6 @@ a.restName {
 #goToTop:hover {
     background-color: #555;
     color: white;
-}
-
-
-/************************/
-
-
-/************************/
-
-
-/* Scroll fix search bar */
-
-.sticky {
-    position: fixed;
-    top: 0;
-}
-
-.sticky+.content {
-    padding-top: 102px;
 }
 
 

@@ -45,7 +45,6 @@ body>header .login {
     grid-row: 1;
 }
 
-
 body footer {
     margin-top: auto;
     text-align: center;
@@ -64,13 +63,13 @@ body footer {
 }
 
 #goToTop {
-    display: none; 
-    position: fixed; 
-    bottom: 20px; 
-    right: 30px; 
-    z-index: 99; 
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
     border: none;
-    outline: none; 
+    outline: none;
 }
 
 #logInButton {
@@ -91,6 +90,7 @@ body footer {
     cursor: pointer;
 }
 
+
 /* description pop-up */
 
 a.restName {
@@ -106,11 +106,12 @@ a.restName {
     bottom: 9px;
 }
 
-.descClose, .descOpen{
+.descClose,
+.descOpen {
     position: relative;
     left: 0;
     bottom: 90%;
 }
 
-/******************/
 
+/******************/

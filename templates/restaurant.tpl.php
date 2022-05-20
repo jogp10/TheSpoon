@@ -19,7 +19,7 @@
     <?php foreach($restaurants as $restaurant) { ?> 
       <article>
         <div class="restImageName">
-          <a href="restaurant.php?id=<?=$restaurant->id?>" class="restImage" id="restImage-<?=$restaurant->id?>"><img src="https://picsum.photos/200?<?=$restaurant->id?>" alt=""></a>
+          <a href="restaurant.php?id=<?=$restaurant->id?>" class="restImage" id="restImage-<?=$restaurant->id?>"><img src="https://picsum.photos/200?<?=$restaurant->id?>" alt="restaurant image" width="200" height="200"></a>
           <a href="restaurant.php?id=<?=$restaurant->id?>" class="restName" id="restName-<?=$restaurant->id?>"><?=$restaurant->name?></a>
           <p class="restDesc" id="restDesc-<?=$restaurant->id?>"><?=$restaurant->description?></p>
           <button type="button" class="descClose" id="descClose-<?=$restaurant->id?>" onclick="closeDescription(<?=$restaurant->id?>)">-</button>
@@ -37,13 +37,14 @@
       <article>
         <a href="item.php?id=<?=$menuItem->id?>">
         <h4><?=$menuItem->name?></h4>
-        <img src=<?=$menuItem->photo?> alt=""></a>
+        <img src=<?=$menuItem->photo?> alt="item image" width="200" height="200"></a>
         <button>Buy</button>
       </article>
     <?php } ?>
   </section>
 
   <section id="comments">
+    <?php if(count($comments) != 0 || isset($_SESSION['id'])) { ?>
     <h2>Comments</h2>
     <?php foreach ($comments as $comment) { ?>
       <?php if($comment->comment != '') { ?>
@@ -58,13 +59,16 @@
             <p><?=$comment->answer?></p>
           <?php } ?>
         </article>
-    <?php } } ?>
-    <form id="comment">
+    <?php } } } ?>
+    
+    <?php if (isset($_SESSION['id'])) { ?>
+    <form action="action_comment.php" id="comment">
       <h3>Rate your experience</h3>
       <label>Rating<input type="number" name="rating" min="1" max="5"></label>
       <label>Comment<input type="text" name="comment"></label>
       <button formaction="#" formmethod="post" type="submit">Comment</button>
     </form>
+    <?php } ?>
   </section>
 <?php } ?>
 
