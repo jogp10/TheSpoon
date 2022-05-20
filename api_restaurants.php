@@ -8,7 +8,7 @@
 
   $db = getDatabaseConnection();
 
-  $categories = Category::getRestaurantsCategories($db, 8);
+  $categories = Category::getRestaurantsCategories($db, 20);
   $byCategory = array();
   foreach($categories as $category) {
     $restaurants = Restaurant::searchRestaurantsbyCategory($db, $_GET['search'], $category->id, 5);

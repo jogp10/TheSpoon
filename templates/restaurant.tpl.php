@@ -61,7 +61,7 @@
     <?php } } ?>
     <form id="comment">
       <h3>Rate your experience</h3>
-      <label>Rating<input type="number" name="rating"></label>
+      <label>Rating<input type="number" name="rating" min="1" max="5"></label>
       <label>Comment<input type="text" name="comment"></label>
       <button formaction="#" formmethod="post" type="submit">Comment</button>
     </form>
