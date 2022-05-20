@@ -24,10 +24,22 @@ function openRegisterForm() {
     document.getElementById("registerForm").style.display = "block";
 }
 
+function openDescription() {
+    document.getElementById("restDesc").style.display = "block";
+    document.getElementById("descOpen").style.display = "none";
+    document.getElementById("descClose").style.display = "block";
+}
+
 function closeLogInForm() {
     document.getElementById("loginForm").style.display = "none";
 }
 
 function closeRegisterForm() {
     document.getElementById("registerForm").style.display = "none";
+}
+
+function closeDescription() {
+    document.getElementById("restDesc").style.display = "none";
+    document.getElementById("descOpen").style.display = "block";
+    document.getElementById("descClose").style.display = "none";
 }

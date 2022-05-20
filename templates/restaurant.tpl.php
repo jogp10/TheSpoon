@@ -15,10 +15,14 @@
     <h2><?=$category->name?></h2>
     <?php foreach($restaurants as $restaurant) { ?> 
       <article>
-        <a href="restaurant.php?id=<?=$restaurant->id?>">
-        <img src="https://picsum.photos/200?<?=$restaurant->id?>">
-        <?=$restaurant->name?></a>
-        <p><?=$restaurant->description?></p>
+        <div id="restImageName">
+          <a href="restaurant.php?id=<?=$restaurant->id?>" id="restImage"><img src="https://picsum.photos/200?<?=$restaurant->id?>"></a>
+          <a href="restaurant.php?id=<?=$restaurant->id?>" id="restName"><?=$restaurant->name?></a>
+          <p id="restDesc"><?=$restaurant->description?></p>
+          <button type="button" class="descClose" id="descClose" onclick="closeDescription()">-</button>
+          <button type="button" class="descOpen" id="descOpen" onclick="openDescription()">+</button>
+        </div>      
+        
       </article>
     <?php } ?>
   </section>

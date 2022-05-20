@@ -83,17 +83,8 @@ body>header h2 {
     background-color: #555;
     color: white;
     padding: 16px 20px;
-    border: none;
-    cursor: pointer;
     opacity: 0.8;
-    position: absolute;
-    top: 0;
-    right: 28px;
     width: 200px;
-}
-
-#logInButton {
-    margin-top: 1.5em;
 }
 
 #logInButton:hover {
@@ -263,17 +254,8 @@ body>header h2 {
     background-color: #555;
     color: white;
     padding: 16px 20px;
-    border: none;
-    cursor: pointer;
     opacity: 0.8;
-    position: absolute;
-    top: 0;
-    right: 28px;
     width: 200px;
-}
-
-#registerButton {
-    margin-top: 5.5em;
 }
 
 #registerButton:hover {
@@ -395,6 +377,40 @@ body>header h2 {
     margin: 10px;
 }
 
+/* Description pop-up */
+
+#restImageName {
+    position: relative;
+    text-align: center;
+    color: #2a2f33;
+}
+
+a#restName {
+    color: #2a2f33;
+    background-color: #eecea5;
+    width: 100%;
+}
+
+#restDesc {
+    display: none;
+    background-color: #2a2f33;
+    opacity: 0.8;
+    color: white;
+}
+
+.descClose, .descOpen{
+    color: white;
+    background-color: #000;
+    opacity: 0.8;
+}
+
+.descClose {display: none;}
+
+.descOpen {display: block;}
+
+/************************/
+/* Go to the top button */
+
 #goToTop {
     background-color: #2a2f33; 
     color: white;
@@ -408,4 +424,6 @@ body>header h2 {
     background-color: #555;
     color: white;
 }
+/************************/
+
 
