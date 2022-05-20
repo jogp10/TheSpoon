@@ -404,7 +404,11 @@ a.restName {
     opacity: 0.8;
 }
 
-.descClose {display: none;}
+.descClose {
+    display: none;
+    padding-right: 0.4em;
+    padding-left: 0.4em;
+}
 
 .descOpen {display: block;}
 
