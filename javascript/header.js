@@ -19,6 +19,7 @@ function myFunction() {
 function openLogInForm() {
     document.getElementById("loginForm").style.display = "block";
 }
+
 function closeLogInForm() {
     document.getElementById("loginForm").style.display = "none";
 }
@@ -27,6 +28,7 @@ function closeLogInForm() {
 function openRegisterForm() {
     document.getElementById("registerForm").style.display = "block";
 }
+
 function closeRegisterForm() {
     document.getElementById("registerForm").style.display = "none";
 }

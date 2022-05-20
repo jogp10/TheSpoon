@@ -89,6 +89,21 @@
       }
       return $restaurants;
     }
+
+    static function searchRestaurantsbyCategory(PDO $db, string $search, int $id, int $count) : array {
+      $stmt = $db->prepare('SELECT idRestaurant, Name, Description FROM Restaurant WHERE idRestCategory = ? AND Name LIKE ? LIMIT ?');
+      $stmt->execute(array($id, '%' . $search . '%', $count));
+
+      $restaurants = array();
+      while ($restaurant = $stmt->fetch()) {
+        $restaurants[] = new Restaurant(
+          (int) $restaurant['idRestaurant'],
+          $restaurant['Name'],
+          $restaurant['Description']
+        );
+      }
+      return $restaurants;
+    }
   }
 
   class Category {

@@ -8,7 +8,13 @@
 
   $db = getDatabaseConnection();
 
-  $restaurants = Restaurant::searchRestaurants($db, $_GET['search'], 8);
+  $categories = Category::getRestaurantsCategories($db, 8);
+  $byCategory = array();
+  foreach($categories as $category) {
+    $restaurants = Restaurant::searchRestaurantsbyCategory($db, $_GET['search'], $category->id, 8);
+    if(count($restaurants)==0) continue;
+    array_push($byCategory, [$restaurants, $category->name]);
+  }
 
-  echo json_encode($restaurants);
+  echo json_encode($byCategory);
 ?>
