@@ -111,7 +111,7 @@
         $categories[] = new Category(
           (int) $category['idRestCategory'],
           $category['Name'],
-          $description['Description']
+          $category['Description']
         );
       }
 
