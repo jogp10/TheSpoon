@@ -63,7 +63,7 @@
 <?php function drawLogoutForm(string $name) { ?>
   <form action="action_logout.php" method="post" class="logout">
     <div class="userName">
-      <a href="profile.php"><?=$name?></a>
+      <a href="profile.php"><?=$name != '' ? $name : 'My Profile'?></a>
       <button type="submit">Logout</button>
       <?php if($_SESSION['owner']) { ?>
         <a href="register_rest.php"><button id="restRegister">Register Your Restaurant</button></a>
