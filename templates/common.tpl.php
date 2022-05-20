@@ -66,7 +66,7 @@
       <a href="profile.php"><?=$name?></a>
       <button type="submit">Logout</button>
       <?php if($_SESSION['owner']) { ?>
-        <button id="restRegister"><a href="register_rest.php">Register Your Restaurant</a></button>
+        <a href="register_rest.php"><button id="restRegister">Register Your Restaurant</button></a>
       <?php } ?>
     </div>
   </form>

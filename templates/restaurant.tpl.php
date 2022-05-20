@@ -34,26 +34,26 @@
   <h1><?=$restaurant->name?></h1>
   <section id="menuItems">
     <?php foreach ($menuItems as $menuItem) { ?>
-    <article>
-      <a href="item.php?id=<?=$menuItem->id?>">
-      <img src=<?=$menuItem->photo?>>
-      <?=$menuItem->name?></a>
-      <button>Buy</button>
-    </article>
+      <article>
+        <a href="item.php?id=<?=$menuItem->id?>">
+        <h4><?=$menuItem->name?></h4>
+        <img src=<?=$menuItem->photo?> alt=""></a>
+        <button>Buy</button>
+      </article>
     <?php } ?>
   </section>
 
   <section id="comments">
+    <h2>Comments</h2>
     <?php foreach ($comments as $comment) { ?>
-      <h2>Comments</h2>
-      <?php if($comment->answer != '') { ?>
+      <?php if($comment->comment != '') { ?>
         <article class="comment">
-          <span class="user"><?=$comment->nameUser?></span>
+          <span class="user"><h4><?=$comment->nameUser?></h4></span>
           <span class="rating"><?=$comment->rating?>*</span>
           <span class="date"> </span>
           <p><?=$comment->comment?></p>
           <?php if($comment->answer != '') { ?>
-            <span class="owner"><?=$comment->nameOwner?></span>
+            <span class="owner"><h4><?=$comment->nameOwner?></h4></span>
             <span class="date"> </span>
             <p><?=$comment->answer?></p>
           <?php } ?>
@@ -61,11 +61,10 @@
     <?php } } ?>
     <form id="comment">
       <h3>Rate your experience</h3>
-      <label>Rating<input type="integer" name="rating"></label>
+      <label>Rating<input type="number" name="rating"></label>
       <label>Comment<input type="text" name="comment"></label>
       <button formaction="#" formmethod="post" type="submit">Comment</button>
     </form>
-
   </section>
 <?php } ?>
 

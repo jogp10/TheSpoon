@@ -8,14 +8,14 @@ if (searchRestaurant) {
         const section = document.querySelector('#restaurants')
         section.innerHTML = ''
 
-        const title = document.createElement('h1')
+        const title = document.createElement('h2')
         title.textContent = 'Restaurants'
         section.append(title)
 
         console.log(this.value)
         for (const category of categories) {
             const catSection = document.createElement('section')
-            const catName = document.createElement('h2')
+            const catName = document.createElement('h3')
             catName.textContent = category[1]
             catSection.appendChild(catName)
             catSection.setAttribute('id', category[1])
@@ -25,18 +25,19 @@ if (searchRestaurant) {
 
                 const img = document.createElement('img')
                 img.src = 'https://picsum.photos/200?' + restaurant.id
+                img.alt = ''
 
                 const link1 = document.createElement('a')
                 link1.appendChild(img)
                 link1.href = 'restaurant.php?id=' + restaurant.id
                 link1.classList.add('restImage')
-                link1.setAttribute('id', 'restImage')
+                link1.setAttribute('id', 'restImage-' + restaurant.id)
 
                 const link2 = document.createElement('a')
                 link2.textContent = ' ' + restaurant.name
                 link2.href = 'restaurant.php?id=' + restaurant.id
                 link2.classList.add('restName')
-                link2.setAttribute('id', 'restName')
+                link2.setAttribute('id', 'restName-' + restaurant.id)
 
                 const phrase = document.createElement('p')
                 phrase.textContent = restaurant.description
@@ -79,7 +80,7 @@ if (searchRestaurant) {
                 div.appendChild(phrase)
                 div.append(button1)
                 div.append(button2)
-                div.setAttribute('id', 'restImageName')
+                div.classList.add('restImageName')
 
                 const article = document.createElement('article')
                 article.appendChild(div)
