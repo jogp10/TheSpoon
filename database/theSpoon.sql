@@ -120,10 +120,9 @@ INSERT INTO Address values (7, "Rua de Camoes", "Rio Tinto", "Porto",  4435530);
 
 -- User (id, Email, pw, phone, name, restaurant owner, idAddress)
 INSERT INTO User values (1, "andreneves98@gmail.com", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 914989898, "Andre Neves", false, 1);
-INSERT INTO User values (2, "vascosilva55@gmail.com", "7110eda4d09e062aa5e4a390b0a572ac0d2c0222", 934545445, "Vasco Silva", true, 2);
+INSERT INTO User values (2, "vascosilva55@gmail.com", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 934545445, "Vasco Silva", true, 2);
 INSERT INTO User values (3, "dinis@macaca.co", "5f38b4f79c3cd43edef7d674200fe230f7cc70e8", 938888888, "Dinis Sousa", true, 2);
 INSERT INTO User values (4, "ocon@gmail.com", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 938888885, "Estebán Gutierrez", false, 2);
-INSERT INTO User values (5, "ricardo_cavalheiro@gma", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 938888887, "Ricardo Cavalheiro", false, 2);
   
 -- RestCategory (id, Name, Description)
 INSERT INTO RestCategory values (1, "Pizzaria", "The best Pizza");
@@ -138,7 +137,7 @@ INSERT INTO RestCategory values (9, "Marisqueira", "The best Seafood");
 INSERT INTO RestCategory values (10, "Tradicional", "The best Traditional food");
 
 -- Restaurant (id, Name, idUser, idRestCategory, Photo, Description, idAddress)
-INSERT INTO Restaurant values (1, "EatRoll", 2, 2, "https://picsum.photos/200?1", "All you can eat", 3);
+INSERT INTO Restaurant values (1, "EatRoll", 3, 2, "https://picsum.photos/200?1", "All you can eat", 3);
 INSERT INTO Restaurant values (2, "RockBy", 2, 2, "https://picsum.photos/200?2", "Rocks that crack your teeth", 4);
 INSERT INTO Restaurant values (3, "MCAlfredos", 2, 4, "https://picsum.photos/200?3", "Eat so much, get so fat, dont run, keep eating, eat more and continue eating, there is no possible limit to how much you can eat.", 5);
 INSERT INTO Restaurant values (4, "Tasca do tio Quim", 2, 6, "https://picsum.photos/200?4", "All you can eat", 3);
@@ -166,6 +165,7 @@ INSERT INTO Restaurant values (25, "Madureira's", 2, 8, "https://picsum.photos/2
 
 -- Evaluation (id, idUser, idRestaurant, Rating, Message, Comments)
 INSERT INTO Evaluation values (1, 1, 7, 4, 'Mo bamba', 'Gratos pela sua escolha!!!');
+INSERT INTO Evaluation values (2, 4, 1, 3, 'Meh, serviço muito lento', '');
 
 -- Menu (id, idRestaurant)
 INSERT INTO Menu values (1, 1);

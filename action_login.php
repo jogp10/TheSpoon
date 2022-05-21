@@ -15,7 +15,7 @@
     $_SESSION['name'] = $user->name;
     $_SESSION['email'] = $user->email;
     $_SESSION['owner'] = $user->restOwner;
-    header('Location: index.php');
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
   } else {
     header('Location: ' . $_SERVER['HTTP_REFERER']);
     // Error message displaying user does not exists

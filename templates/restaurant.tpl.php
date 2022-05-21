@@ -30,7 +30,7 @@
   </section>
 <?php } ?>
 
-<?php function drawRestaurant(Restaurant $restaurant, array $menuItems, array $comments) { ?>
+<?php function drawRestaurant(Restaurant $restaurant, User $restOwner, array $menuItems, array $comments) { ?>
   <h1><?=$restaurant->name?></h1>
   <section id="menuItems">
     <?php foreach ($menuItems as $menuItem) { ?>
@@ -57,11 +57,13 @@
             <span class="owner"><h4><?=$comment->nameOwner?></h4></span>
             <span class="date"> </span>
             <p><?=$comment->answer?></p>
-          <?php } ?>
+          <?php } else if (isset($_SESSION['id'])==$restOwner->idUser) { ?>
+            <button type="sumbit">Answer</button>
+            <?php } ?>
         </article>
     <?php } } } ?>
 
-    <?php if (isset($_SESSION['id'])) { ?>
+    <?php if (isset($_SESSION['id']) && $_SESSION['id']!=$restOwner->idUser) { ?>
     <form action="action_comment.php" id="comment">
       <h3>Rate your experience</h3>
       <label>Rating<input type="number" name="rating" min="1" max="5"></label>

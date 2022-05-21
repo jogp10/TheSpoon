@@ -14,7 +14,7 @@
     $_SESSION['id'] = $user->idUser;
     $_SESSION['name'] = $user->name;
     $_SESSION['email'] = $user->email;
-    header('Location: /');
+    header('Location: /index.php');
   } else {
     header('Location: /index.php' . $_SERVER['HTTP_REFERER']);
     // Error message displaying user already exists
