@@ -17,8 +17,7 @@
   $restaurant = Restaurant::getRestaurant($db, intval($_GET['id']));
   $menu = Menu::getMenu($db, intval($_GET['id']));
   $comments = Review::getReviewsFromRestaurant($db, intval($_GET['id']));
-  $iduser = Restaurant::getRestaurantOwner($db, $restaurant->id);
-  $user = User::getUser($db, $iduser);
+  $user = User::getRestaurantOwner($db, $restaurant->id);
 
   drawHeader();
   drawCart();

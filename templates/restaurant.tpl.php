@@ -57,20 +57,24 @@
             <span class="owner"><h4><?=$comment->nameOwner?></h4></span>
             <span class="date"> </span>
             <p><?=$comment->answer?></p>
-          <?php } else if (isset($_SESSION['id'])==$restOwner->idUser) { ?>
+          <?php } else if ($_SESSION['id']==$restOwner->idUser) { ?>
             <button type="sumbit">Answer</button>
-            <?php } ?>
+            <form action="action_answer.php" method="post" id="answer-<?php echo $_SESSION['id'] ?>">
+              <label><input type="text" name="answer" placeholder="Answer here..."></label>
+              <button type="sumbit">Submit</button>
+            </form>
+          <?php } ?>
         </article>
     <?php } } } ?>
 
     <?php if (isset($_SESSION['id']) && $_SESSION['id']!=$restOwner->idUser) { ?>
-    <form action="action_comment.php" id="comment">
+    <form action="action_comment.php" method="post" id="comment-<?php echo $_SESSION['id'] ?>">
       <h3>Rate your experience</h3>
-      <label>Rating<input type="number" name="rating" min="1" max="5"></label>
-      <label>Comment<input type="text" name="comment"></label>
-      <button formaction="#" formmethod="post" type="submit">Comment</button>
+      <input type="hidden" name="idRestaurant" value="<?php echo $restaurant->id ?>">
+      <label>Rating<input type="number" name="rating" min="1" max="5" required></label>
+      <label>Comment<input type="text" name="comment" value=""></label>
+      <button type="submit">Comment</button>
     </form>
     <?php } ?>
   </section>
 <?php } ?>
-

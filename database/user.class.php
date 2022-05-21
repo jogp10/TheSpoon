@@ -77,7 +77,7 @@
       $stmt->execute(array($id));
       $user = $stmt->fetch();
       
-      if ($user==false) throw new NoUserFound();
+      if ($user==false) throw new NoUserFound("$id");
       return new User
      (
         (int)$user['idUser'],
@@ -164,6 +164,15 @@
         );
       }
       return null;
+    }
+
+    static function getRestaurantOwner(PDO $db, int $id) : User {
+      $stmt = $db->prepare('SELECT * FROM Restaurant WHERE idRestaurant = ?');
+      $stmt->execute(array($id));
+
+      $restaurant = $stmt->fetch();
+      $idUser = (int) $restaurant['idUser'];
+      return User::getUser($db, $idUser);
     }
   }
 ?>

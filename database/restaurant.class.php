@@ -45,14 +45,6 @@
       return $restaurants;
     }
 
-    static function getRestaurantOwner(PDO $db, int $id) : int {
-      $stmt = $db->prepare('SELECT idUser FROM Restaurant WHERE idRestaurant = ?');
-      $stmt->execute(array($id));
-
-      $restaurant = $stmt->fetch();
-      return (int)($restaurant['idUser']);
-    }
-
     static function getRestaurant(PDO $db, int $id) : Restaurant {
       $stmt = $db->prepare('SELECT idRestaurant, Name, Description FROM Restaurant WHERE idRestaurant = ?');
       $stmt->execute(array($id));

@@ -1,6 +1,8 @@
 <?php
   declare(strict_types = 1);
 
+  class No extends Exception {}
+
   require_once('database/user.class.php');
 
   class Review {
@@ -68,6 +70,24 @@
       }
 
       return $reviews;
+    }
+
+    static function addReview(PDO $db, int $idUser, int $rating, string $comment, int $idRestOwn, string $answer) :  Review {
+      $stmt = $db->prepare(
+        'SELECT * 
+        FROM    Evaluation
+        WHERE   idEvaluation = (SELECT MAX(idEvaluation)  FROM Evaluation)'
+      );
+      $stmt->execute();
+      $id = $stmt->fetch()['idEvaluation'] + 1;
+
+      $stmt2 = $db->prepare('INSERT INTO Evaluation values (?, ?, ?, ?, ?, ?)');
+      $stmt2->execute(array($id, $idUser, $idRestOwn, $rating, $comment, $answer));
+
+
+      return new Review(
+        $id, $rating, $comment, User::getUser($db, $idUser)->name(), $answer, User::getRestaurantOwner($db, $idRestOwn)->name()
+      );
     }
   }
 
