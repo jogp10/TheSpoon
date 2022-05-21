@@ -60,7 +60,7 @@
           <?php } ?>
         </article>
     <?php } } } ?>
-    
+
     <?php if (isset($_SESSION['id'])) { ?>
     <form action="action_comment.php" id="comment">
       <h3>Rate your experience</h3>
