@@ -125,6 +125,7 @@
   <div class="topnav" id="searchRestaurant">
     <input type="text" placeholder="Search..">
     <select id="select-category">
+      <option value="none">Select Category</option>
       <?php foreach ($categories as $category) {?>
         <option value=<?=$category->name?>><?=$category->name?></option>
       <?php } ?>
