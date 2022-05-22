@@ -89,6 +89,15 @@
         $id, $rating, $comment, User::getUser($db, $idUser)->name(), $answer, User::getRestaurantOwner($db, $idRestOwn)->name()
       );
     }
+
+    static function updateReview(PDO $db, int $idReview, string $answer) {
+      $stmt = $db->prepare(
+        'UPDATE Evaluation
+        SET Comments = ?
+        WHERE   idEvaluation = ?'
+      );
+      $stmt->execute(array($answer, $idReview));
+    }
   }
 
 ?>

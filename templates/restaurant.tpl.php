@@ -60,6 +60,7 @@
           <?php } else if ($_SESSION['id']==$restOwner->idUser) { ?>
             <button type="sumbit">Answer</button>
             <form action="action_answer.php" method="post" id="answer-<?php echo $_SESSION['id'] ?>">
+              <input type="hidden" name="idReview" value="<?php echo $comment->id ?>">
               <label><input type="text" name="answer" placeholder="Answer here..."></label>
               <button type="sumbit">Submit</button>
             </form>
