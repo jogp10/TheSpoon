@@ -14,6 +14,11 @@
 
   $db = getDatabaseConnection();
   $user = User::getUser($db, $_SESSION['id']);
+  if($user->restOwner) {
+
+  } else {
+    
+  }
 
   drawHeader();
   drawProfile($user);

@@ -174,5 +174,23 @@
       $idUser = (int) $restaurant['idUser'];
       return User::getUser($db, $idUser);
     }
+
+    function updateUser(PDO $db, string $name , string $email, int $phone, string $street, string $city, string $state, int $postalCode) {
+      $stmt = $db->prepare(
+        'UPDATE User
+        SET Name = ?, Email = ?, Phone = ?
+        WHERE   idUser = ?'
+      );
+      $stmt->execute(array($name, $email, $phone, $this->idUser));
+
+      $stmt = $db->prepare('SELECT idAddress FROM User where idUser = ?');
+      $stmt->execute(array($this->idUser));
+      $idAddress = (int) $stmt->fetch()['idAddress'];
+      $stmt = $db->prepare(
+        'UPDATE Address
+        SET Street = ?, City = ?, State = ?, PostalCode = ?
+        WHERE idAddress = ?');
+      $stmt->execute(array($street, $city, $state, $postalCode, $idAddress));
+    }
   }
 ?>
