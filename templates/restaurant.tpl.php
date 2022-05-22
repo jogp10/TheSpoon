@@ -30,6 +30,19 @@
   </section>
 <?php } ?>
 
+<?php function drawOwnerRestaurants(array $restaurants) { ?>
+  <p>Restaurants</p>
+  <?php foreach($restaurants as $restaurant) { ?> 
+    <article>
+      <div>
+        <a href="restaurant.php?id=<?=$restaurant->id?>"><img src="https://picsum.photos/200?<?=$restaurant->id?>" alt="restaurant image" width="200" height="200"></a>
+        <a href="restaurant.php?id=<?=$restaurant->id?>"><?=$restaurant->name?></a>
+        <p ><?=$restaurant->description?></p>
+      </div>      
+    </article>
+  <?php } ?>
+<?php } ?>
+
 <?php function drawRestaurant(Restaurant $restaurant, User $restOwner, array $menuItems, array $comments) { ?>
   <h1><?=$restaurant->name?></h1>
   <section id="menuItems">
@@ -49,14 +62,18 @@
     <?php foreach ($comments as $comment) { ?>
       <?php if($comment->comment != '') { ?>
         <article class="comment">
-          <span class="user"><h4><?=$comment->nameUser?></h4></span>
-          <span class="rating">rating: <?=$comment->rating?>*</span>
-          <span class="date"> </span>
-          <p><?=$comment->comment?></p>
+          <div class ="customer-comment">
+            <span class="user"><h4><?=$comment->nameUser?></h4></span>
+            <span class="rating">rating: <?=$comment->rating?>*</span>
+            <span class="date">date: </span>
+            <p><?=$comment->comment?></p>
+          </div>
           <?php if($comment->answer != '') { ?>
-            <span class="owner"><h4><?=$comment->nameOwner?></h4></span>
-            <span class="date"> </span>
-            <p><?=$comment->answer?></p>
+            <div class="owner-answer">
+              <span class="owner"><h4><?=$comment->nameOwner?></h4></span>
+              <span class="date"> </span>
+              <p><?=$comment->answer?></p>
+            </div>
           <?php } else if ($_SESSION['id']==$restOwner->idUser) { ?>
             <button type="sumbit">Answer</button>
             <form action="action_answer.php" method="post" id="answer-<?php echo $_SESSION['id'] ?>">

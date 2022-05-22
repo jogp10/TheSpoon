@@ -23,13 +23,6 @@
       <br>
       <button type="submit">Save</button>
     </form>
-    <button>Change Password</button>
-
-    <?php if($user->restOwner) { ?>
-      <p>Restaurants</p>
-    <?php } else { ?>
-      <p>Orders</p>
-    <?php } ?>
-    
+    <button>Change Password</button> 
   </section>
 <?php } ?>

@@ -123,3 +123,11 @@ a.restName {
     border-radius: 15px;
     padding: 16px;
 }
+
+.customer-comment span,
+.owner-answer span {
+    width: 7%;
+    height: 10px;
+    display: inline-block;
+}
+
