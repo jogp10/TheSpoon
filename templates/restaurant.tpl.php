@@ -43,14 +43,14 @@
     <?php } ?>
   </section>
 
-  <section id="comments">
-    <?php if(count($comments) != 0 || isset($_SESSION['id'])) { ?>
+  <section class="comment-section" id="comments">
     <h2>Comments</h2>
+    <?php if(count($comments) != 0 || isset($_SESSION['id'])) { ?>
     <?php foreach ($comments as $comment) { ?>
       <?php if($comment->comment != '') { ?>
         <article class="comment">
           <span class="user"><h4><?=$comment->nameUser?></h4></span>
-          <span class="rating"><?=$comment->rating?>*</span>
+          <span class="rating">rating: <?=$comment->rating?>*</span>
           <span class="date"> </span>
           <p><?=$comment->comment?></p>
           <?php if($comment->answer != '') { ?>
@@ -64,6 +64,7 @@
               <button type="sumbit">Submit</button>
             </form>
           <?php } ?>
+          <hr>
         </article>
     <?php } } } ?>
 
