@@ -10,7 +10,7 @@ use JetBrains\PhpStorm\ExpectedValues;
 
   $db = getDatabaseConnection();
 
-  //$comment = Review::updateReview($db, $_POST['answer']);
+  Review::updateReview($db, (int) $_POST['idReview'], $_POST['answer']);
 
   header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>
