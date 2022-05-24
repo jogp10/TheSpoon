@@ -16,15 +16,11 @@
 
   $db = getDatabaseConnection();
   $user = User::getUser($db, $_SESSION['id']);
+  drawHeader();
+  drawProfile($user);
   if($user->restOwner) {
-    drawHeader();
-    drawProfile($user);
     $restaurants = Restaurant::getRestaurantsFromUser($db, $user->idUser);
     drawOwnerRestaurants($restaurants);
-    drawFooter();
-  } else {
-    drawHeader();
-    drawProfile($user);
-    drawFooter();
   }
+  drawFooter();
 ?>
