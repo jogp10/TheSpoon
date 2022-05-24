@@ -47,16 +47,20 @@
   <h1><?=$restaurant->name?></h1>
   <section id="menuItems">
     <?php foreach ($menuItems as $menuItem) { ?>
-      <article>
+      <article data-id="<?=$menuItem->id?>">
         <a href="item.php?id=<?=$menuItem->id?>">
         <h4><?=$menuItem->name?></h4>
         <img src=<?=$menuItem->photo?> alt="item image" width="200" height="200"></a>
-        <p><?=$menuItem->price?>€</p>
+        <p class="price" price="<?=$menuItem->price?>"><?=$menuItem->price?>€</p>
+        <input class="quantity" type="hidden" value="1">
         <button>Buy</button>
       </article>
     <?php } ?>
   </section>
+  <?= drawComments($restaurant, $restOwner, $comments)?>
+<?php } ?>
 
+<?php function drawComments(Restaurant $restaurant, User $restOwner, array $comments) { ?>
   <section class="comment-section" id="comments">
     <h2>Comments</h2>
     <?php if(count($comments) != 0 || isset($_SESSION['id'])) { ?>

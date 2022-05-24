@@ -135,7 +135,27 @@
 <?php } ?>
 
 <?php function drawCart() { ?>
-  <div>
-    <a id="cart" href="cart.php"><img src="images/cart.png" alt ="cart icon" width="30" height="30">(0<?php ?>)</a>
-  </div>
+  <section id="cart">
+    <div>
+      <a id="cart" href=""><img src="images/cart.png" alt ="cart icon" width="30" height="30">(0<?php ?>)</a>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Total</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <th colspan="5">Total:</th>
+          <th>0€</th>
+        </tr>
+      </tfoot>
+    </table>
+    <a href="checkout.php"><button>Checkout</button></a>
+  </section>
 <?php } ?>

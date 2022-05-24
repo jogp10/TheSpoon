@@ -1,49 +1,71 @@
-function changeAllArticleColors() {
-    const articles = document.querySelectorAll("#menuItems article")
-
-    for (let article of articles) {
-        article.classList.add("sale")
-    }
-}
-
 function attachBuyEvents() {
-    const buttons = document.querySelectorAll("#menuItems button")
-    for (let button of buttons) {
-        button.addEventListener('click', function() {
-            let parent = this.parentElement
-            console.log(parent)
-            parent.classList.toggle("sale")
-            const id = parent.getAttribute('data-id')
-            console.log(id)
-            const name = parent.querySelector("h2").textContent
-            console.log(name)
-            const price = parent.querySelector(".price").textContent
-            console.log(price)
-            const quantity = parent.querySelector(".quantity").value
-            console.log(quantity)
+    for (const button of document.querySelectorAll('#menuItems button'))
+        button.addEventListener('click', function(e) {
+            console.log("bought")
+            const article = this.parentElement
 
+            const id = article.getAttribute('data-id')
+            const row = document.querySelector(`#cart table tr[data-id="${id}"]`)
 
-            let tr = document.createElement("TR")
-            let td = document.createElement("TD")
-            td.appendChild(document.createTextNode(id))
-            tr.appendChild(td)
-            td = document.createElement("TD")
-            td.appendChild(document.createTextNode(name))
-            tr.appendChild(td)
-            td = document.createElement("TD")
-            td.appendChild(document.createTextNode(quantity))
-            tr.appendChild(td)
-            td = document.createElement("TD")
-            td.appendChild(document.createTextNode(price))
-            tr.appendChild(td)
-            td = document.createElement("TD")
-            td.appendChild(document.createTextNode(price * quantity))
-            tr.appendChild(td)
-            td = document.createElement("TD")
-            td.appendChild(document.createTextNode("del"))
-            tr.appendChild(td)
+            const name = article.querySelector('h4').textContent
+            const price = article.querySelector('.price').getAttribute('price')
+            const quantity = article.querySelector('.quantity').value
 
-            document.querySelector("#cart tfoot").appendChild(tr)
+            if (row) updateRow(row, price, quantity)
+            else addRow(id, name, price, quantity)
+
+            updateTotal()
         })
-    }
 }
+
+function addRow(id, name, price, quantity) {
+    const table = document.querySelector('#cart table')
+    const row = document.createElement('tr')
+    row.setAttribute('data-id', id)
+
+    const nameCell = document.createElement('td')
+    nameCell.textContent = name
+
+    const quantityCell = document.createElement('td')
+    quantityCell.textContent = quantity
+
+    const priceCell = document.createElement('td')
+    priceCell.textContent = price
+
+    const totalCell = document.createElement('td')
+    totalCell.textContent = price * quantity
+
+    const deleteCell = document.createElement('td')
+    deleteCell.classList.add('delete')
+    deleteCell.innerHTML = '<a href="">X</a>'
+    deleteCell.querySelector('a').addEventListener('click', function(e) {
+        e.preventDefault()
+        e.currentTarget.parentElement.parentElement.remove()
+        updateTotal()
+    })
+
+    row.appendChild(nameCell)
+    row.appendChild(quantityCell)
+    row.appendChild(priceCell)
+    row.appendChild(totalCell)
+    row.appendChild(deleteCell)
+
+    table.appendChild(row)
+}
+
+function updateRow(row, price, quantity) {
+    const quantityCell = row.querySelector('td:nth-child(2)')
+    const totalCell = row.querySelector('td:nth-child(4)')
+
+    quantityCell.textContent = parseInt(quantityCell.textContent, 10) + parseInt(quantity, 10)
+    totalCell.textContent = parseInt(quantityCell.textContent, 10) * parseInt(price, 10)
+}
+
+function updateTotal() {
+    const rows = document.querySelectorAll('#cart table > tr')
+    const values = [...rows].map(r => parseInt(r.querySelector('td:nth-child(4)').textContent, 10))
+    const total = values.reduce((t, v) => t + v, 0)
+    document.querySelector('#cart table tfoot th:last-child').textContent = total + "€"
+}
+
+attachBuyEvents()
