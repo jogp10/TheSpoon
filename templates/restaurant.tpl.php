@@ -51,6 +51,7 @@
         <a href="item.php?id=<?=$menuItem->id?>">
         <h4><?=$menuItem->name?></h4>
         <img src=<?=$menuItem->photo?> alt="item image" width="200" height="200"></a>
+        <p><?=$menuItem->price?>€</p>
         <button>Buy</button>
       </article>
     <?php } ?>
