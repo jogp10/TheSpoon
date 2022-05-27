@@ -43,17 +43,19 @@
     
     static function getUserWithPassword(PDO $db, string $email, string $password) : ?User
  {
+      $options = ['cost' => 10];
       $stmt = $db->prepare('
-        SELECT idUser, Email, Name, Street, City, State, PostalCode, Phone, RestOwner
+        SELECT idUser, Email, Name, Street, City, State, PostalCode, Phone, RestOwner, Password
         FROM User JOIN Address USING (idAddress)
-        WHERE lower(email) = ? AND Password = ?
+        WHERE lower(email) = ?
       ');
 
-      $stmt->execute(array(strtolower($email), sha1($password)));
+      $stmt->execute(array(strtolower($email)));
   
-      if ($user = $stmt->fetch()) {
+      $user = $stmt->fetch();
+      if ($user !== false && password_verify($password, $user['Password'])) {
         return new User
-    (
+        (
           (int)$user['idUser'],
           $user['Email'],
           $user['Name'],
@@ -99,7 +101,7 @@
         WHERE Email = ?
       ');
 
-      $stmt->execute(array($email));
+      $stmt->execute(array(strtolower($email)));
       $user = $stmt->fetch();
       
       if ($user==false) throw new NoUserFound();
@@ -145,10 +147,13 @@
         );
         $stmt->execute(array($idAddress, $street, $city, $state, $postalCode));
 
+        $options = ['cost' => 10];
         $stmt = $db->prepare(
           'INSERT INTO User values (?, ?, ?, ?, ?, ?, ?)'
         );
-        $stmt->execute(array($idUser, $email, sha1($password), $phone, $name, $restOwner, $idAddress));
+        if($restOwner) $restOwner = 1;
+        else $restOwner = 0;
+        $stmt->execute(array($idUser, strtolower($email), password_hash($password, PASSWORD_BCRYPT, $options), $phone, $name, $restOwner, $idAddress));
 
         return new User (
           $idUser, 
@@ -159,8 +164,7 @@
           $state,
           $postalCode,
           $phone,
-          $restOwner
-
+          (bool) $restOwner
         );
       }
       return null;
@@ -176,6 +180,7 @@
     }
 
     function updateUser(PDO $db, string $name , string $email, int $phone, string $street, string $city, string $state, int $postalCode) {
+      $email = strtolower($email);
       $stmt = $db->prepare(
         'UPDATE User
         SET Name = ?, Email = ?, Phone = ?

@@ -144,10 +144,10 @@ INSERT INTO Address values (31, "Rua de Camoes", "Rio Tinto", "Porto",  4435530)
 INSERT INTO Address values (32, "Rua de Camoes", "Rio Tinto", "Porto",  4435530);
 
 -- User (id, Email, pw, phone, name, restaurant owner, idAddress)
-INSERT INTO User values (1, "andreneves98@gmail.com", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 914989898, "Andre Neves", false, 1);
-INSERT INTO User values (2, "vascosilva55@gmail.com", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 934545445, "Vasco Silva", true, 2);
-INSERT INTO User values (3, "dinis@macaca.co", "5f38b4f79c3cd43edef7d674200fe230f7cc70e8", 938888888, "Dinis Sousa", true, 3);
-INSERT INTO User values (4, "ocon@gmail.com", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 938888885, "Estebán Gutierrez", false, 4);
+INSERT INTO User values (1, "andreneves98@gmail.com", "$2y$10$pxrNKb/Kmg/kYtjpTNodfOYYRYU/pC1XJclUGmUlwb7nTRLNy1DhO", 914989898, "Andre Neves", false, 1);
+INSERT INTO User values (2, "vascosilva55@gmail.com", "$2y$10$pxrNKb/Kmg/kYtjpTNodfOYYRYU/pC1XJclUGmUlwb7nTRLNy1DhO", 934545445, "Vasco Silva", true, 2);
+INSERT INTO User values (3, "dinis@macaca.co", "$2y$10$pxrNKb/Kmg/kYtjpTNodfOYYRYU/pC1XJclUGmUlwb7nTRLNy1DhO", 938888888, "Dinis Sousa", true, 3);
+INSERT INTO User values (4, "ocon@gmail.com", "$2y$10$pxrNKb/Kmg/kYtjpTNodfOYYRYU/pC1XJclUGmUlwb7nTRLNy1DhO", 938888885, "Estebán Gutierrez", false, 4);
   
 -- RestCategory (id, Name, Description)
 INSERT INTO RestCategory values (1, "Pizzaria", "The best Pizza");

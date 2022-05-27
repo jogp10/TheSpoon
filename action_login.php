@@ -9,8 +9,8 @@
   $db = getDatabaseConnection();
 
   $user = User::getUserWithPassword($db, $_POST['email'], $_POST['password']);
-
-  if ($user !== false) {
+  
+  if ($user) {
     $_SESSION['id'] = $user->idUser;
     $_SESSION['name'] = $user->name;
     $_SESSION['email'] = $user->email;

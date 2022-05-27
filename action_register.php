@@ -8,7 +8,7 @@
 
   $db = getDatabaseConnection();
 
-  $user = User::addUser($db, $_POST['email'], $_POST['password'], (int)$_POST['phone'], $_POST['name'], (bool)$_POST['restaurant-owner'], $_POST['street'], $_POST['city'], $_POST['state'], (int)$_POST['postal-code']);
+  $user = User::addUser($db, $_POST['email-reg'], $_POST['password-reg'], (int)$_POST['phone'], $_POST['name'], (bool)$_POST['restaurant-owner'], $_POST['street'], $_POST['city'], $_POST['state'], (int)$_POST['postal-code']);
       
   if ($user != null) {
     $_SESSION['id'] = $user->idUser;
