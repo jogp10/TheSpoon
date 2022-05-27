@@ -10,7 +10,7 @@
 
   $user = User::getUserWithPassword($db, $_POST['email'], $_POST['password']);
 
-  if ($user) {
+  if ($user !== false) {
     $_SESSION['id'] = $user->idUser;
     $_SESSION['name'] = $user->name;
     $_SESSION['email'] = $user->email;
