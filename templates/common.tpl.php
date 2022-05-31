@@ -43,7 +43,7 @@
 <?php function drawLogInForm() { ?> 
   <button type="button" class="open-button" id="logInButton" onclick="openLogInForm()">Login</button>
   <div class="form-popup" id="loginForm">
-    <form action="action_login.php" method="post" class="form-container">
+    <form action="actions/action_login.php" method="post" class="form-container">
       <h1>Login</h1>
 
       <label><b>Email</b></label>
@@ -62,7 +62,7 @@
 <?php } ?>
 
 <?php function drawLogoutForm(string $name) { ?>
-  <form action="action_logout.php" method="post" class="logout">
+  <form action="actions/action_logout.php" method="post" class="logout">
     <div class="userName">
       <a href="profile.php"><?=$name != '' ? $name : 'My Profile'?></a>
       <button type="submit">Logout</button>
@@ -76,7 +76,7 @@
 <?php function drawRegisterForm() { ?>
   <button type="button" class="open-button" id="registerButton" onclick="openRegisterForm()">Register</button>
   <div class="form-popup-reg" id="registerForm">
-    <form action="action_register.php" method="post" class="form-container-reg" id="register">
+    <form action="actions/action_register.php" method="post" class="form-container-reg" id="register">
       <h1>Register</h1>
       <div id="name">
         <label><b>Name</b><input type="text" placeholder="Enter Name" name="name"></label>   
@@ -115,7 +115,7 @@
 <?php } ?>
 
 <?php function drawRegisterFormRestaurant() { ?>
-  <form action="action_register_restaraunt.php" method="post" class="registerRestaraunt">
+  <form action="actions/action_register_restaraunt.php" method="post" class="registerRestaraunt">
 
   </form>
 <?php } ?>

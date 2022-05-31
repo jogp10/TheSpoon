@@ -3,8 +3,8 @@
 
   session_start();
 
-  require_once('database/connection.php');
-  require_once('database/user.class.php');
+  require_once('../database/connection.php');
+  require_once('../database/user.class.php');
 
   $db = getDatabaseConnection();
 

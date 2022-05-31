@@ -2,7 +2,7 @@
   declare(strict_types = 1);
 
   function getDatabaseConnection() : PDO {
-    $db = new PDO('sqlite:database/theSpoon.db');
+    $db = new PDO('sqlite:' . __DIR__ . '/../database/theSpoon.db');
     if ($db == null)
         throw new Exception('Database not initialized');
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);

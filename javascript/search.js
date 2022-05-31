@@ -4,7 +4,7 @@ const ENTER_KEY_CODE = 13;
 
 if (searchRestaurant) {
     searchRestaurant.addEventListener('input', async function() {
-        const response = await fetch('api_restaurants.php?search=' + this.value)
+        const response = await fetch('../api/api_restaurants.php?search=' + this.value)
         const categories = await response.json()
 
         searchButton.addEventListener('click', function() { drawRestFunction(categories) });
