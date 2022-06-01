@@ -4,24 +4,20 @@
   require_once(__DIR__ . '/../utils/session.php');
   $session = new Session();
 
-  if ($session->getId()) die(header('Location: /'));
-
   require_once('../database/connection.php');
-
-  require_once('../database/user.class.php');
   require_once('../database/restaurant.class.php');
 
   require_once('../templates/common.tpl.php');
-  require_once('../templates/user.tpl.php');
   require_once('../templates/restaurant.tpl.php');
 
+
+
   $db = getDatabaseConnection();
-  $user = User::getUser($db, $session->getId());
+
+  $categories = Category::getRestaurantsCategories($db, 8);
+  $allcategories = Category::getRestaurantsCategories($db, 20);
   drawHeader($session);
-  drawProfile($user);
-  if($user->restOwner) {
-    $restaurants = Restaurant::getRestaurantsFromUser($db, $user->idUser);
-    drawOwnerRestaurants($restaurants);
-  }
+  drawSearchBar($allcategories);
+  drawRestaurants($db, $categories);
   drawFooter();
 ?>

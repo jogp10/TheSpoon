@@ -43,7 +43,7 @@
   <?php } ?>
 <?php } ?>
 
-<?php function drawRestaurant(Restaurant $restaurant, User $restOwner, array $menuItems, array $comments) { ?>
+<?php function drawRestaurant(Session $session, Restaurant $restaurant, User $restOwner, array $menuItems, array $comments) { ?>
   <h1><?=$restaurant->name?></h1>
   <section id="menuItems">
     <?php foreach ($menuItems as $menuItem) { ?>
@@ -57,13 +57,13 @@
       </article>
     <?php } ?>
   </section>
-  <?= drawComments($restaurant, $restOwner, $comments)?>
+  <?= drawComments($session, $restaurant, $restOwner, $comments)?>
 <?php } ?>
 
-<?php function drawComments(Restaurant $restaurant, User $restOwner, array $comments) { ?>
+<?php function drawComments(Session $session, Restaurant $restaurant, User $restOwner, array $comments) { ?>
   <section class="comment-section" id="comments">
     <h2>Comments</h2>
-    <?php if(count($comments) != 0 || isset($_SESSION['id'])) { ?>
+    <?php if(count($comments) != 0 || $session->isLoggedIn()) { ?>
     <?php foreach ($comments as $comment) { ?>
       <?php if($comment->comment != '') { ?>
         <article class="comment">
@@ -79,9 +79,9 @@
               <span class="date"> </span>
               <p><?=$comment->answer?></p>
             </div>
-          <?php } else if ($_SESSION['id']==$restOwner->idUser) { ?>
+          <?php } else if ($session->getId()==$restOwner->idUser) { ?>
             <button type="sumbit">Answer</button>
-            <form action="../actions/action_answer.php" method="post" id="answer-<?php echo $_SESSION['id'] ?>">
+            <form action="../actions/action_answer.php" method="post" id="answer-<?= $session->getId() ?>">
               <input type="hidden" name="idReview" value="<?php echo $comment->id ?>">
               <label><input type="text" name="answer" placeholder="Answer here..."></label>
               <button type="sumbit">Submit</button>
@@ -91,8 +91,8 @@
         </article>
     <?php } } } ?>
 
-    <?php if (isset($_SESSION['id']) && $_SESSION['id']!=$restOwner->idUser) { ?>
-    <form action="../actions/action_comment.php" method="post" id="comment-<?php echo $_SESSION['id'] ?>">
+    <?php if ($session->isLoggedIn() && $session->getId()!=$restOwner->idUser) { ?>
+    <form action="../actions/action_comment.php" method="post" id="comment-<?= $session->getId() ?>">
       <h3>Rate your experience</h3>
       <input type="hidden" name="idRestaurant" value="<?php echo $restaurant->id ?>">
       <label>Rating<input type="number" name="rating" min="1" max="5" required></label>

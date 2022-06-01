@@ -3,7 +3,7 @@
 
   class No extends Exception {}
 
-  require_once(__DIR__ . '/user.class.php');
+  require_once('user.class.php');
 
   class Review {
     public int $id;

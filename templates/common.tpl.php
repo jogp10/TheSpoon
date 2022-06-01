@@ -1,6 +1,9 @@
-<?php declare(strict_types = 1); ?>
+<?php 
+  declare(strict_types = 1); 
+  require_once('../utils/session.php');
+?>
 
-<?php function drawHeader() { ?>
+<?php function drawHeader(Session $session) { ?>
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -22,7 +25,7 @@
     <header id="header">
       <a id="logo" href="/"><img src="../images/TheSpoon.png" alt ="theSpoon logo" width="300" height="200"></a>
       <?php 
-        if (isset($_SESSION['id'])) drawLogoutForm($_SESSION['name']);
+        if ($session->isLoggedIn()) drawLogoutForm($session);
         else drawLogInForm();
       ?>
     </header>
@@ -43,7 +46,7 @@
 <?php function drawLogInForm() { ?> 
   <button type="button" class="open-button" id="logInButton" onclick="openLogInForm()">Login</button>
   <div class="form-popup" id="loginForm">
-    <form action="actions/action_login.php" method="post" class="form-container">
+    <form action="../actions/action_login.php" method="post" class="form-container">
       <h1>Login</h1>
 
       <label><b>Email</b></label>
@@ -61,12 +64,12 @@
   <?=drawRegisterForm();?>
 <?php } ?>
 
-<?php function drawLogoutForm(string $name) { ?>
+<?php function drawLogoutForm(Session $session) { ?>
   <form action="../actions/action_logout.php" method="post" class="logout">
     <div class="userName">
-      <a href="../pages/profile.php"><?=$name != '' ? $name : 'My Profile'?></a>
+      <a href="../pages/profile.php"><?=$session->getName() != '' ? $session->getName() : 'My Profile'?></a>
       <button type="submit">Logout</button>
-      <?php if($_SESSION['owner']) { ?>
+      <?php if($session->getOwner()) { ?>
         <a href="../pages/register_rest.php"><button id="restRegister">Register Your Restaurant</button></a>
       <?php } ?>
     </div>
