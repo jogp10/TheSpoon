@@ -3,7 +3,7 @@
 <?php function drawProfile(User $user) { ?>
   <h2>Profile</h2>
   <section id="profile">
-    <form action="actions/action_profile.php" method="post" id="profile-info">
+    <form action="../actions/action_profile.php" method="post" id="profile-info">
       <label>Name<br>
       <input type="text" name="name" placeholder="name" value= "<?php echo $user->name ?>" required></label>
       <br>

@@ -19,8 +19,8 @@
     <?php foreach($restaurants as $restaurant) { ?> 
       <article>
         <div class="restImageName">
-          <a href="restaurant.php?id=<?=$restaurant->id?>" class="restImage" id="restImage-<?=$restaurant->id?>"><img src="https://picsum.photos/200?<?=$restaurant->id?>" alt="restaurant image" width="200" height="200"></a>
-          <a href="restaurant.php?id=<?=$restaurant->id?>" class="restName" id="restName-<?=$restaurant->id?>"><?=$restaurant->name?></a>
+          <a href="../pages/restaurant.php?id=<?=$restaurant->id?>" class="restImage" id="restImage-<?=$restaurant->id?>"><img src="https://picsum.photos/200?<?=$restaurant->id?>" alt="restaurant image" width="200" height="200"></a>
+          <a href="../pages/restaurant.php?id=<?=$restaurant->id?>" class="restName" id="restName-<?=$restaurant->id?>"><?=$restaurant->name?></a>
           <p class="restDesc" id="restDesc-<?=$restaurant->id?>"><?=$restaurant->description?></p>
           <button type="button" class="descClose" id="descClose-<?=$restaurant->id?>" onclick="closeDescription(<?=$restaurant->id?>)">-</button>
           <button type="button" class="descOpen" id="descOpen-<?=$restaurant->id?>" onclick="openDescription(<?=$restaurant->id?>)">+</button>
@@ -35,8 +35,8 @@
   <?php foreach($restaurants as $restaurant) { ?> 
     <article>
       <div>
-        <a href="restaurant.php?id=<?=$restaurant->id?>"><img src="https://picsum.photos/200?<?=$restaurant->id?>" alt="restaurant image" width="200" height="200"></a>
-        <a href="restaurant.php?id=<?=$restaurant->id?>"><?=$restaurant->name?></a>
+        <a href="../pages/restaurant.php?id=<?=$restaurant->id?>"><img src="https://picsum.photos/200?<?=$restaurant->id?>" alt="restaurant image" width="200" height="200"></a>
+        <a href="../pages/restaurant.php?id=<?=$restaurant->id?>"><?=$restaurant->name?></a>
         <p ><?=$restaurant->description?></p>
       </div>      
     </article>
@@ -81,7 +81,7 @@
             </div>
           <?php } else if ($_SESSION['id']==$restOwner->idUser) { ?>
             <button type="sumbit">Answer</button>
-            <form action="actions/action_answer.php" method="post" id="answer-<?php echo $_SESSION['id'] ?>">
+            <form action="../actions/action_answer.php" method="post" id="answer-<?php echo $_SESSION['id'] ?>">
               <input type="hidden" name="idReview" value="<?php echo $comment->id ?>">
               <label><input type="text" name="answer" placeholder="Answer here..."></label>
               <button type="sumbit">Submit</button>
@@ -92,7 +92,7 @@
     <?php } } } ?>
 
     <?php if (isset($_SESSION['id']) && $_SESSION['id']!=$restOwner->idUser) { ?>
-    <form action="actions/action_comment.php" method="post" id="comment-<?php echo $_SESSION['id'] ?>">
+    <form action="../actions/action_comment.php" method="post" id="comment-<?php echo $_SESSION['id'] ?>">
       <h3>Rate your experience</h3>
       <input type="hidden" name="idRestaurant" value="<?php echo $restaurant->id ?>">
       <label>Rating<input type="number" name="rating" min="1" max="5" required></label>
