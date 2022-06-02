@@ -52,13 +52,13 @@ var drawRestFunction = function(categories) {
 
                 const link1 = document.createElement('a')
                 link1.appendChild(img)
-                link1.href = 'restaurant.php?id=' + restaurant.id
+                link1.href = '../pages/restaurant.php?id=' + restaurant.id
                 link1.classList.add('restImage')
                 link1.setAttribute('id', 'restImage-' + restaurant.id)
 
                 const link2 = document.createElement('a')
                 link2.textContent = ' ' + restaurant.name
-                link2.href = 'restaurant.php?id=' + restaurant.id
+                link2.href = '../pages/restaurant.php?id=' + restaurant.id
                 link2.classList.add('restName')
                 link2.setAttribute('id', 'restName-' + restaurant.id)
 
