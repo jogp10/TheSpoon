@@ -67,10 +67,13 @@
 <?php function drawLogoutForm(Session $session) { ?>
   <form action="../actions/action_logout.php" method="post" class="logout">
     <div class="userName">
-      <a href="../pages/profile.php"><?=$session->getName() != '' ? $session->getName() : 'My Profile'?></a>
-      <button type="submit">Logout</button>
       <?php if($session->getOwner()) { ?>
+        <a href="../pages/profile.php"  id="profileOwner">Profile</a>
+        <button type="submit" id="logoutOwner">Logout</button>
         <a href="../pages/register_rest.php"><button id="restRegister">Register Your Restaurant</button></a>
+      <?php } else { ?>
+        <a href="../pages/profile.php" id="profileNotOwner">Profile</a>
+        <button type="submit" id="logoutNotOwner">Logout</button>
       <?php } ?>
     </div>
   </form>

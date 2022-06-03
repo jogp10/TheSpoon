@@ -245,6 +245,28 @@ body>header h2 {
     color: #2a2f33;
 }
 
+#logoutNotOwner {
+    position: absolute;
+    right: 0;
+    margin-right: 0.5em;
+}
+
+#logoutOwner {
+    position: absolute;
+    right: 180px;
+}
+
+#profileOwner {
+    position: absolute;
+    right: 250px;
+    padding-top: 0.2em;
+}
+
+#profileNotOwner {
+    position: absolute;
+    right: 80px;
+}
+
 .userName button {
     background-color: #555;
     color: white;
@@ -261,6 +283,8 @@ body>header h2 {
 }
 
 #restRegister {
+    position: absolute;
+    margin-right: 0.5em;
     background-color: #555;
     padding: 0.4em 0.5em;
     right: 0;
