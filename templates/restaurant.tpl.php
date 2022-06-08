@@ -19,7 +19,7 @@
     <?php foreach($restaurants as $restaurant) { ?> 
       <article>
         <div class="restImageName">
-          <a href="../pages/restaurant.php?id=<?=$restaurant->id?>" class="restImage" id="restImage-<?=$restaurant->id?>"><img src="https://picsum.photos/200?<?=$restaurant->id?>" alt="restaurant image" width="200" height="200"></a>
+          <a href="../pages/restaurant.php?id=<?=$restaurant->id?>" class="restImage" id="restImage-<?=$restaurant->id?>"><img src="<?=$restaurant->photo?>" alt="restaurant image" width="200" height="200"></a>
           <a href="../pages/restaurant.php?id=<?=$restaurant->id?>" class="restName" id="restName-<?=$restaurant->id?>"><?=$restaurant->name?></a>
           <p class="restDesc" id="restDesc-<?=$restaurant->id?>"><?=$restaurant->description?></p>
           <button type="button" class="descClose" id="descClose-<?=$restaurant->id?>" onclick="closeDescription(<?=$restaurant->id?>)">-</button>
@@ -33,12 +33,14 @@
 <?php function drawOwnerRestaurants(array $restaurants) { ?>
   <p>Restaurants</p>
   <?php foreach($restaurants as $restaurant) { ?> 
-    <article>
-      <div>
-        <a href="../pages/restaurant.php?id=<?=$restaurant->id?>"><img src="https://picsum.photos/200?<?=$restaurant->id?>" alt="restaurant image" width="200" height="200"></a>
-        <a href="../pages/restaurant.php?id=<?=$restaurant->id?>"><?=$restaurant->name?></a>
-        <p ><?=$restaurant->description?></p>
-      </div>      
+    <article>    
+      <div class="restImageName">
+          <a href="../pages/restaurant.php?id=<?=$restaurant->id?>" class="restImage" id="restImage-<?=$restaurant->id?>"><img src="<?=$restaurant->photo?>" alt="restaurant image" width="200" height="200"></a>
+          <a href="../pages/restaurant.php?id=<?=$restaurant->id?>" class="restName" id="restName-<?=$restaurant->id?>"><?=$restaurant->name?></a>
+          <p class="restDesc" id="restDesc-<?=$restaurant->id?>"><?=$restaurant->description?></p>
+          <button type="button" class="descClose" id="descClose-<?=$restaurant->id?>" onclick="closeDescription(<?=$restaurant->id?>)">-</button>
+          <button type="button" class="descOpen" id="descOpen-<?=$restaurant->id?>" onclick="openDescription(<?=$restaurant->id?>)">+</button>
+        </div>  
     </article>
   <?php } ?>
 <?php } ?>

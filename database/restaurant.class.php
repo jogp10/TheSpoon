@@ -17,14 +17,14 @@
     static function addRestaurant(PDO $db, string $name, string $RestName, string $photo, string $description, string $street, string $city, string $state, int $postalCode): Restaurant {
       $idUser = SESSION::getId();
     
-      $photo = " ";
       $stmt = $db->prepare(
         'SELECT idRestCategory 
         FROM    RestCategory
         WHERE   name = ?'
       );
       $stmt->execute(array($RestName));
-      $idRestCategory = $stmt->fetch();
+      $RestCategory = $stmt->fetch();
+      $idRestCategory = $RestCategory['idRestCategory'];
       $stmt = $db->prepare(
         'SELECT * 
         FROM    Restaurant
