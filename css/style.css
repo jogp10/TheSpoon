@@ -219,6 +219,7 @@ body>header h2 {
 }
 
 .topnav>select {
+    min-width: 165px;
     font-weight: bold;
     width: 45%;
     border-radius: 5px;
@@ -237,8 +238,10 @@ body>header h2 {
 
 .userName {
     background-color: #fff;
-    width: 20.5em;
-    right: 0;
+    width: 22.5em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .userName a {
@@ -252,15 +255,9 @@ body>header h2 {
     margin-right: 0.5em;
 }
 
-#logoutOwner {
-    position: absolute;
-    right: 180px;
-}
-
 #profileOwner {
-    position: absolute;
-    right: 250px;
     padding-top: 0.2em;
+    font-size: medium;
 }
 
 #profileNotOwner {
@@ -268,41 +265,27 @@ body>header h2 {
     right: 80px;
 }
 
-.userName button {
+.userName button, .userName #restRegister {
     background-color: #555;
     color: white;
     padding: 0.4em 0.5em;
-    right: 0;
     border: none;
     cursor: pointer;
     opacity: 0.8;
+    font-size: medium;
 }
 
-.userName button:hover {
+.userName button:hover, .userName #restRegister:hover {
     color: #2a2f33;
     background-color: #c4cdca;
 }
 
 #restRegister {
-    position: absolute;
     margin-right: 0.5em;
-    background-color: #555;
-    padding: 0.4em 0.5em;
-    right: 0;
-    border: none;
-    cursor: pointer;
-    opacity: 0.8;
-}
-
-#restRegister a {
-    color: white;
 }
 
 #restRegister:hover {
     background-color: #c4cdca;
-}
-
-#restRegister a:hover {
     color: #2a2f33;
 }
 

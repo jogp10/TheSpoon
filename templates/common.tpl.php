@@ -70,7 +70,7 @@
       <?php if($session->getOwner()) { ?>
         <a href="../pages/profile.php"  id="profileOwner">Profile</a>
         <button type="submit" id="logoutOwner">Logout</button>
-        <a href="../pages/register_rest.php"><button id="restRegister">Register Your Restaurant</button></a>
+        <a href="../pages/register_rest.php" id="restRegister">Register Your Restaurant</a>
       <?php } else { ?>
         <a href="../pages/profile.php" id="profileNotOwner">Profile</a>
         <button type="submit" id="logoutNotOwner">Logout</button>
@@ -120,9 +120,34 @@
 
 <?php } ?>
 
-<?php function drawRegisterFormRestaurant() { ?>
-  <form action="../actions/action_register_restaraunt.php" method="post" class="registerRestaraunt">
-  
+<?php function drawRegisterFormRestaurant(array $categories) { ?>
+  <form action="../actions/action_register_restaurant.php" method="post" enctype="multipart/form-data" class="registerRestaraunt">
+    <h1>Register your restaurant</h1>
+    <div id="name">
+      <label><b>Name</b><input type="text" placeholder="Enter Name" name="rest_name"></label>   
+    </div>
+    <div>
+      <select> 
+        <option value="none">Select Category</option>
+        <?php foreach ($categories as $category) {?>
+          <option value=<?=$category->name?>><?=$category->name?></option>
+        <?php } ?>
+      </select> 
+    </div>
+    <div id="state"> 
+      <label><b>State</b><input type="text" placeholder="Enter State" name="state"></label>   
+    </div>
+    <div id="city"> 
+      <label><b>City</b><input type="text" placeholder="Enter City" name="city"></label>   
+    </div>
+    <div id="street"> 
+      <label><b>Street</b><input type="text" placeholder="Enter Street" name="street"></label>   
+    </div>
+    <div id="postal-code">  
+      <label><b>Postal Code</b><input type="text" placeholder="Enter Postal-code" name="postal-code"></label>   
+    </div>
+
+    <button type="submit" class="btn">Register Restaurant</button>
   </form>
 <?php } ?>
 

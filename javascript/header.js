@@ -17,7 +17,12 @@ function myFunction() {
 }
 
 function openLogInForm() {
-    document.getElementById("loginForm").style.display = "block";
+    const loginForm = document.getElementById("loginForm");
+    loginForm.style.display = "block";
+    if(loginForm.offsetHeight > window.innerHeight) {
+        loginForm.style.height = window.innerHeight + 'px';
+        loginForm.style.overflowY = 'scroll';
+    }
 }
 
 function closeLogInForm() {
@@ -26,7 +31,12 @@ function closeLogInForm() {
 
 
 function openRegisterForm() {
-    document.getElementById("registerForm").style.display = "block";
+    const registerForm = document.getElementById("registerForm");
+    registerForm.style.display = "block";
+    if(registerForm.offsetHeight > window.innerHeight) {
+        registerForm.style.height = window.innerHeight + 'px';
+        registerForm.style.overflowY = 'scroll';
+    }
 }
 
 function closeRegisterForm() {

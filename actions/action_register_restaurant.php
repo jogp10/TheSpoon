@@ -10,18 +10,12 @@
 
   $db = getDatabaseConnection();
 
-  $rest = Restaurant::addRestaurant($db, $_POST['rest_name'], $_POST['photo_path'], $_POST['rest_desc'],  $_POST['street'], $_POST['city'], $_POST['state'], (int)$_POST['postal-code']);    
+  $target_file = "../images/dog.jpg";
+  $rest_desc = "Good food, I hope";
 
-  if ($user != null) {
-    $session->setId($user->idUser);
-    $session->setName($user->name);
-    $session->setEmail($user->email);
-    $session->setOwner($user->restOwner);
+  $rest = Restaurant::addRestaurant($db, $_POST['rest_name'], $_POST['idRestCategory'], $target_file, $rest_desc,  $_POST['street'], $_POST['city'], $_POST['state'], (int)$_POST['postal-code']);    
 
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
-  } else {
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
-    // Error message displaying user already exists
-  }
+
+  header('Location: ' . $_SERVER['HTTP_REFERER']);
 
 ?>
