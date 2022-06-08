@@ -122,7 +122,7 @@
 
 <?php function drawRegisterFormRestaurant() { ?>
   <form action="../actions/action_register_restaraunt.php" method="post" class="registerRestaraunt">
-
+  
   </form>
 <?php } ?>
 

@@ -12,6 +12,46 @@
       $this->description = $description;
     }
 
+    static function addRestaurant(PDO $db, string $name, string $photo, int $description, string $street, string $city, string $state, int $postalCode): Restaurant {
+        $idUser = SESSION::getId();
+      
+        $stmt = $db->prepare(
+          'SELECT * 
+          FROM    Restaurant
+          WHERE   idRestaurant = (SELECT MAX(idRestaurant)  FROM Restaurant)'
+        );
+        $stmt->execute();
+        $idRestaurant = $stmt->fetch()['idRestaurant'] + 1;
+        echo '$idRestaurant';
+
+        $stmt = $db->prepare(
+          'SELECT * 
+          FROM    Address
+          WHERE   idAddress = (SELECT MAX(idAddress)  FROM Address)'
+        );
+        $stmt->execute();
+        $idAddress = $stmt->fetch()['idAddress'] + 1;
+        echo '$idAddress';
+
+        $stmt = $db->prepare(
+          'INSERT INTO Address values (?, ?, ?, ?, ?)'
+        );
+        $stmt->execute(array($idAddress, $street, $city, $state, $postalCode));
+
+        $options = ['cost' => 10];
+        $stmt = $db->prepare(
+          'INSERT INTO Restaurant values (?, ?, ?, ?, ?, ?, ?)'
+        );
+        $stmt->execute(array($idRestaurant, $name, $idUser, $idRestCategory, $photo, $description, $idAddress));
+
+        return new Restaurant (
+          $idRestaurant, 
+          $name,
+          $description
+        );
+      }
+      return null;
+    }
 
     static function getRestaurants(PDO $db, int $count) : array {
       $stmt = $db->prepare('SELECT idRestaurant, Name, Description FROM Restaurant LIMIT ?');
