@@ -218,6 +218,7 @@ body>header h2 {
 }
 
 .topnav>select {
+    min-width: 165px;
     font-weight: bold;
     width: 45%;
     border-radius: 5px;
