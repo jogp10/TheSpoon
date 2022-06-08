@@ -14,10 +14,17 @@
       $this->photo = $photo;
     }
 
-    static function addRestaurant(PDO $db, string $name, Category $RestCategory, string $photo, string $description, string $street, string $city, string $state, int $postalCode): Restaurant {
+    static function addRestaurant(PDO $db, string $name, string $RestName, string $photo, string $description, string $street, string $city, string $state, int $postalCode): Restaurant {
       $idUser = SESSION::getId();
     
-      $idRestCategory = $RestCategory.getId();
+      $photo = " ";
+      $stmt = $db->prepare(
+        'SELECT idRestCategory 
+        FROM    RestCategory
+        WHERE   name = ?'
+      );
+      $stmt->execute(array($RestName));
+      $idRestCategory = $stmt->fetch();
       $stmt = $db->prepare(
         'SELECT * 
         FROM    Restaurant

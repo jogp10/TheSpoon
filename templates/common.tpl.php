@@ -127,7 +127,7 @@
       <label><b>Name</b><input type="text" placeholder="Enter Name" name="rest_name"></label>   
     </div>
     <div>
-      <select> 
+      <select name="RestCategory"> 
         <option value="none">Select Category</option>
         <?php foreach ($categories as $category) {?>
           <option value=<?=$category->name?>><?=$category->name?></option>
