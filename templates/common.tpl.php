@@ -165,7 +165,7 @@
   </div>
 <?php } ?>
 
-<?php function drawCart() { ?>
+<?php function drawCart(Session $session) { ?>
   <section id="cart">
     <div>
       <a id="cart" href=""><img src="../images/cart.png" alt ="cart icon" width="30" height="30">(0<?php ?>)</a>
@@ -187,6 +187,19 @@
         </tr>
       </tfoot>
     </table>
-    <a href="../pages/checkout.php"><button>Checkout</button></a>
+    <?php 
+        if ($session->isLoggedIn()) goToCheckout();
+        else openRegForm();
+      ?>
   </section>
 <?php } ?>
+
+
+<?php function openRegForm() { ?>
+  <button onclick="openRegisterForm()">Checkout</button>
+<?php } ?>
+
+<?php function goToCheckout() { ?>
+  <a href="../pages/checkout.php"><button>Checkout</button></a>
+<?php } ?>
+

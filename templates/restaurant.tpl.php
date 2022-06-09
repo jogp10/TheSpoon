@@ -54,13 +54,17 @@
         <h4><?=$menuItem->name?></h4>
         <img src=<?=$menuItem->photo?> alt="item image" width="200" height="200"></a>
         <p class="price" price="<?=$menuItem->price?>"><?=$menuItem->price?>€</p>
-        <input class="quantity" type="hidden" value="1">
-        <button>Buy</button>
+        
+        <?php 
+          if ($session->isLoggedIn()) buyItem();
+          else openRegForm2();
+        ?>
       </article>
     <?php } ?>
   </section>
   <?= drawComments($session, $restaurant, $restOwner, $comments)?>
 <?php } ?>
+
 
 <?php function drawRestaurantProfile(Restaurant $restaurant, array $categories, Category $category) { ?>
   <h1><?=$restaurant->name?></h1>
@@ -93,6 +97,15 @@
       <button type="submit">Save</button>
     </form>
   </section>
+<?php } ?>
+
+<?php function buyItem() { ?>
+  <input class="quantity" type="hidden" value="1">
+  <button>Buy</button>
+<?php } ?>
+
+<?php function openRegForm2() { ?>
+  <button onclick="openRegisterForm()">Buy</button>
 <?php } ?>
 
 <?php function drawComments(Session $session, Restaurant $restaurant, User $restOwner, array $comments) { ?>
