@@ -73,6 +73,28 @@
       );
     }
 
+    static function updateRestaurant(PDO $db, string $name, string $restCat, string $photo, string $description, string $street, string $city, string $state, int $postalCode, int $id) {
+      $stmt = $db->prepare('SELECT idRestCategory FROM RestCategory where Name = ?');
+      $stmt->execute(array($restCat));
+      $idRestCategory = (int) $stmt->fetch()['idRestCategory'];
+      
+      $stmt = $db->prepare(
+        'UPDATE Restaurant
+        SET Name = ?, idRestCategory = ?, Photo = ?, Description = ?
+        WHERE   idRestaurant = ?'
+      );
+      $stmt->execute(array($name, $idRestCategory, $photo, $description, $id));
+
+      $stmt = $db->prepare('SELECT idAddress FROM Restaurant where idRestaurant = ?');
+      $stmt->execute(array($id));
+      $idAddress = (int) $stmt->fetch()['idAddress'];
+      $stmt = $db->prepare(
+        'UPDATE Address
+        SET Street = ?, City = ?, State = ?, PostalCode = ?
+        WHERE idAddress = ?');
+      $stmt->execute(array($street, $city, $state, $postalCode, $idAddress));
+    }
+
     static function getRestaurants(PDO $db, int $count) : array {
       $stmt = $db->prepare('
       SELECT idRestaurant, Name, Description, Photo, Street, City, State, PostalCode

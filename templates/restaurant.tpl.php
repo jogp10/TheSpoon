@@ -69,14 +69,14 @@
 <?php function drawRestaurantProfile(Restaurant $restaurant, array $categories, Category $category) { ?>
   <h1><?=$restaurant->name?></h1>
   <section>
-    <form action="../actions/action_profile.php?id=<?=$restaurant->id?>" method="post">
+    <form action="../actions/action_restaurant_profile.php?id=<?=$restaurant->id?>" method="post" enctype="multipart/form-data">
       <label>Name<br>
-      <input type="text" name="name" placeholder="name" value= "<?php echo $restaurant->name ?>" required></label>
+      <input type="text" name="rest_name" placeholder="name" value= "<?php echo $restaurant->name ?>" required></label>
       <br>
       <label>Category<br>
       <div>
         <select name="RestCategory"> 
-          <option value="<?=$category->name?>">curr:<?=$category->name?></option>
+          <option value="<?=$category->name?>"><?=$category->name?></option>
           <?php foreach ($categories as $category) {?>
             <option value=<?=$category->name?>><?=$category->name?></option>
           <?php } ?>
@@ -94,6 +94,10 @@
       <input type="number" name="postal-code" placeholder="Postal Code" value="<?php echo $restaurant->postalcode ?>">
       </label>
       <br>
+      <label>Photo<br>
+      <img src=<?=$restaurant->photo?> alt="item image" width="200" height="200"><br>
+      <input type="file" name="uploadPhoto" id="uploadPhoto" accept="image/png, image/jpeg"><br>
+      </label>
       <button type="submit">Save</button>
     </form>
   </section>
