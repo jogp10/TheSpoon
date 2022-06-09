@@ -6,12 +6,20 @@
     public string $name;
     public string $description;
     public string $photo;
+    public string $street;
+    public string $city;
+    public string $state;
+    public int $postalcode;
 
-    public function __construct(int $id, string $name, string $description, string $photo) { 
+    public function __construct(int $id, string $name, string $description, string $photo, string $street, string $city, string $state, int $postalCode) { 
       $this->id = $id;
       $this->name = $name;
       $this->description = $description;
       $this->photo = $photo;
+      $this->street = $street;
+      $this->city = $city;
+      $this->state = $state;
+      $this->postalcode = $postalCode;
     }
 
     static function addRestaurant(PDO $db, string $name, string $RestName, string $photo, string $description, string $street, string $city, string $state, int $postalCode): Restaurant {
@@ -57,21 +65,33 @@
         $idRestaurant, 
         $name,
         $description,
-        $photo
+        $photo,
+        $street,
+        $city,
+        $state,
+        $postalCode
       );
     }
 
     static function getRestaurants(PDO $db, int $count) : array {
-      $stmt = $db->prepare('SELECT idRestaurant, Name, Description, Photo FROM Restaurant LIMIT ?');
+      $stmt = $db->prepare('
+      SELECT idRestaurant, Name, Description, Photo, Street, City, State, PostalCode
+      FROM Restaurant JOIN Address USING (idAddress)
+      LIMIT ?
+    ');
       $stmt->execute(array($count));
 
       $restaurants = array();
       while ($restaurant = $stmt->fetch()) {
         $restaurants[] = new Restaurant(
-          (int) $restaurant['idRestaurant'],
-          $restaurant['Name'],
-          $restaurant['Description'],
-          $restaurant['Photo']
+        (int)$restaurant['idRestaurant'],
+        $restaurant['Name'],
+        $restaurant['Description'],
+        $restaurant['Photo'],
+        $restaurant['Street'],
+        $restaurant['City'],
+        $restaurant['State'],
+        (int)$restaurant['PostalCode']
         );
       }
 
@@ -79,16 +99,26 @@
     }
 
     static function getRestaurantsFromCategory(PDO $db, int $count,  int $id) : array {
-      $stmt = $db->prepare('SELECT idRestaurant, Name, Description, Photo FROM Restaurant WHERE idRestCategory = ? LIMIT ?');
+      $stmt = $db->prepare('
+      SELECT idRestaurant, Name, Description, Photo, Street, City, State, PostalCode
+      FROM Restaurant JOIN Address USING (idAddress)
+      WHERE idRestCategory = ?
+      LIMIT ?
+    ');
+
       $stmt->execute(array($id, $count));
 
       $restaurants = array();
       while ($restaurant = $stmt->fetch()) {
         $restaurants[] = new Restaurant(
-          (int) $restaurant['idRestaurant'],
-          $restaurant['Name'],
-          $restaurant['Description'],
-          $restaurant['Photo']
+        (int)$restaurant['idRestaurant'],
+        $restaurant['Name'],
+        $restaurant['Description'],
+        $restaurant['Photo'],
+        $restaurant['Street'],
+        $restaurant['City'],
+        $restaurant['State'],
+        (int)$restaurant['PostalCode']
         );
       }
 
@@ -96,7 +126,12 @@
     }
 
     static function getRestaurant(PDO $db, int $id) : Restaurant {
-      $stmt = $db->prepare('SELECT idRestaurant, Name, Description, Photo FROM Restaurant WHERE idRestaurant = ?');
+      $stmt = $db->prepare('
+      SELECT idRestaurant, Name, Description, Photo, Street, City, State, PostalCode
+      FROM Restaurant JOIN Address USING (idAddress)
+      WHERE idRestaurant = ?
+    ');
+
       $stmt->execute(array($id));
 
       $restaurant = $stmt->fetch();
@@ -105,21 +140,34 @@
         (int)$restaurant['idRestaurant'],
         $restaurant['Name'],
         $restaurant['Description'],
-        $restaurant['Photo']
+        $restaurant['Photo'],
+        $restaurant['Street'],
+        $restaurant['City'],
+        $restaurant['State'],
+        (int)$restaurant['PostalCode']
       );
     }
 
-    static function getRestaurantsFromUser(PDO $db, int $id) : array {
-      $stmt = $db->prepare('SELECT idRestaurant, Name, Description, Photo FROM Restaurant WHERE idUser = ?');
+    static function getRestaurantsFromUser(PDO $db, int $id) : array {   
+      $stmt = $db->prepare('
+      SELECT idRestaurant, Name, Description, Photo, Street, City, State, PostalCode
+      FROM Restaurant JOIN Address USING (idAddress)
+      WHERE idUser = ?
+      ');
+      
       $stmt->execute(array($id));
 
       $restaurants = array();
       while ($restaurant = $stmt->fetch()) {
         $restaurants[] = new Restaurant(
-          (int) $restaurant['idRestaurant'],
-          $restaurant['Name'],
-          $restaurant['Description'],
-          $restaurant['Photo']
+        (int)$restaurant['idRestaurant'],
+        $restaurant['Name'],
+        $restaurant['Description'],
+        $restaurant['Photo'],
+        $restaurant['Street'],
+        $restaurant['City'],
+        $restaurant['State'],
+        (int)$restaurant['PostalCode']
         );
       }
 
@@ -127,32 +175,50 @@
     }
 
     static function searchRestaurants(PDO $db, string $search, int $count) : array {
-      $stmt = $db->prepare('SELECT idRestaurant, Name, Description, Photo FROM Restaurant WHERE Name LIKE ? LIMIT ?');
+      $stmt = $db->prepare('
+      SELECT idRestaurant, Name, Description, Photo, Street, City, State, PostalCode
+      FROM Restaurant JOIN Address USING (idAddress)
+      WHERE Name LIKE ? 
+      LIMIT ?
+      ');
       $stmt->execute(array('%' . $search . '%', $count));
 
       $restaurants = array();
       while ($restaurant = $stmt->fetch()) {
         $restaurants[] = new Restaurant(
-          (int) $restaurant['idRestaurant'],
-          $restaurant['Name'],
-          $restaurant['Description'],
-          $restaurant['Photo']
+        (int)$restaurant['idRestaurant'],
+        $restaurant['Name'],
+        $restaurant['Description'],
+        $restaurant['Photo'],
+        $restaurant['Street'],
+        $restaurant['City'],
+        $restaurant['State'],
+        (int)$restaurant['PostalCode']
         );
       }
       return $restaurants;
     }
 
     static function searchRestaurantsbyCategory(PDO $db, string $search, int $id, int $count) : array {
-      $stmt = $db->prepare('SELECT idRestaurant, Name, Description, Photo FROM Restaurant WHERE idRestCategory = ? AND Name LIKE ? LIMIT ?');
+      $stmt = $db->prepare('
+      SELECT idRestaurant, Name, Description, Photo, Street, City, State, PostalCode
+      FROM Restaurant JOIN Address USING (idAddress)
+      WHERE idRestCategory = ? AND Name LIKE ?
+      LIMIT ?
+      ');
       $stmt->execute(array($id, '%' . $search . '%', $count));
 
       $restaurants = array();
       while ($restaurant = $stmt->fetch()) {
         $restaurants[] = new Restaurant(
-          (int) $restaurant['idRestaurant'],
-          $restaurant['Name'],
-          $restaurant['Description'],
-          $restaurant['Photo']
+        (int)$restaurant['idRestaurant'],
+        $restaurant['Name'],
+        $restaurant['Description'],
+        $restaurant['Photo'],
+        $restaurant['Street'],
+        $restaurant['City'],
+        $restaurant['State'],
+        (int)$restaurant['PostalCode']
         );
       }
       return $restaurants;
@@ -188,7 +254,23 @@
       return $categories;
     }
 
-    static function getId() {return $id;}
+    static function getRestaurantCategory(PDO $db, int $id) : Category {
+      $stmt = $db->prepare('
+      SELECT RestCategory.idRestCategory AS idRestCategory, RestCategory.Name AS Name, RestCategory.Description AS Description
+      FROM Restaurant JOIN RestCategory USING (idRestCategory)
+      WHERE idRestaurant = ?
+      ');
+      $stmt->execute(array($id));
+
+      $category = $stmt->fetch();
+      if ($category !== false ) {
+        return new Category (
+          (int)$category['idRestCategory'],
+          $category['Name'],
+          $category['Description']
+        );
+      } else return null;
+    }
 
     static function getItemCategories(PDO $db) : array {
       $stmt = $db->prepare('SELECT idItemCategory, Name FROM ItemCategory');

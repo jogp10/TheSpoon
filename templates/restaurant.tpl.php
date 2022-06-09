@@ -35,12 +35,12 @@
   <?php foreach($restaurants as $restaurant) { ?> 
     <article>    
       <div class="restImageName">
-          <a href="../pages/restaurant.php?id=<?=$restaurant->id?>" class="restImage" id="restImage-<?=$restaurant->id?>"><img src="<?=$restaurant->photo?>" alt="restaurant image" width="200" height="200"></a>
-          <a href="../pages/restaurant.php?id=<?=$restaurant->id?>" class="restName" id="restName-<?=$restaurant->id?>"><?=$restaurant->name?></a>
-          <p class="restDesc" id="restDesc-<?=$restaurant->id?>"><?=$restaurant->description?></p>
-          <button type="button" class="descClose" id="descClose-<?=$restaurant->id?>" onclick="closeDescription(<?=$restaurant->id?>)">-</button>
-          <button type="button" class="descOpen" id="descOpen-<?=$restaurant->id?>" onclick="openDescription(<?=$restaurant->id?>)">+</button>
-        </div>  
+        <a href="../pages/restaurant_info.php?id=<?=$restaurant->id?>" class="restImage" id="restImage-<?=$restaurant->id?>"><img src="<?=$restaurant->photo?>" alt="restaurant image" width="200" height="200"></a>
+        <a href="../pages/restaurant_info.php?id=<?=$restaurant->id?>" class="restName" id="restName-<?=$restaurant->id?>"><?=$restaurant->name?></a>
+        <p class="restDesc" id="restDesc-<?=$restaurant->id?>"><?=$restaurant->description?></p>
+        <button type="button" class="descClose" id="descClose-<?=$restaurant->id?>" onclick="closeDescription(<?=$restaurant->id?>)">-</button>
+        <button type="button" class="descOpen" id="descOpen-<?=$restaurant->id?>" onclick="openDescription(<?=$restaurant->id?>)">+</button>
+      </div>  
     </article>
   <?php } ?>
 <?php } ?>
@@ -60,6 +60,39 @@
     <?php } ?>
   </section>
   <?= drawComments($session, $restaurant, $restOwner, $comments)?>
+<?php } ?>
+
+<?php function drawRestaurantProfile(Restaurant $restaurant, array $categories, Category $category) { ?>
+  <h1><?=$restaurant->name?></h1>
+  <section>
+    <form action="../actions/action_profile.php?id=<?=$restaurant->id?>" method="post">
+      <label>Name<br>
+      <input type="text" name="name" placeholder="name" value= "<?php echo $restaurant->name ?>" required></label>
+      <br>
+      <label>Category<br>
+      <div>
+        <select name="RestCategory"> 
+          <option value="<?=$category->name?>">curr:<?=$category->name?></option>
+          <?php foreach ($categories as $category) {?>
+            <option value=<?=$category->name?>><?=$category->name?></option>
+          <?php } ?>
+        </select> 
+      </div></label>
+      <label>Description<br>
+      <textarea id="desc" name="desc" rows="10" cols="50" placeholder="descritption"><?php echo $restaurant->description ?></textarea>
+      </label>
+      <br>
+      <label>Address<br>
+      <input type="text" name="street" placeholder="Street" value="<?php echo $restaurant->street ?>" required>
+      <input type="text" name="city" placeholder="City" value="<?php echo $restaurant->city ?>" required>
+      <input type="text" name="state" placeholder="State" value="<?php echo $restaurant->state ?>" required>
+      <br>
+      <input type="number" name="postal-code" placeholder="Postal Code" value="<?php echo $restaurant->postalcode ?>">
+      </label>
+      <br>
+      <button type="submit">Save</button>
+    </form>
+  </section>
 <?php } ?>
 
 <?php function drawComments(Session $session, Restaurant $restaurant, User $restOwner, array $comments) { ?>

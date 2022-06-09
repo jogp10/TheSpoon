@@ -152,7 +152,7 @@
 <?php } ?>
 
 
-<?php function drawSearchBar($categories) { ?>
+<?php function drawSearchBar(array $categories) { ?>
   <div class="topnav" id="searchRestaurant">
     <input type="text" placeholder="Search..">
     <select id="select-category">
