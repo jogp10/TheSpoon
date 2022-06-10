@@ -24,7 +24,7 @@
 
   drawHeader($session);
   drawRestaurantProfile($restaurant, $allcategories, $category);
-  
+  drawItemsInfo($session, $restaurant, $menu);
   drawComments($session, $restaurant, $user, $comments);
   drawFooter();
 ?>

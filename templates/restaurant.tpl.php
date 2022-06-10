@@ -46,22 +46,8 @@
 <?php } ?>
 
 <?php function drawRestaurant(Session $session, Restaurant $restaurant, User $restOwner, array $menuItems, array $comments) { ?>
-  <h1><?=$restaurant->name?></h1>
-  <section id="menuItems">
-    <?php foreach ($menuItems as $menuItem) { ?>
-      <article data-id="<?=$menuItem->id?>">
-        <a href="item.php?id=<?=$menuItem->id?>">
-        <h4><?=$menuItem->name?></h4>
-        <img src=<?=$menuItem->photo?> alt="item image" width="200" height="200"></a>
-        <p class="price" price="<?=$menuItem->price?>"><?=$menuItem->price?>€</p>
-        
-        <?php 
-          if ($session->isLoggedIn()) buyItem();
-          else openRegForm2();
-        ?>
-      </article>
-    <?php } ?>
-  </section>
+  <?= drawName(); 
+    drawItems($session, $restaurant, $menuItems) ?>
   <?= drawComments($session, $restaurant, $restOwner, $comments)?>
 <?php } ?>
 
@@ -100,6 +86,7 @@
       </label>
       <button type="submit">Save</button>
     </form>
+    <a href="../pages/register_menu_item.php?id=<?=$restaurant->id?>" method="get">Add dishes to the restaurant</a>
   </section>
 <?php } ?>
 
@@ -152,5 +139,63 @@
       <button type="submit">Comment</button>
     </form>
     <?php } ?>
+  </section>
+<?php } ?>
+
+<?php function drawName(Restaurant $restaurant) { ?>
+  <h1><?=$restaurant->name?></h1>
+<?php } ?>
+
+<?php function drawItems(Session $session, Restaurant $restaurant, array $menuItems) { ?>
+  <section id="menuItems">
+    <?php foreach ($menuItems as $menuItem) { ?>
+      <article data-id="<?=$menuItem->id?>">
+        <a href="item.php?id=<?=$menuItem->id?>">
+        <h4><?=$menuItem->name?></h4>
+        <img src=<?=$menuItem->photo?> alt="item image" width="200" height="200"></a>
+        <p class="price" price="<?=$menuItem->price?>"><?=$menuItem->price?>€</p>
+        
+        <?php 
+          if ($session->isLoggedIn()) buyItem();
+          else openRegForm2();
+        ?>
+      </article>
+    <?php } ?>
+  </section>
+
+
+<?php } ?>
+
+<?php function drawItemsInfo(Session $session, Restaurant $restaurant, array $menuItems) { ?>
+  <section id="menuItems">
+    <?php foreach ($menuItems as $menuItem) { ?>
+      <article data-id="<?=$menuItem->id?>">
+        <a href="item_info.php?id=<?=$menuItem->id?>">
+        <h4><?=$menuItem->name?></h4>
+        <img src=<?=$menuItem->photo?> alt="item image" width="200" height="200"></a>
+        <p class="price" price="<?=$menuItem->price?>"><?=$menuItem->price?>€</p>
+      </article>
+    <?php } ?>
+  </section>
+<?php } ?>
+
+
+<?php function drawItemProfile(Session $session, MenuItem $item) { ?>
+  <h1><?=$restaurant->name?></h1>
+  <section>
+    <form action="../actions/action_item_profile.php?id=<?=$item->id?>" method="post" enctype="multipart/form-data">
+      <label>Name<br>
+      <input type="text" name="item_name" placeholder="name" value= "<?php echo $item->name ?>" required></label>
+  
+      <label>Price<br>
+      <input type="number" name="item_price" placeholder="price" value="<?php echo $item->price ?>" required></label>
+   
+      <label>Photo<br>
+      <img src=<?=$item->photo?> alt="item image" width="200" height="200"><br>
+      <input type="file" name="uploadPhoto" id="uploadPhoto" accept="image/png, image/jpeg"><br>
+      </label>
+
+      <button type="submit">Save</button>
+    </form>
   </section>
 <?php } ?>

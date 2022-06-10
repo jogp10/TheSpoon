@@ -5,18 +5,18 @@
   $session = new Session();
 
   require_once('../database/connection.php');
-  require_once('../database/restaurant.class.php');
+  require_once('../database/menu.class.php');
 
   $db = getDatabaseConnection();
 
-  $restaurant = Restaurant::getRestaurant($db, intval($_GET['id']));
-  $target_file = $restaurant->photo;
+  $item = MenuItem::getMenuItem($db, intval($_GET['id']));
+  $target_file = $item->photo;
 
   if ($_FILES['uploadPhoto']['size'] != 0) {
     $target_dir = "../images/";
     $target_file = $target_dir . basename($_FILES["uploadPhoto"]["name"]);
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-    $target_file = $target_dir . "rest_" . (string)$restaurant->id . '.' . $imageFileType;
+    $target_file = $target_dir . "item_" . (string)$item->id . '.' . $imageFileType;
     $uploadOk = 1;
     
 
@@ -33,11 +33,11 @@
       } else {
         echo "Sorry, there was an error uploading your file.";
       }
-      unlink($restaurant->photo);
+      unlink($item->photo);
     }
   }
 
-  Restaurant::updateRestaurant($db, $_POST['rest_name'], $_POST['RestCategory'], $target_file, $_POST['desc'],  $_POST['street'], $_POST['city'], $_POST['state'], (int)$_POST['postal-code'], $restaurant->id);
+  MenuItem::updateMenuItem($db, $_POST['item_name'], $_POST['item_price'], $target_file, $item->id);
 
 
   header('Location: ' . $_SERVER['HTTP_REFERER']);
