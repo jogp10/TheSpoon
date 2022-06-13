@@ -126,5 +126,21 @@
       );
       $stmt->execute(array($name, $price, $photo, $id));
     }
+
+    public function addFavorite(PDO $db, int $idUser) {
+      $stmt = $db->prepare(
+        'SELECT * 
+        FROM    ItemFavorite
+        WHERE   idItemFavorite = (SELECT MAX(idItemFavorite)  FROM ItemFavorite)'
+      );
+      $stmt->execute();
+      $idItemFavorite = $stmt->fetch()['idItemFavorite'] + 1;
+      echo '$idItemFavorite';
+      echo ' ' . $idItemFavorite . ' ' . $idUser . ' ' . $this->id;
+      $stmt = $db->prepare(
+        'INSERT INTO ItemFavorite values (?, ?, ?)'
+      );
+      $stmt->execute(array($idItemFavorite, $idUser, $this->id));
+    }
   }
 ?>
