@@ -46,7 +46,7 @@
 <?php } ?>
 
 <?php function drawRestaurant(Session $session, Restaurant $restaurant, User $restOwner, array $menuItems, array $comments) { ?>
-  <?= drawName(); 
+  <?= drawName($restaurant); 
     drawItems($session, $restaurant, $menuItems) ?>
   <?= drawComments($session, $restaurant, $restOwner, $comments)?>
 <?php } ?>
