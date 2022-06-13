@@ -245,6 +245,15 @@
       }
       return $restaurants;
     }
+
+    static function searchRestaurantByMenu($db, $menuId) : Restaurant {
+      $stmt = $db->prepare('SELECT * FROM Menu WHERE idMenu = ?');
+      $stmt->execute(array($menuId));
+
+      $menu = $stmt->fetch();
+      $idRestaurant = (int) $menu['idRestaurant'];
+      return Restaurant::getRestaurant($db, $idRestaurant);
+    }
   }
 
   class Category {

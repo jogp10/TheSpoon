@@ -3,7 +3,9 @@
 
   require_once('../utils/session.php');
   $session = new Session();
+  $id = $session->getId();
 
+  require_once('../database/user.class.php');
   require_once('../database/connection.php');
   require_once('../database/menu.class.php');
   require_once('../database/restaurant.class.php');
@@ -13,6 +15,9 @@
   
 
   $db = getDatabaseConnection();
+  $restaurantOwner = User::getRestaurantOwner($db, intval($_GET['id']));
+
+  if (!$session->isLoggedIn() || $id != $restaurantOwner->idUser) die(header('Location: /'));
 
   $menu = Menu::getMenu($db, intval($_GET['id']));
   $restaurant = Restaurant::getRestaurant($db, intval($_GET['id']));

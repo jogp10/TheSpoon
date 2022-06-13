@@ -4,7 +4,7 @@
   require_once('../utils/session.php');
   $session = new Session();
 
-  if (!$session->isLoggedIn()) die(header('Location: /'));
+  if (!$session->isLoggedIn() || !$session->getOwner()) die(header('Location: /'));
 
   require_once('../database/connection.php');
   require_once('../database/restaurant.class.php');
