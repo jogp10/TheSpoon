@@ -16,11 +16,10 @@
     $session->setName($user->name);
     $session->setEmail($user->email);
     $session->setOwner($user->restOwner);
-
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    $session->addMessage('success', 'Login successful!');
   } else {
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
-    // Error message displaying user does not exists
+    $session->addMessage('error', "Wrong email or password!");
   }
+  header('Location: ' . $_SERVER['HTTP_REFERER']);
 
 ?>

@@ -15,6 +15,8 @@
 
     public function logout() {
       session_destroy();
+      $session = new Session();
+      $session->addMessage('success', 'Logout successful!');
     }
 
     public function getId() : ?int {
