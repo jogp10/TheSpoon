@@ -15,6 +15,8 @@
 
   $db = getDatabaseConnection();
 
+  if (!$session->isLoggedIn()) die(header('Location: /'));
+
   $restaurant = Restaurant::getRestaurant($db, intval($_GET['id']));
   $allcategories = Category::getRestaurantsCategories($db, 20);
   $category = Category::getRestaurantCategory($db, $restaurant->id);
