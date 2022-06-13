@@ -136,11 +136,25 @@
       $stmt->execute();
       $idItemFavorite = $stmt->fetch()['idItemFavorite'] + 1;
       echo '$idItemFavorite';
-      echo ' ' . $idItemFavorite . ' ' . $idUser . ' ' . $this->id;
       $stmt = $db->prepare(
         'INSERT INTO ItemFavorite values (?, ?, ?)'
       );
       $stmt->execute(array($idItemFavorite, $idUser, $this->id));
+    }
+
+    public function removeFavorite(PDO $db, int $idUser) {
+      $stmt = $db->prepare(
+        'SELECT * 
+        FROM    ItemFavorite
+        WHERE   idUser = ? AND idMenuItem = ?'
+      );
+      $stmt->execute(array($idUser, $this->id));
+      $idItemFavorite = $stmt->fetch()['idItemFavorite'];
+      echo '$idItemFavorite';
+      $stmt = $db->prepare(
+        'DELETE FROM ItemFavorite WHERE idItemFavorite = ?'
+      );
+      $stmt->execute(array($idItemFavorite));
     }
   }
 ?>

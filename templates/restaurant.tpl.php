@@ -156,7 +156,8 @@
         <p class="price" price="<?=$menuItem->price?>"><?=$menuItem->price?>€</p>
         
         <?php 
-          if ($session->isLoggedIn()) favorite($menuItem);
+          if ($session->isLoggedIn() && !isfavorite($menuItem)) favorite($menuItem);
+          if ($session->isLoggedIn() && isfavorite($menuItem)) unfavorite($menuItem);
         ?>
 
         <?php 
@@ -169,6 +170,21 @@
 
 
 <?php } ?>
+
+<?php function isfavorite(MenuItem $item) {
+  require_once('../utils/session.php');
+  require_once('../database/connection.php');
+  $session = new Session();
+  $db = getDatabaseConnection();
+  $stmt = $db->prepare(
+    'SELECT * 
+    FROM    ItemFavorite
+    WHERE   idMenuItem = ? AND idUser = ?'
+  );
+  $stmt->execute(array($item->id, $session->getId()));
+  $favorite = $stmt->fetch();
+  return $favorite;
+} ?>
 
 <?php function drawItemsInfo(Session $session, Restaurant $restaurant, array $menuItems) { ?>
   <section id="menuItems">
@@ -185,7 +201,7 @@
 
 
 <?php function drawItemProfile(Session $session, MenuItem $item) { ?>
-  <h1><?=$restaurant->name?></h1>
+  <h1><?=$item->name?></h1>
   <section>
     <form action="../actions/action_item_profile.php?id=<?=$item->id?>" method="post" enctype="multipart/form-data">
       <label>Name<br>
@@ -209,6 +225,14 @@
   <section>
     <form action="../actions/action_item_favorite.php?id=<?=$item->id?>" method="post" enctype="multipart/form-data">
       <button type="submit">Favorite</button>
+    </form>
+  </section>
+<?php } ?>
+
+<?php function unfavorite(MenuItem $item) { ?>
+  <section>
+    <form action="../actions/action_item_unfavorite.php?id=<?=$item->id?>" method="post" enctype="multipart/form-data">
+      <button type="submit">Unfavorite</button>
     </form>
   </section>
 <?php } ?>
