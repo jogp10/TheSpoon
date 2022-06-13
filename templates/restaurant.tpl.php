@@ -216,8 +216,7 @@
       <img src=<?=$item->photo?> alt="item image" width="200" height="200"><br>
       <input type="file" name="uploadPhoto" id="uploadPhoto" accept="image/png, image/jpeg"><br>
       </label>
-
-      
+      <button type="submit">Save</button>
     </form>
   </section>
 <?php } ?>
