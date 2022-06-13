@@ -60,6 +60,15 @@
 
         return $menu;
     }
+
+    static function getMenuByItem(PDO $db, int $idItem) : int {
+      $stmt = $db->prepare('SELECT * FROM MenuItem WHERE idMenuItem = ?');
+      $stmt->execute(array($idItem));
+
+      $menuItem = $stmt->fetch();
+      $idMenu = (int) $menuItem['idMenu'];
+      return $idMenu;
+    }
   }
 
   class MenuItem {
