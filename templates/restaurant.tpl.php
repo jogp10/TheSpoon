@@ -49,6 +49,10 @@
 
 <?php function drawRestaurant(Session $session, Restaurant $restaurant, User $restOwner, array $menuItems, array $comments) { 
   drawName($restaurant); 
+
+  if ($session->isLoggedIn() && !isfavoriteR($restaurant)) drawFavorite($restaurant);
+  if ($session->isLoggedIn() && isfavoriteR($restaurant)) drawUnfavorite($restaurant);
+
   drawItems($session, $restaurant, $menuItems);
   drawComments($session, $restaurant, $restOwner, $comments);
 } ?>
@@ -188,6 +192,21 @@
   return $favorite;
 } ?>
 
+<?php function isfavoriteR(Restaurant $restaurant) {
+  require_once('../utils/session.php');
+  require_once('../database/connection.php');
+  $session = new Session();
+  $db = getDatabaseConnection();
+  $stmt = $db->prepare(
+    'SELECT * 
+    FROM    RestFavorite
+    WHERE   idRestaurant = ? AND idUser = ?'
+  );
+  $stmt->execute(array($restaurant->id, $session->getId()));
+  $favorite = $stmt->fetch();
+  return $favorite;
+} ?>
+
 <?php function drawItemsInfo(Session $session, Restaurant $restaurant, array $menuItems) { ?>
   <section id="menuItems">
     <?php foreach ($menuItems as $menuItem) { ?>
@@ -217,6 +236,7 @@
       <input type="file" name="uploadPhoto" id="uploadPhoto" accept="image/png, image/jpeg"><br>
       </label>
       <button type="submit">Save</button>
+      
     </form>
   </section>
 <?php } ?>
@@ -233,6 +253,24 @@
 <?php function unfavorite(MenuItem $item) { ?>
   <section>
     <form action="../actions/action_item_unfavorite.php?id=<?=$item->id?>" method="post" enctype="multipart/form-data">
+      <button type="submit">Unfavorite</button>
+    </form>
+  </section>
+<?php } ?>
+
+
+<?php function drawFavorite(Restaurant $restaurant) { ?>
+  <section>
+    <form action="../actions/action_rest_favorite.php?id=<?=$restaurant->id?>" method="post" enctype="multipart/form-data">
+      <button type="submit">Favorite</button>
+    </form>
+  </section>
+<?php } ?>
+
+
+<?php function drawUnfavorite(Restaurant $restaurant) { ?>
+  <section>
+    <form action="../actions/action_rest_unfavorite.php?id=<?=$restaurant->id?>" method="post" enctype="multipart/form-data">
       <button type="submit">Unfavorite</button>
     </form>
   </section>
