@@ -45,11 +45,11 @@
   <?php } ?>
 <?php } ?>
 
-<?php function drawRestaurant(Session $session, Restaurant $restaurant, User $restOwner, array $menuItems, array $comments) { ?>
-  <?= drawName($restaurant); 
-    drawItems($session, $restaurant, $menuItems) ?>
-  <?= drawComments($session, $restaurant, $restOwner, $comments)?>
-<?php } ?>
+<?php function drawRestaurant(Session $session, Restaurant $restaurant, User $restOwner, array $menuItems, array $comments) { 
+  drawName($restaurant); 
+  drawItems($session, $restaurant, $menuItems);
+  drawComments($session, $restaurant, $restOwner, $comments);
+} ?>
 
 
 <?php function drawRestaurantProfile(Restaurant $restaurant, array $categories, Category $category) { ?>
@@ -156,6 +156,10 @@
         <p class="price" price="<?=$menuItem->price?>"><?=$menuItem->price?>€</p>
         
         <?php 
+          if ($session->isLoggedIn()) favorite($menuItem);
+        ?>
+
+        <?php 
           if ($session->isLoggedIn()) buyItem();
           else openRegForm2();
         ?>
@@ -195,7 +199,16 @@
       <input type="file" name="uploadPhoto" id="uploadPhoto" accept="image/png, image/jpeg"><br>
       </label>
 
-      <button type="submit">Save</button>
+      
+    </form>
+  </section>
+<?php } ?>
+
+
+<?php function favorite(MenuItem $item) { ?>
+  <section>
+    <form action="../actions/action_item_favorite.php?id=<?=$item->id?>" method="post" enctype="multipart/form-data">
+      <button type="submit">Favorite</button>
     </form>
   </section>
 <?php } ?>
