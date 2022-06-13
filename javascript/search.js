@@ -2,15 +2,6 @@ const searchRestaurant = document.querySelector('#searchRestaurant input')
 const searchButton = document.querySelector('#searchRestaurant button')
 const ENTER_KEY_CODE = 13;
 
-if (searchButton) {
-    searchButton.addEventListener('click', async function() {
-        const response = await fetch('../api/api_restaurants.php?search=')
-        const categories = await response.json()
-
-        drawRestFunction(categories)
-    });
-}
-
 if (searchRestaurant) {
     searchRestaurant.addEventListener('input', async function() {
         const response = await fetch('../api/api_restaurants.php?search=' + this.value)
@@ -21,6 +12,13 @@ if (searchRestaurant) {
             if (e.keyCode === ENTER_KEY_CODE) { drawRestFunction(categories) }
         })
     })
+    }else if(searchButton) {
+    searchButton.addEventListener('click', async function() {
+        const response = await fetch('../api/api_restaurants.php?search=')
+        const categories = await response.json()
+
+        drawRestFunction(categories)
+    });
 }
 
 var drawRestFunction = function(categories) {

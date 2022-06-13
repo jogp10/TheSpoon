@@ -37,8 +37,10 @@ create table if not exists Restaurant (
 												ON DELETE CASCADE ON UPDATE CASCADE,
 	Photo			VARCHAR	DEFAULT '',
 	Description		VARCHAR DEFAULT '',
+	Rating 		REAL NOT NULL,
 	idAddress		INTEGER NOT NULL 	CONSTRAINT fk_restaurant_idaddress REFERENCES Address (idAddress)
-												ON DELETE CASCADE ON UPDATE CASCADE
+												ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT evaluation_rating CHECK ((Rating >= 0) and (Rating <= 5))
 );
 
 create table if not exists Evaluation (
@@ -161,32 +163,32 @@ INSERT INTO RestCategory values (8, "Churrasqueira", "The best Barbecue");
 INSERT INTO RestCategory values (9, "Marisqueira", "The best Seafood");
 INSERT INTO RestCategory values (10, "Tradicional", "The best Traditional food");
 
--- Restaurant (id, Name, idUser, idRestCategory, Photo, Description, idAddress)
-INSERT INTO Restaurant values (1, "EatRoll", 3, 2, "https://picsum.photos/200?1", "All you can eat", 5);
-INSERT INTO Restaurant values (2, "RockBy", 2, 2, "https://picsum.photos/200?2", "Rocks that crack your teeth", 6);
-INSERT INTO Restaurant values (3, "MCAlfredos", 2, 4, "https://picsum.photos/200?3", "Eat so much, get so fat, dont run, keep eating, eat more and continue eating, there is no possible limit to how much you can eat.", 7);
-INSERT INTO Restaurant values (4, "Tasca do tio Quim", 2, 6, "https://picsum.photos/200?4", "All you can eat", 8);
-INSERT INTO Restaurant values (5, "Churrasqueira Portuguesa", 2, 8, "https://picsum.photos/200?5", "All you can eat", 9);
-INSERT INTO Restaurant values (6, "Tasca do Toni", 2, 6, "https://picsum.photos/200?6", "All you can eat", 10);
-INSERT INTO Restaurant values (7, "Churrasqueira Toni Torpedo", 2, 8, "https://picsum.photos/200?7", "All you can eat", 11);
-INSERT INTO Restaurant values (8, "Camelo", 2, 10, "https://picsum.photos/200?8", "All you can eat", 12);
-INSERT INTO Restaurant values (9, "Stramontana", 2, 10, "https://picsum.photos/200?9", "All you can eat", 13);
-INSERT INTO Restaurant values (10, "Transmontano", 2, 10, "https://picsum.photos/200?10", "All you can eat", 14);
-INSERT INTO Restaurant values (11, "Thai Food", 2, 7, "https://picsum.photos/200?11", "All you can eat", 15);
-INSERT INTO Restaurant values (12, "Restaurante Amizade", 2, 3, "https://picsum.photos/200?12", "All you can eat", 16);
-INSERT INTO Restaurant values (13, "Restaurante Grão D'Ouro", 2, 10, "https://picsum.photos/200?13", "All you can eat", 17);
-INSERT INTO Restaurant values (14, "Assim Assado", 2, 8, "https://picsum.photos/200?14", "All you can eat", 18);
-INSERT INTO Restaurant values (15, "Ramirinho 1", 2, 6, "https://picsum.photos/200?15", "All you can eat", 19);
-INSERT INTO Restaurant values (16, "Ramirinho 2", 2, 6, "https://picsum.photos/200?16", "All you can eat", 20);
-INSERT INTO Restaurant values (17, "Ramirinho 3", 2, 6, "https://picsum.photos/200?17", "All you can eat", 21);
-INSERT INTO Restaurant values (18, "Lado B", 2, 10, "https://picsum.photos/200?18", "All you can eat", 22);
-INSERT INTO Restaurant values (19, "Santiago", 2, 10, "https://picsum.photos/200?19", "All you can eat", 23);
-INSERT INTO Restaurant values (20, "Venham mais 5!", 2, 4, "https://picsum.photos/200?20", "All you can eat", 24);
-INSERT INTO Restaurant values (21, "Mr Pizza", 2, 1, "https://picsum.photos/200?21", "All you can eat", 25);
-INSERT INTO Restaurant values (22, "Las Bichas", 2, 6, "https://picsum.photos/200?22", "All you can eat", 26);
-INSERT INTO Restaurant values (23, "Sincello", 2, 5, "https://picsum.photos/200?23", "All you can eat", 27);
-INSERT INTO Restaurant values (24, "Marisqueira João Camarão", 2, 9, "https://picsum.photos/200?24", "All you can eat", 28);
-INSERT INTO Restaurant values (25, "Madureira's", 2, 8, "https://picsum.photos/200?25", "All you can eat", 29);
+-- Restaurant (id, Name, idUser, idRestCategory, Photo, Description, Rating, idAddress)
+INSERT INTO Restaurant values (1, "EatRoll", 3, 2, "https://picsum.photos/200?1", "All you can eat", 3, 5);
+INSERT INTO Restaurant values (2, "RockBy", 2, 2, "https://picsum.photos/200?2", "Rocks that crack your teeth", 0, 6);
+INSERT INTO Restaurant values (3, "MCAlfredos", 2, 4, "https://picsum.photos/200?3", "Eat so much, get so fat, dont run, keep eating, eat more and continue eating, there is no possible limit to how much you can eat.", 0, 7);
+INSERT INTO Restaurant values (4, "Tasca do tio Quim", 2, 6, "https://picsum.photos/200?4", "All you can eat", 0, 8);
+INSERT INTO Restaurant values (5, "Churrasqueira Portuguesa", 2, 8, "https://picsum.photos/200?5", "All you can eat", 0, 9);
+INSERT INTO Restaurant values (6, "Tasca do Toni", 2, 6, "https://picsum.photos/200?6", "All you can eat", 0, 10);
+INSERT INTO Restaurant values (7, "Churrasqueira Toni Torpedo", 2, 8, "https://picsum.photos/200?7", "All you can eat", 4, 11);
+INSERT INTO Restaurant values (8, "Camelo", 2, 10, "https://picsum.photos/200?8", "All you can eat", 0, 12);
+INSERT INTO Restaurant values (9, "Stramontana", 2, 10, "https://picsum.photos/200?9", "All you can eat", 0, 13);
+INSERT INTO Restaurant values (10, "Transmontano", 2, 10, "https://picsum.photos/200?10", "All you can eat", 0, 14);
+INSERT INTO Restaurant values (11, "Thai Food", 2, 7, "https://picsum.photos/200?11", "All you can eat", 0, 15);
+INSERT INTO Restaurant values (12, "Restaurante Amizade", 2, 3, "https://picsum.photos/200?12", "All you can eat", 0, 16);
+INSERT INTO Restaurant values (13, "Restaurante Grão D'Ouro", 2, 10, "https://picsum.photos/200?13", "All you can eat", 0, 17);
+INSERT INTO Restaurant values (14, "Assim Assado", 2, 8, "https://picsum.photos/200?14", "All you can eat", 0, 18);
+INSERT INTO Restaurant values (15, "Ramirinho 1", 2, 6, "https://picsum.photos/200?15", "All you can eat", 0, 19);
+INSERT INTO Restaurant values (16, "Ramirinho 2", 2, 6, "https://picsum.photos/200?16", "All you can eat", 0, 20);
+INSERT INTO Restaurant values (17, "Ramirinho 3", 2, 6, "https://picsum.photos/200?17", "All you can eat", 0, 21);
+INSERT INTO Restaurant values (18, "Lado B", 2, 10, "https://picsum.photos/200?18", "All you can eat", 0, 22);
+INSERT INTO Restaurant values (19, "Santiago", 2, 10, "https://picsum.photos/200?19", "All you can eat", 0, 23);
+INSERT INTO Restaurant values (20, "Venham mais 5!", 2, 4, "https://picsum.photos/200?20", "All you can eat", 0, 24);
+INSERT INTO Restaurant values (21, "Mr Pizza", 2, 1, "https://picsum.photos/200?21", "All you can eat", 0, 25);
+INSERT INTO Restaurant values (22, "Las Bichas", 2, 6, "https://picsum.photos/200?22", "All you can eat", 0, 26);
+INSERT INTO Restaurant values (23, "Sincello", 2, 5, "https://picsum.photos/200?23", "All you can eat", 0, 27);
+INSERT INTO Restaurant values (24, "Marisqueira João Camarão", 2, 9, "https://picsum.photos/200?24", "All you can eat", 0, 28);
+INSERT INTO Restaurant values (25, "Madureira's", 2, 8, "https://picsum.photos/200?25", "All you can eat", 0, 29);
 
 -- Evaluation (id, idUser, idRestaurant, Rating, Message, Comments)
 INSERT INTO Evaluation values (1, 1, 7, 4, 'Mo bamba', 'Gratos pela sua escolha!!!');

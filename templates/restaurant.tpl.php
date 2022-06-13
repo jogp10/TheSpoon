@@ -20,7 +20,7 @@
       <article>
         <div class="restImageName">
           <a href="../pages/restaurant.php?id=<?=$restaurant->id?>" class="restImage" id="restImage-<?=$restaurant->id?>"><img src="<?=$restaurant->photo?>" alt="restaurant image" width="200" height="200"></a>
-          <a href="../pages/restaurant.php?id=<?=$restaurant->id?>" class="restName" id="restName-<?=$restaurant->id?>"><?=$restaurant->name?></a>
+          <a href="../pages/restaurant.php?id=<?=$restaurant->id?>" class="restName" id="restName-<?=$restaurant->id?>"><?=$restaurant->name?> <?=$restaurant->rating?> star</a>
           <p class="restDesc" id="restDesc-<?=$restaurant->id?>"><?=$restaurant->description?></p>
           <button type="button" class="descClose" id="descClose-<?=$restaurant->id?>" onclick="closeDescription(<?=$restaurant->id?>)">-</button>
           <button type="button" class="descOpen" id="descOpen-<?=$restaurant->id?>" onclick="openDescription(<?=$restaurant->id?>)">+</button>
@@ -32,17 +32,19 @@
 
 <?php function drawOwnerRestaurants(array $restaurants) { ?>
   <p>Restaurants</p>
-  <?php foreach($restaurants as $restaurant) { ?> 
-    <article>    
-      <div class="restImageName">
-        <a href="../pages/restaurant_info.php?id=<?=$restaurant->id?>" class="restImage" id="restImage-<?=$restaurant->id?>"><img src="<?=$restaurant->photo?>" alt="restaurant image" width="200" height="200"></a>
-        <a href="../pages/restaurant_info.php?id=<?=$restaurant->id?>" class="restName" id="restName-<?=$restaurant->id?>"><?=$restaurant->name?></a>
-        <p class="restDesc" id="restDesc-<?=$restaurant->id?>"><?=$restaurant->description?></p>
-        <button type="button" class="descClose" id="descClose-<?=$restaurant->id?>" onclick="closeDescription(<?=$restaurant->id?>)">-</button>
-        <button type="button" class="descOpen" id="descOpen-<?=$restaurant->id?>" onclick="openDescription(<?=$restaurant->id?>)">+</button>
-      </div>  
-    </article>
-  <?php } ?>
+  <section class="user-restaurants">
+    <?php foreach($restaurants as $restaurant) { ?> 
+      <article>    
+        <div class="restImageName">
+          <a href="../pages/restaurant_info.php?id=<?=$restaurant->id?>" class="restImage" id="restImage-<?=$restaurant->id?>"><img src="<?=$restaurant->photo?>" alt="restaurant image" width="200" height="200"></a>
+          <a href="../pages/restaurant_info.php?id=<?=$restaurant->id?>" class="restName" id="restName-<?=$restaurant->id?>"><?=$restaurant->name?> <?=$restaurant->rating?> star</a>
+          <p class="restDesc" id="restDesc-<?=$restaurant->id?>"><?=$restaurant->description?></p>
+          <button type="button" class="descClose" id="descClose-<?=$restaurant->id?>" onclick="closeDescription(<?=$restaurant->id?>)">-</button>
+          <button type="button" class="descOpen" id="descOpen-<?=$restaurant->id?>" onclick="openDescription(<?=$restaurant->id?>)">+</button>
+        </div>  
+      </article>
+    <?php } ?>
+  </section>
 <?php } ?>
 
 <?php function drawRestaurant(Session $session, Restaurant $restaurant, User $restOwner, array $menuItems, array $comments) { 
@@ -147,7 +149,7 @@
 <?php } ?>
 
 <?php function drawName(Restaurant $restaurant) { ?>
-  <h1><?=$restaurant->name?></h1>
+  <h1><?=$restaurant->name?> <?=$restaurant->rating?>star</h1>
 <?php } ?>
 
 <?php function drawItems(Session $session, Restaurant $restaurant, array $menuItems) { ?>
