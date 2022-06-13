@@ -10,8 +10,9 @@
     public string $city;
     public string $state;
     public int $postalcode;
+    public float $rating;
 
-    public function __construct(int $id, string $name, string $description, string $photo, string $street, string $city, string $state, int $postalCode) { 
+    public function __construct(int $id, string $name, string $description, string $photo, string $street, string $city, string $state, int $postalCode, float $rating) { 
       $this->id = $id;
       $this->name = $name;
       $this->description = $description;
@@ -20,10 +21,12 @@
       $this->city = $city;
       $this->state = $state;
       $this->postalcode = $postalCode;
+      $this->rating = $rating;
     }
 
     static function addRestaurant(PDO $db, string $name, string $RestName, string $photo, string $description, string $street, string $city, string $state, int $postalCode): Restaurant {
       $idUser = SESSION::getId();
+      $rating = 0;
     
       $stmt = $db->prepare(
         'SELECT idRestCategory 
@@ -57,10 +60,11 @@
       $stmt->execute(array($idAddress, $street, $city, $state, $postalCode));
 
       $stmt = $db->prepare(
-        'INSERT INTO Restaurant values (?, ?, ?, ?, ?, ?, ?)'
+        'INSERT INTO Restaurant values (?, ?, ?, ?, ?, ?, ?, ?)'
       );
-      $stmt->execute(array($idRestaurant, $name, $idUser, $idRestCategory, $photo, $description, $idAddress));
+      $stmt->execute(array($idRestaurant, $name, $idUser, $idRestCategory, $photo, $description, $rating, $idAddress));
 
+      
       return new Restaurant (
         $idRestaurant, 
         $name,
@@ -69,11 +73,21 @@
         $street,
         $city,
         $state,
-        $postalCode
+        $postalCode,
+        $rating
       );
     }
 
-    static function updateRestaurant(PDO $db, string $name, string $restCat, string $photo, string $description, string $street, string $city, string $state, int $postalCode, int $id) {
+    static function updateRestaurantRating(PDO $db, float $rating, int $id) {
+      $stmt = $db->prepare(
+        'UPDATE Restaurant
+        SET Rating = ?
+        WHERE   idRestaurant = ?'
+      );
+      $stmt->execute(array($rating, $id));
+    }
+
+    static function updateRestaurant(PDO $db, string $name, string $restCat, string $photo, string $description, string $street, string $city, string $state, int $postalCode, float $rating, int $id) {
       $stmt = $db->prepare('SELECT idRestCategory FROM RestCategory where Name = ?');
       $stmt->execute(array($restCat));
       $idRestCategory = (int) $stmt->fetch()['idRestCategory'];
@@ -97,7 +111,7 @@
 
     static function getRestaurants(PDO $db, int $count) : array {
       $stmt = $db->prepare('
-      SELECT idRestaurant, Name, Description, Photo, Street, City, State, PostalCode
+      SELECT idRestaurant, Name, Description, Photo, Street, City, State, PostalCode, Rating
       FROM Restaurant JOIN Address USING (idAddress)
       LIMIT ?
     ');
@@ -113,7 +127,8 @@
         $restaurant['Street'],
         $restaurant['City'],
         $restaurant['State'],
-        (int)$restaurant['PostalCode']
+        (int)$restaurant['PostalCode'],
+        (float)$restaurant['Rating']
         );
       }
 
@@ -122,7 +137,7 @@
 
     static function getRestaurantsFromCategory(PDO $db, int $count,  int $id) : array {
       $stmt = $db->prepare('
-      SELECT idRestaurant, Name, Description, Photo, Street, City, State, PostalCode
+      SELECT idRestaurant, Name, Description, Photo, Street, City, State, PostalCode, Rating
       FROM Restaurant JOIN Address USING (idAddress)
       WHERE idRestCategory = ?
       LIMIT ?
@@ -140,7 +155,8 @@
         $restaurant['Street'],
         $restaurant['City'],
         $restaurant['State'],
-        (int)$restaurant['PostalCode']
+        (int)$restaurant['PostalCode'],
+        (float)$restaurant['Rating']
         );
       }
 
@@ -149,7 +165,7 @@
 
     static function getRestaurant(PDO $db, int $id) : Restaurant {
       $stmt = $db->prepare('
-      SELECT idRestaurant, Name, Description, Photo, Street, City, State, PostalCode
+      SELECT idRestaurant, Name, Description, Photo, Street, City, State, PostalCode, Rating 
       FROM Restaurant JOIN Address USING (idAddress)
       WHERE idRestaurant = ?
     ');
@@ -166,13 +182,14 @@
         $restaurant['Street'],
         $restaurant['City'],
         $restaurant['State'],
-        (int)$restaurant['PostalCode']
+        (int)$restaurant['PostalCode'],
+        (float)$restaurant['Rating']
       );
     }
 
     static function getRestaurantsFromUser(PDO $db, int $id) : array {   
       $stmt = $db->prepare('
-      SELECT idRestaurant, Name, Description, Photo, Street, City, State, PostalCode
+      SELECT idRestaurant, Name, Description, Photo, Street, City, State, PostalCode, Rating
       FROM Restaurant JOIN Address USING (idAddress)
       WHERE idUser = ?
       ');
@@ -189,7 +206,8 @@
         $restaurant['Street'],
         $restaurant['City'],
         $restaurant['State'],
-        (int)$restaurant['PostalCode']
+        (int)$restaurant['PostalCode'],
+        (float)$restaurant['Rating']
         );
       }
 
@@ -198,7 +216,7 @@
 
     static function searchRestaurants(PDO $db, string $search, int $count) : array {
       $stmt = $db->prepare('
-      SELECT idRestaurant, Name, Description, Photo, Street, City, State, PostalCode
+      SELECT idRestaurant, Name, Description, Photo, Street, City, State, PostalCode, Rating
       FROM Restaurant JOIN Address USING (idAddress)
       WHERE Name LIKE ? 
       LIMIT ?
@@ -215,7 +233,8 @@
         $restaurant['Street'],
         $restaurant['City'],
         $restaurant['State'],
-        (int)$restaurant['PostalCode']
+        (int)$restaurant['PostalCode'],
+        (float)$restaurant['Rating']
         );
       }
       return $restaurants;
@@ -223,7 +242,7 @@
 
     static function searchRestaurantsbyCategory(PDO $db, string $search, int $id, int $count) : array {
       $stmt = $db->prepare('
-      SELECT idRestaurant, Name, Description, Photo, Street, City, State, PostalCode
+      SELECT idRestaurant, Name, Description, Photo, Street, City, State, PostalCode, Rating
       FROM Restaurant JOIN Address USING (idAddress)
       WHERE idRestCategory = ? AND Name LIKE ?
       LIMIT ?
@@ -240,7 +259,8 @@
         $restaurant['Street'],
         $restaurant['City'],
         $restaurant['State'],
-        (int)$restaurant['PostalCode']
+        (int)$restaurant['PostalCode'],
+        (float)$restaurant['Rating']
         );
       }
       return $restaurants;

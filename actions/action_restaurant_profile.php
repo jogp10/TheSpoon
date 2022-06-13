@@ -13,7 +13,7 @@
   $restaurant = Restaurant::getRestaurant($db, intval($_GET['id']));
   $target_file = loadRestaurantPhoto($restaurant);
 
-  Restaurant::updateRestaurant($db, $_POST['rest_name'], $_POST['RestCategory'], $target_file, $_POST['desc'],  $_POST['street'], $_POST['city'], $_POST['state'], (int)$_POST['postal-code'], $restaurant->id);
+  Restaurant::updateRestaurant($db, $_POST['rest_name'], $_POST['RestCategory'], $target_file, $_POST['desc'],  $_POST['street'], $_POST['city'], $_POST['state'], (int)$_POST['postal-code'], $restaurant->rating, $restaurant->id);
 
 
   header('Location: ' . $_SERVER['HTTP_REFERER']);
