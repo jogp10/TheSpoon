@@ -120,6 +120,7 @@ body>header #signup a:first-child {
 .form-container input[type=text],
 .form-container input[type=password],
 .form-container-reg input[type=email],
+.form-container-reg input[type=number],
 .form-container-reg input[type=tel],
 .form-container-reg input[type=text],
 .form-container-reg input[type=password] {
@@ -152,6 +153,7 @@ body>header #signup a:first-child {
 .form-container input[type=text]:focus,
 .form-container input[type=password]:focus,
 .form-container-reg input[type=tel]:focus,
+.form-container-reg input[type=number]:focus,
 .form-container-reg input[type=email]:focus,
 .form-container-reg input[type=text]:focus,
 .form-container-reg input[type=password]:focus {
@@ -250,4 +252,20 @@ body>footer {
 
 body>footer p {
     margin: 0;
+    
+}
+
+/* register restaurant form */
+
+form .categoryDropdown {
+    height: 30px;
+    margin-bottom: 10px;
+    width: 45%;
+    display: inline-block;
+}
+.select-category {
+    min-width: 150px;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 15px 20px;
 }
