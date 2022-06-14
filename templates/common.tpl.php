@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../css/mainpage.css">
     <link rel="stylesheet" href="../css/layout.css">
     <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/restaurant.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="../javascript/search.js" defer=""></script>
     <script src="../javascript/header.js" defer=""></script>
@@ -82,7 +83,7 @@
         <a href="../pages/register_rest.php" id="restRegister">Register Your Restaurant</a>
       <?php } else { ?>
         <a href="../pages/profile.php" id="profileNotOwner" class="profile">Profile</a>
-        <button type="submit" id="logoutNotOwner" class="logoutButton">Logout</button>
+        <button type="submit" id="logoutNotOwner" class="open-button">Logout</button>
       <?php } ?>
     </div>
   </form>
@@ -197,7 +198,7 @@
       </thead>
       <tfoot>
         <tr>
-          <form method="post" action=""><th colspan="5">Total:</th></form>
+          <form method="post" action=""><th colspan="4">Total:</th></form>
           <th>0€</th>
         </tr>
       </tfoot>
