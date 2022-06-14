@@ -82,7 +82,7 @@
         <a href="../pages/register_rest.php" id="restRegister">Register Your Restaurant</a>
       <?php } else { ?>
         <a href="../pages/profile.php" id="profileNotOwner" class="profile">Profile</a>
-        <button type="submit" id="logoutNotOwner" class="logoutButton">Logout</button>
+        <button type="submit" id="logoutNotOwner" class="open-button">Logout</button>
       <?php } ?>
     </div>
   </form>
