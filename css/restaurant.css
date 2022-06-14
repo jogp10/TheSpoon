@@ -45,8 +45,10 @@ table {
 }
 
 table,
-td,
-th {
+table>thead td,
+table>thead th,
+table>tr>td,
+table>tr>th {
     border: 1px solid;
 }
 
@@ -56,4 +58,5 @@ table>tr:nth-child(odd) {
 
 table>tr:nth-child(even) {
     background-color: greenyellow;
+    width: auto;
 }

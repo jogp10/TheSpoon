@@ -198,7 +198,7 @@
       </thead>
       <tfoot>
         <tr>
-          <form method="post" action=""><th colspan="5">Total:</th></form>
+          <form method="post" action=""><th colspan="4">Total:</th></form>
           <th>0€</th>
         </tr>
       </tfoot>
