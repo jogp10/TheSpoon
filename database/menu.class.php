@@ -45,7 +45,10 @@
     }
 
     static function getMenu(PDO $db, int $id) : array {
-        $stmt = $db->prepare('SELECT idMenuItem, Name, Price, Photo FROM MenuItem JOIN Menu USING (idMenu) WHERE idRestaurant = ?');
+        $stmt = $db->prepare('SELECT idMenuItem, Name, Price, Photo 
+        FROM (MenuItem JOIN Menu USING (idMenu)) LEFT OUTER JOIN ItemFavorite USING (idMenuItem)
+        WHERE idRestaurant = ?
+        ORDER BY idItemFavorite DESC');
         $stmt->execute(array($id));
 
         $menu = array();
