@@ -9,8 +9,17 @@
   require_once('../database/user.class.php');
 
   $db = getDatabaseConnection();
+  
+  $name = $_POST['name'];
+  $name = preg_replace ("/[^a-zA-Z\s]/", '', $name);
+  $street = $_POST['street'];
+  $street = preg_replace ("/[^a-zA-Z\s]/", '', $street);
+  $city = $_POST['city'];
+  $city = preg_replace ("/[^a-zA-Z\s]/", '', $city);
+  $state = $_POST['state'];
+  $state = preg_replace ("/[^a-zA-Z\s]/", '', $state);
 
-  $user = User::addUser($db, $_POST['email-reg'], $_POST['password-reg'], (int)$_POST['phone'], $_POST['name'], (bool)$_POST['restaurant-owner'], $_POST['street'], $_POST['city'], $_POST['state'], (int)$_POST['postal-code']);
+  $user = User::addUser($db, $_POST['email-reg'], $_POST['password-reg'], (int)$_POST['phone'], $name, (bool)$_POST['restaurant-owner'], $street, $city, $state, (int)$_POST['postal-code']);
       
   if ($user != null) {
     $session->setId($user->idUser);

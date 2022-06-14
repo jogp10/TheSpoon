@@ -13,7 +13,10 @@
   $target_file = "../images/dog.jpg";
   $idMenu = Menu::getMenuId($db, intval($_GET['id']));
 
-  $item = MenuItem::addItem($db, $idMenu, $_POST['item_name'], (int)$_POST['price'], $target_file);    
+  $name = $_POST['item_name'];
+  $name = preg_replace ("/[^a-zA-Z\s]/", '', $name);
+
+  $item = MenuItem::addItem($db, $idMenu, $name, (int)$_POST['price'], $target_file);    
 
 
   header('Location: ' . $_SERVER['HTTP_REFERER']);

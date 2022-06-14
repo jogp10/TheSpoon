@@ -22,8 +22,8 @@
       <article>
         <div class="restImageName">
           <a href="../pages/restaurant.php?id=<?=$restaurant->id?>" class="restImage" id="restImage-<?=$restaurant->id?>"><img src="<?=$restaurant->photo?>" alt="restaurant image" width="200" height="200"></a>
-          <a href="../pages/restaurant.php?id=<?=$restaurant->id?>" class="restName" id="restName-<?=$restaurant->id?>"><?=$restaurant->name?> <?=$restaurant->rating?> star</a>
-          <p class="restDesc" id="restDesc-<?=$restaurant->id?>"><?=$restaurant->description?></p>
+          <a href="../pages/restaurant.php?id=<?=$restaurant->id?>" class="restName" id="restName-<?=$restaurant->id?>"><?=htmlentities($restaurant->name)?> <?=$restaurant->rating?> star</a>
+          <p class="restDesc" id="restDesc-<?=$restaurant->id?>"><?=htmlentities($restaurant->description)?></p>
           <button type="button" class="descClose" id="descClose-<?=$restaurant->id?>" onclick="closeDescription(<?=$restaurant->id?>)">-</button>
           <button type="button" class="descOpen" id="descOpen-<?=$restaurant->id?>" onclick="openDescription(<?=$restaurant->id?>)">+</button>
         </div>      
@@ -39,8 +39,8 @@
       <article>    
         <div class="restImageName">
           <a href="../pages/restaurant_info.php?id=<?=$restaurant->id?>" class="restImage" id="restImage-<?=$restaurant->id?>"><img src="<?=$restaurant->photo?>" alt="restaurant image" width="200" height="200"></a>
-          <a href="../pages/restaurant_info.php?id=<?=$restaurant->id?>" class="restName" id="restName-<?=$restaurant->id?>"><?=$restaurant->name?> <?=$restaurant->rating?> star</a>
-          <p class="restDesc" id="restDesc-<?=$restaurant->id?>"><?=$restaurant->description?></p>
+          <a href="../pages/restaurant_info.php?id=<?=$restaurant->id?>" class="restName" id="restName-<?=$restaurant->id?>"><?=htmlentities($restaurant->name)?> <?=$restaurant->rating?> star</a>
+          <p class="restDesc" id="restDesc-<?=$restaurant->id?>"><?=htmlentities($restaurant->description)?></p>
           <button type="button" class="descClose" id="descClose-<?=$restaurant->id?>" onclick="closeDescription(<?=$restaurant->id?>)">-</button>
           <button type="button" class="descOpen" id="descOpen-<?=$restaurant->id?>" onclick="openDescription(<?=$restaurant->id?>)">+</button>
         </div>  
@@ -62,7 +62,7 @@
 
 
 <?php function drawRestaurantProfile(Restaurant $restaurant, array $categories, Category $category) { ?>
-  <h1><?=$restaurant->name?></h1>
+  <h1><?=htmlentities($restaurant->name)?></h1>
   <section>
     <form action="../actions/action_restaurant_profile.php?id=<?=$restaurant->id?>" method="post" enctype="multipart/form-data">
       <label>Name<br>
@@ -78,13 +78,13 @@
         </select> 
       </div></label>
       <label>Description<br>
-      <textarea id="desc" name="desc" rows="10" cols="50" placeholder="descritption"><?php echo $restaurant->description ?></textarea>
+      <textarea id="desc" name="desc" rows="10" cols="50" placeholder="descritption"><?php echo htmlentities($restaurant->description) ?></textarea>
       </label>
       <br>
       <label>Address<br>
-      <input type="text" name="street" placeholder="Street" value="<?php echo $restaurant->street ?>" required>
-      <input type="text" name="city" placeholder="City" value="<?php echo $restaurant->city ?>" required>
-      <input type="text" name="state" placeholder="State" value="<?php echo $restaurant->state ?>" required>
+      <input type="text" name="street" placeholder="Street" value="<?php echo htmlentities($restaurant->street) ?>" required>
+      <input type="text" name="city" placeholder="City" value="<?php echo htmlentities($restaurant->city) ?>" required>
+      <input type="text" name="state" placeholder="State" value="<?php echo htmlentities($restaurant->state) ?>" required>
       <br>
       <input type="number" name="postal-code" placeholder="Postal Code" value="<?php echo $restaurant->postalcode ?>">
       </label>
@@ -119,15 +119,15 @@
       <?php if($comment->comment != '') { ?>
         <article class="comment">
           <div class ="customer-comment">
-            <span class="user"><h4><?=$comment->nameUser?></h4></span>
+            <span class="user"><h4><?=htmlentities($comment->nameUser)?></h4></span>
             <span class="rating">rating: <?=$comment->rating?>*</span>
-            <p><?=$comment->comment?></p>
+            <p><?=htmlentities($comment->comment)?></p>
           </div>
           <?php if($comment->answer != '') { ?>
             <div class="owner-answer">
-              <span class="owner"><h4><?=$comment->nameOwner?></h4></span>
+              <span class="owner"><h4><?=htmlentities($comment->nameOwner)?></h4></span>
               <span class="date"> </span>
-              <p><?=$comment->answer?></p>
+              <p><?=htmlentities($comment->answer)?></p>
             </div>
           <?php } else if ($session->getId()==$restOwner->idUser) { ?>
             <button type="sumbit">Answer</button>
@@ -154,14 +154,14 @@
 <?php } ?>
 
 <?php function drawName(Restaurant $restaurant) { ?>
-  <h1><?=$restaurant->name?> <?=$restaurant->rating?>star</h1>
+  <h1><?=htmlentities($restaurant->name)?> <?=$restaurant->rating?>star</h1>
 <?php } ?>
 
 <?php function drawItems(Session $session, array $menuItems, int $restOwner) { ?>
   <section id="menuItems">
     <?php foreach ($menuItems as $menuItem) { ?>
       <article data-id="<?=$menuItem->id?>">
-        <h4><?=$menuItem->name?></h4>
+        <h4><?=htmlentities($menuItem->name)?></h4>
         <img src=<?=$menuItem->photo?> alt="item image" width="200" height="200"></a>
         <p class="price" price="<?=$menuItem->price?>"><?=$menuItem->price?>€</p>
         
@@ -216,7 +216,7 @@
     <?php foreach ($menuItems as $menuItem) { ?>
       <article data-id="<?=$menuItem->id?>">
         <a href="item_info.php?id=<?=$menuItem->id?>">
-        <h4><?=$menuItem->name?></h4>
+        <h4><?=htmlentities($menuItem->name)?></h4>
         <img src=<?=$menuItem->photo?> alt="item image" width="200" height="200"></a>
         <p class="price" price="<?=$menuItem->price?>"><?=$menuItem->price?>€</p>
       </article>
@@ -230,7 +230,7 @@
   <section>
     <form action="../actions/action_item_profile.php?id=<?=$item->id?>" method="post" enctype="multipart/form-data">
       <label>Name<br>
-      <input type="text" name="item_name" placeholder="name" value= "<?php echo $item->name ?>" required></label>
+      <input type="text" name="item_name" placeholder="name" value= "<?php echo htmlentities($item->name) ?>" required></label>
   
       <label>Price<br>
       <input type="number" name="item_price" placeholder="price" value="<?php echo $item->price ?>" required></label>
