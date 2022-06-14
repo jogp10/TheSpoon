@@ -7,6 +7,7 @@
   require_once('../utils/load_file.php');
   require_once('../database/connection.php');
   require_once('../database/menu.class.php');
+  require_once('../utils/string_manip.php');
 
   $db = getDatabaseConnection();
 
@@ -14,7 +15,7 @@
   $target_file = loadItemPhoto($item);
 
   $name = $_POST['item_name'];
-  $name = preg_replace ("/[^a-zA-Z\s]/", '', $name); 
+  $name = strRemoveSpeChr($name); 
 
   MenuItem::updateMenuItem($db, $_POST['item_name'], $_POST['item_price'], $target_file, $item->id);
 

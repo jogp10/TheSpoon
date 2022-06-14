@@ -7,17 +7,21 @@
 
   require_once('../database/connection.php');
   require_once('../database/user.class.php');
+  require_once('../utils/string_manip.php');
 
   $db = getDatabaseConnection();
   
   $name = $_POST['name'];
-  $name = preg_replace ("/[^a-zA-Z\s]/", '', $name);
+  $name = strRemoveSpeChr($name);
+
   $street = $_POST['street'];
-  $street = preg_replace ("/[^a-zA-Z\s]/", '', $street);
+  $street = strRemoveSpeChr($street);
+
   $city = $_POST['city'];
-  $city = preg_replace ("/[^a-zA-Z\s]/", '', $city);
+  $city = strRemoveSpeChr($city);
+
   $state = $_POST['state'];
-  $state = preg_replace ("/[^a-zA-Z\s]/", '', $state);
+  $state = strRemoveSpeChr($state);
 
   $user = User::addUser($db, $_POST['email-reg'], $_POST['password-reg'], (int)$_POST['phone'], $name, (bool)$_POST['restaurant-owner'], $street, $city, $state, (int)$_POST['postal-code']);
       

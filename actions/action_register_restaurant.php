@@ -8,6 +8,7 @@
   require_once('../database/connection.php');
   require_once('../database/restaurant.class.php');
   require_once('../database/menu.class.php');
+  require_once('../utils/string_manip.php');
 
   $db = getDatabaseConnection();
 
@@ -16,14 +17,16 @@
 
   
   $name = $_POST['rest_name'];
-
-  $name = preg_replace ("/[^a-zA-Z\s]/", '', $name);
+  $name = strRemoveSpeChr($name);
+  
   $street = $_POST['street'];
-  $street = preg_replace ("/[^a-zA-Z\s]/", '', $street);
+  $street = strRemoveSpeChr($street);
+
   $city = $_POST['city'];
-  $city = preg_replace ("/[^a-zA-Z\s]/", '', $city);
+  $city = strRemoveSpeChr($city);
+
   $state = $_POST['state'];
-  $state = preg_replace ("/[^a-zA-Z\s]/", '', $state);
+  $state = strRemoveSpeChr($state);
 
   $rest = Restaurant::addRestaurant($db, $session, $name, $_POST['RestCategory'], $target_file, $rest_desc, $street, $city, $state, (int)$_POST['postal-code']);        
   $menu = Menu::addMenu($db, $rest->id);
