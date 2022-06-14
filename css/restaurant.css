@@ -1,0 +1,59 @@
+/* rest page buttons */
+
+#menuItems article {}
+
+#menuItems article button,
+.favButton,
+#cart>a:nth-child(3)>button:nth-child(1) {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 17px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+#menuItems article>button {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.favButton {
+    background-color: goldenrod;
+    color: #fff;
+}
+
+#menuItems article>button:hover {
+    background-color: #3e8e41
+}
+
+#menuItems article>button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+
+/* checkout table */
+
+table {
+    border-collapse: collapse;
+}
+
+table,
+td,
+th {
+    border: 1px solid;
+}
+
+table>tr:nth-child(odd) {
+    background-color: green;
+}
+
+table>tr:nth-child(even) {
+    background-color: greenyellow;
+}
