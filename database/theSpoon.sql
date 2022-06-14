@@ -105,7 +105,8 @@ create table if not exists Orders (
 	PriceTotal		INTEGER,
 	idUser		VARCHAR NOT NULL 	CONSTRAINT fk_orders_iduser REFERENCES User (idUser)
 												ON DELETE CASCADE ON UPDATE CASCADE,
-	idRestaurant		INTEGER NOT NULL 	CONSTRAINT fk_orders_idrestaurant REFERENCES Restaurant (idRestaurant)
+	idRestaurant		INTEGER NOT NULL 	CONSTRAINT fk_orders_idrestaurant REFERENCES Restaurant (idRestaurant),
+	State 			VARCHAR 	NOT NULL
 );
 
 
@@ -299,5 +300,5 @@ INSERT INTO RestFavorite values (1, 1, 7);
 INSERT INTO RestFavorite values (2, 1, 25);
 
 -- Orders (id, ordertime, pricetotal, idUser, idRestaurant)
-INSERT INTO Orders values (1, '2022-04-22 15:33', 36, 1, 7);
-INSERT INTO Orders values (2, '2022-05-15 03:33', 12, 1, 7);
+INSERT INTO Orders values (1, '2022-04-22 15:33', 36, 1, 7, "Delivered");
+INSERT INTO Orders values (2, '2022-05-15 03:33', 12, 1, 7, "Delivered");

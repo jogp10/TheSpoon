@@ -36,7 +36,7 @@
       <?php foreach($orders as $order) { 
         $restaurant = Restaurant::getRestaurant($db, $order->idRestaurant);
         ?>
-        <?=$restaurant->name?> - <?=$order->orderTime?> - <?=$order->totalPrice?>€ <br>
+        <?=$restaurant->name?> - <?=$order->orderTime?> - <?=$order->totalPrice?>€ - <?=$order->state?><br>
       <?php } ?>
     </div>
   </section>
