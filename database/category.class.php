@@ -34,6 +34,13 @@
       );
     }
 
+    public function removeMenuItemCategory(PDO $db, int $idItem) {
+      $stmt = $db->prepare(
+        'DELETE FROM MenuItemCategories WHERE idMenuItem = ?'
+      );
+      $stmt->execute(array($idItem));
+    }
+
     public function hasCategory(PDO $db, int $idItem, int $idCategory) {
       $stmt = $db->prepare(
         'SELECT * FROM MenuItemCategories WHERE idMenuItem = ? AND idItemCategory = ?'
