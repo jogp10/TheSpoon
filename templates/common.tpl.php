@@ -165,7 +165,12 @@
   </div>
 <?php } ?>
 
-<?php function drawCart(Session $session) { ?>
+<?php function drawCart(Session $session, int $idRestaurant) { ?>
+  <form name="checkout" method="POST" id="checkout-form" onsubmit="checkoutEvent()" action="../actions/action_order.php">
+    <input name="price" type="hidden">
+    <input name="idRest" type="hidden" value=<?=$idRestaurant?>>
+  </form>
+  
   <section id="cart">
     <div>
       <a id="cart" href=""><img src="../images/cart.png" alt ="cart icon" width="30" height="30">(0<?php ?>)</a>
@@ -182,7 +187,7 @@
       </thead>
       <tfoot>
         <tr>
-          <th colspan="5">Total:</th>
+          <form method="post" action=""><th colspan="5">Total:</th></form>
           <th>0€</th>
         </tr>
       </tfoot>
@@ -200,7 +205,7 @@
 <?php } ?>
 
 <?php function goToCheckout() { ?>
-  <a href="../pages/checkout.php"><button>Checkout</button></a>
+  <a href="../pages/checkout.php"><button form="checkout-form">Checkout</button></a>
 <?php } ?>
 
 

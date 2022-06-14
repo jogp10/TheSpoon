@@ -18,6 +18,14 @@ function attachBuyEvents() {
         })
 }
 
+function checkoutEvent() {
+    var price = parseInt(document.querySelector('#cart table tfoot th:last-child').textContent.slice(0, -1))
+
+    document.forms["checkout"]["price"].value = price
+    console.log(price)
+}
+
+
 function addRow(id, name, price, quantity) {
     const table = document.querySelector('#cart table')
     const row = document.createElement('tr')
