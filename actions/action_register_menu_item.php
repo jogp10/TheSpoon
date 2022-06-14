@@ -7,6 +7,7 @@
 
   require_once('../database/connection.php');
   require_once('../database/menu.class.php');
+  require_once('../utils/string_manip.php');
 
   $db = getDatabaseConnection();
 
@@ -14,7 +15,8 @@
   $idMenu = Menu::getMenuId($db, intval($_GET['id']));
 
   $name = $_POST['item_name'];
-  $name = preg_replace ("/[^a-zA-Z\s]/", '', $name);
+  $name = strRemoveSpeChr($name);
+  
 
   $item = MenuItem::addItem($db, $idMenu, $name, (int)$_POST['price'], $target_file);    
 
