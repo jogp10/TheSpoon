@@ -52,7 +52,9 @@ var drawRestFunction = function(categories) {
                 console.log('found')
 
                 const img = document.createElement('img')
-                img.src = 'https://picsum.photos/200?' + restaurant.id
+                img.src = restaurant.photo
+                img.width = 200
+                img.height = 200
                 img.alt = ''
 
                 const link1 = document.createElement('a')

@@ -16,5 +16,7 @@
 
     $order = Order::addOrder($db, $idUser, $current_date, $price, (int)$_POST["idRest"]);
 
+    $session->addMessage('success', 'Checkout completed with success');
+
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>
