@@ -10,7 +10,7 @@
   $db = getDatabaseConnection();
 
   $idItem = intval($_GET['id']);
-
+  MenuItemCategories::removeMenuItemCategory($db, $idItem);
 
   foreach($_POST as $post){
     if (!MenuItemCategories::hasCategory($db, $idItem, (int) $post)) MenuItemCategories::addMenuItemCategory($db, $idItem, (int) $post); 
