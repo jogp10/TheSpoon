@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../css/layout.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/restaurant.css">
+    <link rel="stylesheet" href="../css/messages.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="../javascript/search.js" defer=""></script>
     <script src="../javascript/header.js" defer=""></script>
