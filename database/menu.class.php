@@ -109,8 +109,6 @@
     }
 
     static function getMenuItem(PDO $db, int $id) : MenuItem {
-      
-      
       $stmt = $db->prepare('
       SELECT *
       FROM MenuItem

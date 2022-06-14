@@ -281,28 +281,30 @@
 
 <?php function drawOrders(array $orders) { ?>
   <h3>Orders:</h3>
-  <?= 
+  <?php 
   require_once('../database/connection.php');
   $db = getDatabaseConnection();
   ?>
-
   <section id="orders">
     <?php foreach ($orders as $order) { ?>
       <article data-id="<?=$order->id?>">
-        <p>Ordered at: <?= $order->orderTime ?>  -  Total: <?= $order->totalPrice ?>€  -  State: 
-          <select name="State">
-            <?php 
-            if ($order->state == "Received") selected("Received"); 
-            else unselected("Received");
-            if ($order->state == "Preparing") selected("Preparing"); 
-            else unselected("Preparing");
-            if ($order->state == "Ready") selected("Ready"); 
-            else unselected("Ready");
-            if ($order->state == "Delivered") selected("Delivered"); 
-            else unselected("Delivered");
-            ?>
-          </select> 
-        </p>
+      <form action="../actions/action_order_state.php?id=<?=$order->id?>" method="post" enctype="multipart/form-data">
+          <p>#<?= $order->id ?>  Ordered at: <?= $order->orderTime ?>  -  Total: <?= $order->totalPrice ?>€  -  State:
+            <select name="State">
+              <?php 
+              if ($order->state == "Received") selected("Received"); 
+              else unselected("Received");
+              if ($order->state == "Preparing") selected("Preparing"); 
+              else unselected("Preparing");
+              if ($order->state == "Ready") selected("Ready"); 
+              else unselected("Ready");
+              if ($order->state == "Delivered") selected("Delivered"); 
+              else unselected("Delivered");
+              ?>
+            </select> 
+            <button type="submit">Save</button>
+          </p>
+        </form>
       </article>
     <?php } ?>
   </section>

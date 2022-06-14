@@ -16,7 +16,5 @@
 
     $order = Order::addOrder($db, $idUser, $current_date, $price, (int)$_POST["idRest"]);
 
-    echo "price: " . $order->totalPrice . " orderTime: " . $order->orderTime; 
-
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>

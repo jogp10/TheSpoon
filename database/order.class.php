@@ -41,6 +41,24 @@
       );
     }
 
+    static function getOrderById(PDO $db, int $id) : Order {
+      $stmt = $db->prepare('
+      SELECT *
+      FROM Orders
+      WHERE idOrders = ?
+      ');
+      $stmt->execute(array($id));
+      $order = $stmt->fetch();
+
+      return new Order (
+        (int)$order['idOrders'],
+        $order['OrderTime'],
+        (int)$order['PriceTotal'],
+        (int)$order['idRestaurant'],
+        $order['State']
+      );
+    }
+
     static function getOrderHistory(PDO $db, int $id) : array {
       $stmt = $db->prepare('
       SELECT idOrders, OrderTime, PriceTotal, idRestaurant, State
