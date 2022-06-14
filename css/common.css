@@ -1,0 +1,253 @@
+/* links */
+
+a:not(.loginLink),
+a:not(.registerLink) {
+    text-decoration: none;
+    color: #2a2f33;
+}
+
+body a:hover {
+    color: #c4cdca;
+}
+
+
+/* input */
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+
+/* fonts */
+
+@import url('https://fonts.googleapis.com/css?family=Lora:400,700|Poppins:400,700');
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+p {
+    font-family: "Lora", serif;
+    line-height: 1.4em;
+}
+
+
+/* header */
+
+body>header {
+    color: #000;
+    background-color: #fff;
+}
+
+body>header h1,
+body>header h2 {
+    margin: 0;
+}
+
+body>header h2 {
+    font-weight: normal;
+}
+
+body>header #signup {
+    margin-top: 1em;
+}
+
+body>header #signup a {
+    padding: 0 1em;
+}
+
+body>header #signup a:first-child {
+    padding-left: 0;
+}
+
+.loginLink,
+.registerLink {
+    text-decoration: underline;
+}
+
+.open-button {
+    background-color: #555;
+    color: white;
+    padding: 16px 20px;
+    opacity: 0.8;
+    width: 10%;
+    min-width: 130px;
+}
+
+.open-button:hover {
+    background-color: #2a2f33;
+}
+
+
+/* The popup form - hidden by default */
+
+.form-popup,
+.form-popup-reg {
+    display: none;
+    position: fixed;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+}
+
+
+/* Register message */
+
+.form-popup p,
+.form-popup-reg p {
+    font-size: small;
+    margin: 0;
+    margin-bottom: 0.1em;
+}
+
+
+/* Add styles to the form container */
+
+.form-container {
+    max-width: 300px;
+    padding: 10px;
+    background-color: white;
+}
+
+.form-container-reg {
+    max-width: 500px;
+    padding: 10px;
+    background-color: white;
+}
+
+
+/* Full-width input fields */
+
+.form-container input[type=text],
+.form-container input[type=password],
+.form-container-reg input[type=email],
+.form-container-reg input[type=tel],
+.form-container-reg input[type=text],
+.form-container-reg input[type=password] {
+    width: 90%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+}
+
+.form-container-reg #state,
+.form-container-reg #street,
+.form-container-reg #name {
+    margin-right: 1em;
+}
+
+.form-container-reg #state,
+.form-container-reg #city,
+.form-container-reg #postal-code,
+.form-container-reg #street,
+.form-container-reg #name,
+.form-container-reg #phone {
+    width: 45%;
+    display: inline-block;
+}
+
+
+/* When the inputs get focus, do something */
+
+.form-container input[type=text]:focus,
+.form-container input[type=password]:focus,
+.form-container-reg input[type=tel]:focus,
+.form-container-reg input[type=email]:focus,
+.form-container-reg input[type=text]:focus,
+.form-container-reg input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+
+/* Set a style for the submit/login button */
+
+.form-container .btn,
+.form-container-reg .btn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+
+/* Add a red background color to the cancel button */
+
+.form-container .cancel,
+.form-container-reg .cancel {
+    background-color: red;
+}
+
+
+/* Add some hover effects to buttons */
+
+.form-container .btn:hover,
+.form-container-reg .btn:hover,
+.open-button:hover {
+    opacity: 1;
+}
+
+
+/* restaurant Description pop-up */
+
+.restImageName {
+    position: relative;
+    text-align: center;
+    color: #2a2f33;
+}
+
+a.restName {
+    color: #2a2f33;
+    background-color: #eecea5;
+    width: 200px;
+}
+
+.restDesc {
+    display: none;
+    background-color: #2a2f33;
+    opacity: 0.8;
+    color: white;
+}
+
+.descClose,
+.descOpen {
+    color: white;
+    background-color: #000;
+    opacity: 0.8;
+}
+
+.descClose {
+    display: none;
+    padding-right: 0.4em;
+    padding-left: 0.4em;
+}
+
+.descOpen {
+    display: block;
+}
+
+
+/* Comments */
+
+.comment-section {
+    background-color: antiquewhite;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+/* footer */
+
+body>footer {
+    background-color: #2a2f33;
+    color: white;
+    padding: 2em;
+    height: 2.5em;
+}
+
+body>footer p {
+    margin: 0;
+}

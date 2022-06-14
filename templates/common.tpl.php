@@ -12,8 +12,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="#">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mainpage.css">
     <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="../javascript/search.js" defer=""></script>
     <script src="../javascript/header.js" defer=""></script>
@@ -77,7 +78,7 @@
     <div class="userName">
       <?php if($session->getOwner()) { ?>
         <a href="../pages/profile.php"  id="profileOwner" class="profile">Profile</a>
-        <button type="submit" id="logoutOwner" class="logoutButton">Logout</button>
+        <button type="submit" id="logOutButton" class="open-button">Logout</button>
         <a href="../pages/register_rest.php" id="restRegister">Register Your Restaurant</a>
       <?php } else { ?>
         <a href="../pages/profile.php" id="profileNotOwner" class="profile">Profile</a>

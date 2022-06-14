@@ -1,0 +1,81 @@
+/* Go to the top button */
+
+#goToTop {
+    background-color: #2a2f33;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+#goToTop:hover {
+    background-color: #555;
+    color: white;
+}
+
+
+/* Restaurants */
+
+.style-restaraunts {
+    display: block;
+}
+
+.style-restaraunts>section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 20px;
+    background-color: antiquewhite;
+    border-radius: 15px;
+    padding: 16px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.style-restaraunts>section>div {
+    background-color: white;
+    width: 25em;
+    padding: 23px;
+    border-radius: 15px;
+}
+
+.style-restaraunts>section>article {
+    display: flex;
+    flex-direction: row;
+    border-radius: 15px;
+    margin: 10px;
+}
+
+
+/* Search Bar */
+
+.topnav {
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.6);
+    max-height: 550px;
+    max-width: 100%;
+    padding: 8px;
+    border-radius: 15px;
+    display: flex;
+}
+
+.topnav>input[type=text] {
+    font-weight: bold;
+    width: 140%;
+    border-radius: 5px;
+    padding: 15px 20px;
+    border: none;
+}
+
+.topnav>select {
+    min-width: 130px;
+    font-weight: bold;
+    width: 40%;
+    border-radius: 5px;
+    padding: 15px 20px;
+}
+
+.topnav>button {
+    min-width: 20px;
+    width: 20%;
+}

@@ -21,42 +21,26 @@ body>header {
     width: 100%;
     padding-left: 0%;
     padding-right: 0%;
+    display: grid;
+    grid-template-columns: auto 0fr 0fr 0fr;
+    grid-template-rows: auto auto;
 }
 
 .content {
     padding: 16px;
 }
 
-.sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-
-.sticky+.content {
-    padding-top: 102px;
-}
-
 
 /* header layout */
-
-body>header {
-    display: grid;
-    grid-template-columns: auto 0fr 0fr 0fr;
-    grid-template-rows: auto auto;
-}
 
 body>header .login {
     grid-column: 4;
     grid-row: 1;
 }
 
-body footer {
+.footer {
     margin-top: auto;
     text-align: center;
-}
-
-.footer {
     position: relative;
     left: 0;
     bottom: 0;
@@ -96,8 +80,17 @@ body footer {
     cursor: pointer;
 }
 
+#logOutButton {
+    margin-top: 3.5em;
+    top: 0;
+    right: 28px;
+    position: absolute;
+    border: none;
+    cursor: pointer;
+}
+
 #restRegister {
-    margin-top: 6em;
+    margin-top: 7em;
     top: 0;
     right: 20px;
     position: absolute;
@@ -114,17 +107,8 @@ body footer {
     cursor: pointer;
 }
 
-.logoutButton {
-    margin-top: 3.5em;
-    position: absolute;
-    top: 0;
-    right: 20px;
-    border: none;
-    cursor: pointer;
-}
 
-
-/* description pop-up */
+/* restaurants layout */
 
 a.restName {
     position: absolute;
@@ -147,7 +131,7 @@ a.restName {
 }
 
 
-/******************/
+/* comments layout */
 
 .comment-section {
     display: flex;
@@ -164,6 +148,9 @@ a.restName {
     display: inline-block;
 }
 
+
+/* profile layout */
+
 .user-restaurants {
     align-content: flex-start;
     display: flex;
@@ -172,11 +159,11 @@ a.restName {
     gap: 10px 20px;
 }
 
-.order-history > div {
-    height:120px;
+.order-history>div {
+    height: 120px;
     background-color: bisque;
     width: 100%;
-    border:2px solid #2a2f33;
-    overflow:auto;
+    border: 2px solid #2a2f33;
+    overflow: auto;
     padding: 10px;
 }
