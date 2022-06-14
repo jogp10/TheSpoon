@@ -121,7 +121,6 @@
           <div class ="customer-comment">
             <span class="user"><h4><?=$comment->nameUser?></h4></span>
             <span class="rating">rating: <?=$comment->rating?>*</span>
-            <span class="date">date: </span>
             <p><?=$comment->comment?></p>
           </div>
           <?php if($comment->answer != '') { ?>
