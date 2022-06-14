@@ -104,8 +104,10 @@
       </label>
       <button class="btn" type="submit">Save</button>
     </form>
-    <a href="../pages/register_menu_item.php?id=<?=$restaurant->id?>" method="get">Add dishes to the restaurant</a>
-    <div>
+    <div class="restaurantButton">
+      <a href="../pages/register_menu_item.php?id=<?=$restaurant->id?>" method="get">Add dishes to the restaurant</a>
+    </div>
+    <div class="restaurantButton">
       <a href="../pages/view_orders.php?id=<?=$restaurant->id?>" method="get">View Orders</a>
     </div>
   </section>

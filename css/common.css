@@ -287,3 +287,18 @@ form .categoryDropdown {
 .form-container-reg2 .select-category {
     width: 90% !important;
 }
+
+.restaurantButton {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #555;
+    color: white;
+    padding: 16px 20px;
+    width: 44%;
+    min-width: 130px;
+    text-align: center;
+}
+
+.restaurantButton a {
+    color: white;
+}
