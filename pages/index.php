@@ -6,6 +6,7 @@
 
   require_once('../database/connection.php');
   require_once('../database/restaurant.class.php');
+  require_once('../database/category.class.php');
 
   require_once('../templates/common.tpl.php');
   require_once('../templates/restaurant.tpl.php');
