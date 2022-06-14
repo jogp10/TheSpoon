@@ -274,6 +274,36 @@
       $idRestaurant = (int) $menu['idRestaurant'];
       return Restaurant::getRestaurant($db, $idRestaurant);
     }
+
+    public function addFavorite(PDO $db, int $idUser) {
+      $stmt = $db->prepare(
+        'SELECT * 
+        FROM    RestFavorite
+        WHERE   idRestFavorite = (SELECT MAX(idRestFavorite)  FROM RestFavorite)'
+      );
+      $stmt->execute();
+      $idRestFavorite = $stmt->fetch()['idRestFavorite'] + 1;
+      echo '$idRestFavorite';
+      $stmt = $db->prepare(
+        'INSERT INTO RestFavorite values (?, ?, ?)'
+      );
+      $stmt->execute(array($idRestFavorite, $idUser, $this->id));
+    }
+
+    public function removeFavorite(PDO $db, int $idUser) {
+      $stmt = $db->prepare(
+        'SELECT * 
+        FROM    RestFavorite
+        WHERE   idUser = ? AND idRestaurant = ?'
+      );
+      $stmt->execute(array($idUser, $this->id));
+      $idRestFavorite = $stmt->fetch()['idRestFavorite'];
+      echo '$idRestFavorite';
+      $stmt = $db->prepare(
+        'DELETE FROM RestFavorite WHERE idRestFavorite = ?'
+      );
+      $stmt->execute(array($idRestFavorite));
+    }
   }
 
   class Category {

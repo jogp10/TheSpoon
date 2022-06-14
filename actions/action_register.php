@@ -17,11 +17,12 @@
     $session->setName($user->name);
     $session->setEmail($user->email);
     $session->setOwner($user->restOwner);
+    $session->addMessage('success', 'Register succesful!');
 
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
   } else {
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
-    // Error message displaying user already exists
+    $session->addMessage('error', 'Email already used!');
   }
+
+  header('Location: ' . $_SERVER['HTTP_REFERER']);
 
 ?>

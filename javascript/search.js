@@ -2,29 +2,28 @@ const searchRestaurant = document.querySelector('#searchRestaurant input')
 const searchButton = document.querySelector('#searchRestaurant button')
 const ENTER_KEY_CODE = 13;
 
-if (searchRestaurant) {
-    searchRestaurant.addEventListener('input', async function() {
-        const response = await fetch('../api/api_restaurants.php?search=' + this.value)
-        const categories = await response.json()
+async function search(search) {
+    const response = await fetch('../api/api_restaurants.php?search=' + search)
+    const categories = await response.json()
 
-        searchButton.addEventListener('click', function() { drawRestFunction(categories) });
-        searchRestaurant.addEventListener('keyup', function(e) {
-            if (e.keyCode === ENTER_KEY_CODE) { drawRestFunction(categories) }
-        })
+    searchButton.addEventListener('click', function() { drawRestFunction(categories) });
+    searchRestaurant.addEventListener('keyup', function(e) {
+        if (e.keyCode === ENTER_KEY_CODE) { drawRestFunction(categories) }
     })
-    }else if(searchButton) {
-    searchButton.addEventListener('click', async function() {
-        const response = await fetch('../api/api_restaurants.php?search=')
-        const categories = await response.json()
-
-        drawRestFunction(categories)
-    });
 }
+
+if (searchRestaurant && searchButton) {
+    search('');
+    searchRestaurant.addEventListener('input', function() {
+        search(this.value)
+    })
+
+}
+
 
 var drawRestFunction = function(categories) {
     const searchCategory = document.querySelector('#select-category')
 
-    console.log(categories.length)
 
     const section = document.querySelector('#restaurants')
     section.innerHTML = ''
@@ -33,7 +32,6 @@ var drawRestFunction = function(categories) {
     title.textContent = 'Restaurants'
     section.append(title)
 
-    console.log(this.value)
     for (const category of categories) {
         if (searchCategory.value == 'none' || searchCategory.value == category[1][0]) {
             const catName = document.createElement('h3')

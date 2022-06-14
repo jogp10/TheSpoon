@@ -29,6 +29,14 @@
         else drawLogInForm();
       ?>
     </header>
+
+    <section id="messages">
+      <?php foreach ($session->getMessages() as $messsage) { ?>
+        <article class="<?=$messsage['type']?>">
+          <?=$messsage['text']?>
+        </article>
+      <?php } ?>
+    </section>
   
     <main class="content">
 <?php } ?>
@@ -68,12 +76,12 @@
   <form action="../actions/action_logout.php" method="post" class="logout">
     <div class="userName">
       <?php if($session->getOwner()) { ?>
-        <a href="../pages/profile.php"  id="profileOwner">Profile</a>
-        <button type="submit" id="logoutOwner">Logout</button>
+        <a href="../pages/profile.php"  id="profileOwner" class="profile">Profile</a>
+        <button type="submit" id="logoutOwner" class="logoutButton">Logout</button>
         <a href="../pages/register_rest.php" id="restRegister">Register Your Restaurant</a>
       <?php } else { ?>
-        <a href="../pages/profile.php" id="profileNotOwner">Profile</a>
-        <button type="submit" id="logoutNotOwner">Logout</button>
+        <a href="../pages/profile.php" id="profileNotOwner" class="profile">Profile</a>
+        <button type="submit" id="logoutNotOwner" class="logoutButton">Logout</button>
       <?php } ?>
     </div>
   </form>
