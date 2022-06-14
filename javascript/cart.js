@@ -74,6 +74,20 @@ function updateTotal() {
     const values = [...rows].map(r => parseInt(r.querySelector('td:nth-child(4)').textContent, 10))
     const total = values.reduce((t, v) => t + v, 0)
     document.querySelector('#cart table tfoot th:last-child').textContent = total + "€"
+
+    const quantities = [...rows].map(r => parseInt(r.querySelector('td:nth-child(2)').textContent, 10))
+    const totalItems = quantities.reduce((t, v) => t + v, 0)
+
+    const img = document.createElement('img');
+    img.src = '../images/cart.png';
+    img.alt = 'cart icon';
+    img.width = 30;
+    img.height = 30;
+    const p = document.createElement('p');
+    p.appendChild(img);
+    p.appendChild(document.createTextNode("(" + totalItems + ")"))
+    document.querySelector('#cart div').innerHTML = '';
+    document.querySelector('#cart div').appendChild(p);
 }
 
 attachBuyEvents()

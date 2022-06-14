@@ -299,6 +299,6 @@ INSERT INTO ItemFavorite values (1, 1, 1);
 INSERT INTO RestFavorite values (1, 1, 7);
 INSERT INTO RestFavorite values (2, 1, 25);
 
--- Orders (id, ordertime, pricetotal, idUser, idRestaurant)
+-- Orders (id, ordertime, pricetotal, idUser, idRestaurant, status)
 INSERT INTO Orders values (1, '2022-04-22 15:33', 36, 1, 7, "Delivered");
 INSERT INTO Orders values (2, '2022-05-15 03:33', 12, 1, 7, "Delivered");
