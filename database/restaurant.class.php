@@ -24,8 +24,8 @@
       $this->rating = $rating;
     }
 
-    static function addRestaurant(PDO $db, string $name, string $RestName, string $photo, string $description, string $street, string $city, string $state, int $postalCode): Restaurant {
-      $idUser = SESSION::getId();
+    static function addRestaurant(PDO $db, Session $session, string $name, string $RestName, string $photo, string $description, string $street, string $city, string $state, int $postalCode): Restaurant {
+      $idUser = $session->getId();
       $rating = 0;
     
       $stmt = $db->prepare(

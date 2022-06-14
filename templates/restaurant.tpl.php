@@ -154,7 +154,7 @@
 <?php } ?>
 
 <?php function drawName(Restaurant $restaurant) { ?>
-  <h1><?=htmlentities($restaurant->name)?> <?=$restaurant->rating?>star</h1>
+  <h1><?=htmlentities($restaurant->name)?> <?=$restaurant->rating?> star</h1>
 <?php } ?>
 
 <?php function drawItems(Session $session, array $menuItems, int $restOwner) { ?>
@@ -249,7 +249,7 @@
 <?php function favorite(MenuItem $item) { ?>
   <section>
     <form action="../actions/action_item_favorite.php?id=<?=$item->id?>" method="post" enctype="multipart/form-data">
-      <button type="submit">Favorite</button>
+      <button type="submit" class="favButton">Favorite</button>
     </form>
   </section>
 <?php } ?>
@@ -257,7 +257,7 @@
 <?php function unfavorite(MenuItem $item) { ?>
   <section>
     <form action="../actions/action_item_unfavorite.php?id=<?=$item->id?>" method="post" enctype="multipart/form-data">
-      <button type="submit">Unfavorite</button>
+      <button type="submit" class="favButton">Unfavorite</button>
     </form>
   </section>
 <?php } ?>
@@ -266,7 +266,7 @@
 <?php function drawFavorite(Restaurant $restaurant) { ?>
   <section>
     <form action="../actions/action_rest_favorite.php?id=<?=$restaurant->id?>" method="post" enctype="multipart/form-data">
-      <button type="submit">Favorite</button>
+      <button type="submit" class="favButton">Favorite</button>
     </form>
   </section>
 <?php } ?>
@@ -275,7 +275,7 @@
 <?php function drawUnfavorite(Restaurant $restaurant) { ?>
   <section>
     <form action="../actions/action_rest_unfavorite.php?id=<?=$restaurant->id?>" method="post" enctype="multipart/form-data">
-      <button type="submit">Unfavorite</button>
+      <button type="submit" class="favButton">Unfavorite</button>
     </form>
   </section>
 <?php } ?>
