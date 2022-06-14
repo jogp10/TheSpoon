@@ -70,7 +70,8 @@
         $orders[] = new Order(
           (int) $order['idOrders'],
           $order['OrderTime'],
-          (int) $order['PriceTotal']
+          (int) $order['PriceTotal'],
+          (int) $order['idRestaurant']
         );
       }
 
