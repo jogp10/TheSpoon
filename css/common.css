@@ -114,6 +114,20 @@ body>header #signup a:first-child {
     background-color: white;
 }
 
+.form-container-reg2 {
+    max-width: 800px !important; 
+}
+
+.form-container-reg2 textarea{
+    width: 88%;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border: none;
+    background: #f1f1f1;
+}
+
+
+
 
 /* Full-width input fields */
 
@@ -268,4 +282,8 @@ form .categoryDropdown {
     font-weight: bold;
     border-radius: 5px;
     padding: 15px 20px;
+}
+
+.form-container-reg2 .select-category {
+    width: 90% !important;
 }
