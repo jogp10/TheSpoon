@@ -243,11 +243,11 @@
     static function searchRestaurantsbyCategory(PDO $db, string $search, int $id, int $count) : array {
       $stmt = $db->prepare('
       SELECT idRestaurant, Name, Description, Photo, Street, City, State, PostalCode, Rating
-      FROM Restaurant JOIN Address USING (idAddress)
-      WHERE idRestCategory = ? AND Name LIKE ?
+      FROM (Restaurant JOIN Address USING (idAddress)) LEFT OUTER JOIN RestFavorite USING (idRestaurant)
+      WHERE idRestCategory = ? AND (Name LIKE ? OR Rating = ?)
       LIMIT ?
       ');
-      $stmt->execute(array($id, '%' . $search . '%', $count));
+      $stmt->execute(array($id, '%' . $search . '%', floatval(substr($search, 0, 1)), $count));
 
       $restaurants = array();
       while ($restaurant = $stmt->fetch()) {
