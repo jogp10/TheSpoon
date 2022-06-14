@@ -223,11 +223,17 @@ INSERT INTO Menu values (24, 24);
 INSERT INTO Menu values (25, 25);
 
 -- ItemCategory (id, Name)
-INSERT INTO ItemCategory values (1, "Carne");
-INSERT INTO ItemCategory values (2, "Peixe");
-INSERT INTO ItemCategory values (3, "Vegetariano");
+INSERT INTO ItemCategory values (1, "Meat");
+INSERT INTO ItemCategory values (2, "Fish");
+INSERT INTO ItemCategory values (3, "Vegetarian");
 INSERT INTO ItemCategory values (4, "Vegan");
-INSERT INTO ItemCategory values (5, "FreeGluten");
+INSERT INTO ItemCategory values (5, "GlutenFree");
+INSERT INTO ItemCategory values (6, "Pizza");
+INSERT INTO ItemCategory values (7, "Pasta");
+INSERT INTO ItemCategory values (8, "Hamburger");
+INSERT INTO ItemCategory values (9, "LactoseFree");
+INSERT INTO ItemCategory values (10, "Drink");
+INSERT INTO ItemCategory values (11, "Wine");
 
 -- MenuItem (id, Name, Price, Photo, idMenu)
 -- MenuItemCategories (id, idMenuItem, idItemCategory)
