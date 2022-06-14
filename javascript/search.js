@@ -62,7 +62,7 @@ var drawRestFunction = function(categories) {
                 link1.setAttribute('id', 'restImage-' + restaurant.id)
 
                 const link2 = document.createElement('a')
-                link2.textContent = ' ' + restaurant.name
+                link2.textContent = ' ' + restaurant.name + ' ' + restaurant.rating + ' star'
                 link2.href = '../pages/restaurant.php?id=' + restaurant.id
                 link2.classList.add('restName')
                 link2.setAttribute('id', 'restName-' + restaurant.id)
