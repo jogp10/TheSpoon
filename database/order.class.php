@@ -6,13 +6,15 @@
     public string $orderTime;
     public int $totalPrice;
     public int $idRestaurant;
+    public string $state;
 
-    public function __construct(int $id, string $orderTime, int $totalPrice, int $idRestaurant)
+    public function __construct(int $id, string $orderTime, int $totalPrice, int $idRestaurant, string $state)
     {
       $this->id = $id;
       $this->orderTime = $orderTime;
       $this->totalPrice = $totalPrice;
       $this->idRestaurant = $idRestaurant; 
+      $this->state = $state;
     }
 
 
@@ -25,23 +27,24 @@
       );
       $stmt->execute();
       $idOrder = $stmt->fetch()['idOrders'] + 1;
-
+      $state = "Received"; //Received -> Preparing -> Ready -> Delivered
       $stmt = $db->prepare(
-        'INSERT INTO Orders values (?, ?, ?, ?, ?)'
+        'INSERT INTO Orders values (?, ?, ?, ?, ?, ?)'
       );
-      $stmt->execute(array($idOrder, $orderTime, $totalPrice, $idUser, $idRestaurant));
+      $stmt->execute(array($idOrder, $orderTime, $totalPrice, $idUser, $idRestaurant, $state));
 
       return new Order (
         $idOrder,
         $orderTime,
         $totalPrice,
-        $idRestaurant
+        $idRestaurant,
+        $state
       );
     }
 
     static function getOrderHistory(PDO $db, int $id) : array {
       $stmt = $db->prepare('
-      SELECT idOrders, OrderTime, PriceTotal, idRestaurant
+      SELECT idOrders, OrderTime, PriceTotal, idRestaurant, State
       FROM Orders
       WHERE idUser = ?
       ');
@@ -55,6 +58,7 @@
         $order['OrderTime'],
         (int)$order['PriceTotal'],
         (int)$order['idRestaurant'],
+        $order['State']
         );
       }
 
@@ -71,11 +75,34 @@
           (int) $order['idOrders'],
           $order['OrderTime'],
           (int) $order['PriceTotal'],
-          (int) $order['idRestaurant']
+          (int) $order['idRestaurant'],
+          $order['State']
         );
       }
 
       return $orders;
     }
 
+    public function updateState(PDO $db, string $newState) {
+      $stmt = $db->prepare(
+        'SELECT * FROM Orders WHERE idOrders = ?'
+      );
+      $stmt->execute(array($this->id));
+      $order = $stmt->fetch();
+      $orderID = (int)$order['idOrders'];
+      $time = $order['OrderTime'];
+      $price = (int)$order['PriceTotal'];
+      $userId = (int)$order['idUser'];
+      $restaurantId = (int)$order['idRestaurant'];
+
+      $stmt = $db->prepare(
+        'DELETE FROM Orders WHERE idOrders = ?'
+      );
+      $stmt->execute(array($this->id));
+
+      $stmt = $db->prepare(
+        'INSERT INTO Orders values (?, ?, ?, ?, ?, ?)'
+      );
+      $stmt->execute(array($orderID, $time, $price, $userId, $restaurantId, $newState));
+    }
   }

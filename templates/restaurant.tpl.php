@@ -281,13 +281,37 @@
 
 <?php function drawOrders(array $orders) { ?>
   <h3>Orders:</h3>
+  <?= 
+  require_once('../database/connection.php');
+  $db = getDatabaseConnection();
+  ?>
 
   <section id="orders">
     <?php foreach ($orders as $order) { ?>
       <article data-id="<?=$order->id?>">
-        <p>Ordered at: <?= $order->orderTime ?>  Total: <?= $order->totalPrice ?>€</p>
+        <p>Ordered at: <?= $order->orderTime ?>  -  Total: <?= $order->totalPrice ?>€  -  State: 
+          <select name="State">
+            <?php 
+            if ($order->state == "Received") selected("Received"); 
+            else unselected("Received");
+            if ($order->state == "Preparing") selected("Preparing"); 
+            else unselected("Preparing");
+            if ($order->state == "Ready") selected("Ready"); 
+            else unselected("Ready");
+            if ($order->state == "Delivered") selected("Delivered"); 
+            else unselected("Delivered");
+            ?>
+          </select> 
+        </p>
       </article>
     <?php } ?>
   </section>
 
+<?php } ?>
+
+<?php function selected(string $state){ ?>
+  <option value="<?=$state?>" selected><?=$state?></option>
+<?php } ?>
+<?php function unselected(string $state){ ?>
+  <option value="<?=$state?>"><?=$state?></option>
 <?php } ?>
