@@ -106,6 +106,19 @@ body>header h2 {
     background-color: #2a2f33;
 }
 
+.logoutButton {
+    background-color: #555;
+    color: white;
+    padding: 16px 20px;
+    opacity: 0.8;
+    width: 10%;
+    min-width: 130px;
+}
+
+.logoutButton:hover {
+    background-color: #2a2f33;
+}
+
 
 /* The popup form - hidden by default */
 
@@ -238,7 +251,7 @@ body>header h2 {
 
 .userName {
     background-color: #fff;
-    width: 22.5em;
+    width: 10%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -249,23 +262,12 @@ body>header h2 {
     color: #2a2f33;
 }
 
-#logoutNotOwner {
-    position: absolute;
-    right: 0;
-    margin-right: 0.5em;
-}
-
-#profileOwner {
+.profile {
     padding-top: 0.2em;
     font-size: medium;
 }
 
-#profileNotOwner {
-    position: absolute;
-    right: 80px;
-}
-
-.userName button, .userName #restRegister {
+.userName button {
     background-color: #555;
     color: white;
     padding: 0.4em 0.5em;
@@ -275,16 +277,15 @@ body>header h2 {
     font-size: medium;
 }
 
-.userName button:hover, .userName #restRegister:hover {
+.userName button:hover,
+.userName #restRegister:hover,
+.userName .profile:hover {
     color: #2a2f33;
     background-color: #c4cdca;
 }
 
-#restRegister {
-    margin-right: 0.5em;
-}
-
-#restRegister:hover {
+#restRegister:hover,
+.profile:hover {
     background-color: #c4cdca;
     color: #2a2f33;
 }

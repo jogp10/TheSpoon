@@ -1,5 +1,11 @@
 /* main layout */
 
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 body {
     background-color: #a7f9db;
     margin: 0 auto;
@@ -90,6 +96,33 @@ body footer {
     cursor: pointer;
 }
 
+#restRegister {
+    margin-top: 6em;
+    top: 0;
+    right: 20px;
+    position: absolute;
+    border: none;
+    cursor: pointer;
+}
+
+.profile {
+    margin-top: 1.5em;
+    top: 0;
+    right: 20px;
+    position: absolute;
+    border: none;
+    cursor: pointer;
+}
+
+.logoutButton {
+    margin-top: 3.5em;
+    position: absolute;
+    top: 0;
+    right: 20px;
+    border: none;
+    cursor: pointer;
+}
+
 
 /* description pop-up */
 
@@ -136,5 +169,5 @@ a.restName {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 10px 20px;  
+    gap: 10px 20px;
 }
