@@ -1,4 +1,6 @@
-<?php declare(strict_types = 1); ?>
+<?php 
+  declare(strict_types = 1);
+ ?>
 
 <?php function drawProfile(User $user) { ?>
   <h2>Profile</h2>
@@ -24,5 +26,18 @@
       <button type="submit">Save</button>
     </form>
     <button>Change Password</button> 
+  </section>
+<?php } ?>
+
+<?php function drawOrderHistory(PDO $db, array $orders) { ?>
+  <section class="order-history">
+    <h2>Order History</h2>
+    <div>
+      <?php foreach($orders as $order) { 
+        $restaurant = Restaurant::getRestaurant($db, $order->idRestaurant);
+        ?>
+        <?=$restaurant->name?> - <?=$order->orderTime?> - <?=$order->totalPrice?>€ <br>
+      <?php } ?>
+    </div>
   </section>
 <?php } ?>

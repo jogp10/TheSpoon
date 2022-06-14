@@ -10,6 +10,7 @@
 
   require_once('../database/user.class.php');
   require_once('../database/restaurant.class.php');
+  require_once('../database/order.class.php');
 
   require_once('../templates/common.tpl.php');
   require_once('../templates/user.tpl.php');
@@ -17,8 +18,11 @@
 
   $db = getDatabaseConnection();
   $user = User::getUser($db, $session->getId());
+  $orders = Order::getOrderHistory($db, $user->idUser);
+
   drawHeader($session);
   drawProfile($user);
+  drawOrderHistory($db, $orders);
   if($user->restOwner) {
     $restaurants = Restaurant::getRestaurantsFromUser($db, $user->idUser);
     drawOwnerRestaurants($restaurants);
