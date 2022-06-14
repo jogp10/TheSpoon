@@ -64,36 +64,45 @@
 <?php function drawRestaurantProfile(Restaurant $restaurant, array $categories, Category $category) { ?>
   <h1><?=htmlentities($restaurant->name)?></h1>
   <section>
-    <form action="../actions/action_restaurant_profile.php?id=<?=$restaurant->id?>" method="post" enctype="multipart/form-data">
-      <label>Name<br>
-      <input type="text" name="rest_name" placeholder="name" value= "<?php echo $restaurant->name ?>" required></label>
-      <br>
-      <label>Category<br>
-      <div>
-        <select name="RestCategory"> 
+    <form action="../actions/action_restaurant_profile.php?id=<?=$restaurant->id?>" method="post" enctype="multipart/form-data" class="form-container-reg form-container-reg2">
+      <div id="name">
+        <label><b>Name</b><input type="text" name="rest_name" placeholder="name" value= "<?php echo $restaurant->name ?>" required></label>   
+      </div>
+      
+      <div class="categoryDropdown">
+        <label><b>Category</b><br>
+        <select name="RestCategory" class="select-category"> 
           <option value="<?=$category->name?>"><?=$category->name?></option>
           <?php foreach ($categories as $category) {?>
             <option value=<?=$category->name?>><?=$category->name?></option>
           <?php } ?>
-        </select> 
-      </div></label>
-      <label>Description<br>
+        
+        
+        </select></label>
+      </div>
+      
+      <label><b>Description</b><br>
       <textarea id="desc" name="desc" rows="10" cols="50" placeholder="descritption"><?php echo htmlentities($restaurant->description) ?></textarea>
       </label>
       <br>
-      <label>Address<br>
-      <input type="text" name="street" placeholder="Street" value="<?php echo htmlentities($restaurant->street) ?>" required>
-      <input type="text" name="city" placeholder="City" value="<?php echo htmlentities($restaurant->city) ?>" required>
-      <input type="text" name="state" placeholder="State" value="<?php echo htmlentities($restaurant->state) ?>" required>
-      <br>
-      <input type="number" name="postal-code" placeholder="Postal Code" value="<?php echo $restaurant->postalcode ?>">
-      </label>
-      <br>
-      <label>Photo<br>
+      <div id="state"> 
+        <label><b>State</b><input type="text" name="state" placeholder="State" value="<?php echo htmlentities($restaurant->state) ?>" required></label>   
+      </div>
+      <div id="city"> 
+        <label><b>City</b><input type="text" name="city" placeholder="City" value="<?php echo htmlentities($restaurant->city) ?>" required></label>   
+      </div>
+      <div id="street"> 
+        <label><b>Street</b><input type="text" name="street" placeholder="Street" value="<?php echo htmlentities($restaurant->street) ?>" required></label>   
+      </div>
+      <div id="postal-code">  
+        <label><b>Postal Code</b><input type="number" name="postal-code" placeholder="Postal Code" value="<?php echo $user->postalcode ?>" required></label>   
+      </div>
+      
+      <label><b>Photo</b><br>
       <img src=<?=$restaurant->photo?> alt="item image" width="200" height="200"><br>
-      <input type="file" name="uploadPhoto" id="uploadPhoto" accept="image/png, image/jpeg"><br>
+      <input class="btn" type="file" name="uploadPhoto" id="uploadPhoto" accept="image/png, image/jpeg"><br>
       </label>
-      <button type="submit">Save</button>
+      <button class="btn" type="submit">Save</button>
     </form>
     <a href="../pages/register_menu_item.php?id=<?=$restaurant->id?>" method="get">Add dishes to the restaurant</a>
     <div>

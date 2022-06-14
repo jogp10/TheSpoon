@@ -5,25 +5,30 @@
 <?php function drawProfile(User $user) { ?>
   <h2>Profile</h2>
   <section id="profile">
-    <form action="../actions/action_profile.php" method="post" id="profile-info">
-      <label>Name<br>
-      <input type="text" name="name" placeholder="name" value= "<?php echo htmlentities($user->name) ?>" required></label>
-      <br>
-      <label>Email<br>
-      <input type="email" name="email" placeholder="email" value= "<?php echo $user->email ?>" required></label>
-      <br>
-      <label>Phone<br>
-      <input type="tel" name="phone" placeholder="phone" value= "<?php echo $user->phone ?>" required></label>
-      <br>
-      <label>Address<br>
-      <input type="text" name="street" placeholder="Street" value="<?php echo htmlentities($user->street) ?>" required>
-      <input type="text" name="city" placeholder="City" value="<?php echo htmlentities($user->city) ?>" required>
-      <input type="text" name="state" placeholder="State" value="<?php echo htmlentities($user->state) ?>" required>
-      <br>
-      <input type="number" name="postal-code" placeholder="Postal Code" value="<?php echo $user->postalcode ?>">
-      </label>
-      <br>
-      <button type="submit">Save</button>
+    <form action="../actions/action_profile.php" method="post" id="profile-info" class="form-container-reg">
+      <div id="name">
+        <label><b>Name</b><input type="text" name="name" placeholder="name" value= "<?php echo htmlentities($user->name) ?>" required></label>   
+      </div>
+      <div id="phone">
+        <label><b>Phone</b><input type="tel" name="phone" placeholder="phone" value= "<?php echo $user->phone ?>" required></label>   
+      </div>
+      <div id="email">
+        <label><b>Email</b><input type="email" name="email" placeholder="email" value= "<?php echo $user->email ?>" required></label>   
+      </div>
+      <div id="state"> 
+        <label><b>State</b><input type="text" name="state" placeholder="State" value="<?php echo htmlentities($user->state) ?>" required></label>   
+      </div>
+      <div id="city"> 
+        <label><b>City</b><input type="text" name="city" placeholder="City" value="<?php echo htmlentities($user->city) ?>" required></label>   
+      </div>
+      <div id="street"> 
+        <label><b>Street</b><input type="text" name="street" placeholder="Street" value="<?php echo htmlentities($user->street) ?>" required></label>   
+      </div>
+      <div id="postal-code">  
+        <label><b>Postal Code</b><input type="number" name="postal-code" placeholder="Postal Code" value="<?php echo $user->postalcode ?>" required></label>   
+      </div>
+
+      <button type="submit" class="btn">Save</button>
     </form>
   </section>
 <?php } ?>

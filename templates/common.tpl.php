@@ -132,13 +132,13 @@
 <?php } ?>
 
 <?php function drawRegisterFormRestaurant(array $categories) { ?>
-  <form action="../actions/action_register_restaurant.php" method="post" enctype="multipart/form-data" class="registerRestaraunt">
+  <form action="../actions/action_register_restaurant.php" method="post" enctype="multipart/form-data" class="registerRestaraunt form-container-reg">
     <h1>Register your restaurant</h1>
     <div id="name">
       <label><b>Name</b><input type="text" placeholder="Enter Name" name="rest_name"></label>   
     </div>
-    <div>
-      <select name="RestCategory"> 
+    <div class="categoryDropdown">
+      <select name="RestCategory" class="select-category"> 
         <option value="none">Select Category</option>
         <?php foreach ($categories as $category) {?>
           <option value=<?=$category->name?>><?=$category->name?></option>

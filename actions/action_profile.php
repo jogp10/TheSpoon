@@ -27,7 +27,7 @@
   $user->updateUser($db, $name, $_POST['email'], (int)$_POST['phone'], $street, $city, $state, (int)$_POST['postal-code']);
   $session->setName($name);
   $session->setEmail($_POST['email']);
-  $session->addMessage('updated', 'Profile updated!');
+  $session->addMessage('success', 'Profile updated!');
   
   header('Location: ' . $_SERVER['HTTP_REFERER']);
 
