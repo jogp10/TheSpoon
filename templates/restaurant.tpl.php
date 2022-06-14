@@ -1,4 +1,6 @@
-<?php declare(strict_types = 1); ?>
+<?php declare(strict_types = 1);
+  require_once('../database/order.class.php');
+?>
 
 <?php function drawRestaurants(PDO $db, array $categories) { ?>
   <section class="style-restaraunts" id="restaurants">
@@ -54,7 +56,7 @@
 
   if($session->getId() != $restOwner->idUser) drawCart($session, $restaurant->id);
 
-  drawItems($session, $restaurant, $menuItems, $restOwner->idUser);
+  drawItems($session, $menuItems, $restOwner->idUser);
   drawComments($session, $restaurant, $restOwner, $comments);
 } ?>
 
@@ -140,7 +142,7 @@
         </article>
     <?php } } } ?>
 
-    <?php if ($session->isLoggedIn() && $session->getId()!=$restOwner->idUser) { ?>
+    <?php if ($session->isLoggedIn() && $session->getId()!=$restOwner->idUser && Order::hasOrder($session->getId(), $restaurant->id)) { ?>
     <form action="../actions/action_comment.php" method="post" id="comment-<?= $session->getId() ?>">
       <h3>Rate your experience</h3>
       <input type="hidden" name="idRestaurant" value="<?php echo $restaurant->id ?>">
@@ -156,11 +158,10 @@
   <h1><?=$restaurant->name?> <?=$restaurant->rating?>star</h1>
 <?php } ?>
 
-<?php function drawItems(Session $session, Restaurant $restaurant, array $menuItems, int $restOwner) { ?>
+<?php function drawItems(Session $session, array $menuItems, int $restOwner) { ?>
   <section id="menuItems">
     <?php foreach ($menuItems as $menuItem) { ?>
       <article data-id="<?=$menuItem->id?>">
-        <a href="item.php?id=<?=$menuItem->id?>">
         <h4><?=$menuItem->name?></h4>
         <img src=<?=$menuItem->photo?> alt="item image" width="200" height="200"></a>
         <p class="price" price="<?=$menuItem->price?>"><?=$menuItem->price?>€</p>

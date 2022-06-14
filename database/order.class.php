@@ -122,4 +122,20 @@
       );
       $stmt->execute(array($orderID, $time, $price, $userId, $restaurantId, $newState));
     }
+
+    static function hasOrder(int $user, int $restaurant): bool {
+      $db = getDatabaseConnection();
+
+      $stmt = $db->prepare('
+        SELECT *
+        FROM Orders
+        WHERE idUser = ? AND idRestaurant = ?
+      ');
+
+      $stmt->execute(array($user, $restaurant));
+      if ($stmt->fetch()) {
+        return true;
+      }
+      return false;
+    }
   }
