@@ -26,7 +26,7 @@ function loadRestaurantPhoto(Restaurant $restaurant): string
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }
-            if($restaurant->photo != "../images/dog.jpg"){
+            if($restaurant->photo != "../images/default.jpg"){
                 unlink($restaurant->photo);
             }
         }
@@ -61,7 +61,7 @@ function loadItemPhoto(MenuItem $item): string
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }
-            if($item->photo != "../images/dog.jpg"){
+            if($item->photo != "../images/default.jpg"){
                 unlink($item->photo);
             }
         }
