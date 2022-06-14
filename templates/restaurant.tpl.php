@@ -315,6 +315,28 @@
 <?php function selected(string $state){ ?>
   <option value="<?=$state?>" selected><?=$state?></option>
 <?php } ?>
+
 <?php function unselected(string $state){ ?>
   <option value="<?=$state?>"><?=$state?></option>
+<?php } ?>
+
+<?php function drawTags(PDO $db, array $tags, int $itemId) { ?>
+  <h3>Tags</h3>
+
+  <form action="../actions/action_item_tag.php?id=<?=$itemId?>" method="post" enctype="multipart/form-data">
+    <?php require_once('../database/category.class.php'); ?>
+    <?php foreach($tags as $tag) { 
+      if (MenuItemCategories::hasCategory($db, $itemId, $tag->id)) checked($tag);
+      else unchecked($tag);
+    } ?>
+    <button type="submit">Save</button>
+  </form>
+<?php } ?>
+
+<?php function checked(ItemCategory $tag){ ?>
+  <input type="checkbox" name="tag<?=$tag->id?>" value="<?=$tag->id?>" checked><?=$tag->name?>
+<?php } ?>
+
+<?php function unchecked(ItemCategory $tag){ ?>
+  <input type="checkbox" name="tag<?=$tag->id?>" value="<?=$tag->id?>"><?=$tag->name?>
 <?php } ?>

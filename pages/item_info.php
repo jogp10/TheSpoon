@@ -9,6 +9,7 @@
   require_once('../database/restaurant.class.php');
   require_once('../database/connection.php');
   require_once('../database/menu.class.php');
+  require_once('../database/category.class.php');
 
   require_once('../templates/common.tpl.php');
   require_once('../templates/restaurant.tpl.php');
@@ -17,6 +18,7 @@
   $menuId = Menu::getMenuByItem($db, intval($_GET['id']));
   $restaurant = Restaurant::searchRestaurantByMenu($db, $menuId);
   $restaurantOwner = User::getRestaurantOwner($db, (int)$restaurant->id);
+  $tags = ItemCategory::getItemCategories($db);
 
   if (!$session->isLoggedIn() || $id != $restaurantOwner->idUser) die(header('Location: /'));
 
@@ -24,5 +26,6 @@
 
   drawHeader($session);
   drawItemProfile($session, $item);
+  drawTags($db, $tags, $item->id);
   drawFooter();
 ?>
