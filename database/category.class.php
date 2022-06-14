@@ -34,7 +34,7 @@
       );
     }
 
-    public function hasCategory(PDO $db, int $idItem, int $idCategory) {
+    static function hasCategory(PDO $db, int $idItem, int $idCategory) {
       $stmt = $db->prepare(
         'SELECT * FROM MenuItemCategories WHERE idMenuItem = ? AND idItemCategory = ?'
       );
@@ -53,7 +53,7 @@
       $this->name = $name;
     }
 
-    public function getItemCategories(PDO $db) : array {
+    static function getItemCategories(PDO $db) : array {
       $stmt = $db->prepare('SELECT * FROM ItemCategory');
       $stmt->execute();
       $categories = array();
