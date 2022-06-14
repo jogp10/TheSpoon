@@ -222,12 +222,12 @@
 
 
 <?php function drawRegisterFormMenuItem(int $id) { ?>
-  <form action="../actions/action_register_menu_item.php?id=<?= $id ?>" method="post" enctype="multipart/form-data" class="registerRestaraunt">
+  <form action="../actions/action_register_menu_item.php?id=<?= $id ?>" method="post" enctype="multipart/form-data" class="registerRestaraunt form-container-reg">
     <h1>Register a new dish</h1>
     <div id="name">
       <label><b>Name</b><input type="text" placeholder="Enter Name of Dish" name="item_name"></label>   
     </div>
-    <div id="item-price">  
+    <div id="phone">  
       <label><b>Price</b><input type="text" placeholder="Enter Price" name="price"></label>   
     </div>
 
