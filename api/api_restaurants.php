@@ -3,6 +3,8 @@
 
   require_once('../database/connection.php');
   require_once('../database/restaurant.class.php');
+  require_once('../database/category.class.php');
+
 
   $db = getDatabaseConnection();
 
