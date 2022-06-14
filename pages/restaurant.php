@@ -21,7 +21,6 @@
   $user = User::getRestaurantOwner($db, $restaurant->id);
 
   drawHeader($session);
-  drawCart($session, $restaurant->id);
   drawRestaurant($session, $restaurant, $user, $menu, $comments);
   drawFooter();
 ?>

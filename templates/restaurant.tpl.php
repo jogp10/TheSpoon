@@ -49,11 +49,12 @@
 
 <?php function drawRestaurant(Session $session, Restaurant $restaurant, User $restOwner, array $menuItems, array $comments) { 
   drawName($restaurant); 
-
   if ($session->isLoggedIn() && !isfavoriteR($restaurant)) drawFavorite($restaurant);
   if ($session->isLoggedIn() && isfavoriteR($restaurant)) drawUnfavorite($restaurant);
 
-  drawItems($session, $restaurant, $menuItems);
+  if($session->getId() != $restOwner->idUser) drawCart($session, $restaurant->id);
+
+  drawItems($session, $restaurant, $menuItems, $restOwner->idUser);
   drawComments($session, $restaurant, $restOwner, $comments);
 } ?>
 
@@ -155,7 +156,7 @@
   <h1><?=$restaurant->name?> <?=$restaurant->rating?>star</h1>
 <?php } ?>
 
-<?php function drawItems(Session $session, Restaurant $restaurant, array $menuItems) { ?>
+<?php function drawItems(Session $session, Restaurant $restaurant, array $menuItems, int $restOwner) { ?>
   <section id="menuItems">
     <?php foreach ($menuItems as $menuItem) { ?>
       <article data-id="<?=$menuItem->id?>">
@@ -170,8 +171,8 @@
         ?>
 
         <?php 
-          if ($session->isLoggedIn()) buyItem();
-          else openRegForm2();
+          if ($session->isLoggedIn() && $session->getId() != $restOwner) buyItem();
+          if(!$session->isLoggedIn()) openRegForm2();
         ?>
       </article>
     <?php } ?>

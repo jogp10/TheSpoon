@@ -25,7 +25,6 @@
       <br>
       <button type="submit">Save</button>
     </form>
-    <button>Change Password</button> 
   </section>
 <?php } ?>
 
