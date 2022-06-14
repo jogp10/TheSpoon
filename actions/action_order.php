@@ -12,8 +12,9 @@
 
     $current_date = date("c");
     $price = (int) $_POST["price"];
+    $idUser = $session->getId();
 
-    $order = Order::addOrder($db, $current_date, $price, (int)$_POST["idRest"]);
+    $order = Order::addOrder($db, $idUser, $current_date, $price, (int)$_POST["idRest"]);
 
     echo "price: " . $order->totalPrice . " orderTime: " . $order->orderTime; 
 

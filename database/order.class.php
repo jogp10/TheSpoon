@@ -18,8 +18,7 @@
     }
 
 
-    static function addOrder(PDO $db, string $orderTime, int $totalPrice, int $idRestaurant) : Order {
-      $idUser = SESSION::getId();
+    static function addOrder(PDO $db, int $idUser, string $orderTime, int $totalPrice, int $idRestaurant) : Order {
       $stmt = $db->prepare(
           'SELECT * 
           FROM    Orders
