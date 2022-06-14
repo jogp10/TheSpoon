@@ -9,11 +9,11 @@ Website development project from FEUP'S UC LTW
 - [x] Add Restaurant
 - [x] Edit Restaurant
 - [x] Add Dishes
-- [ ] Add Dish Photo
+- [x] Add Dish Photo
 - [x] List Reviews
 - [x] Restaurant Owner Can Answer to Review
 - [x] List Customer Orders
-- [ ] Change Order State
+- [x] Change Order State
 - [x] Search Restaurants
 - [x] Order Dishes
 - [x] List My Orders
