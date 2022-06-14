@@ -4,7 +4,8 @@
 
 #menuItems article button,
 .favButton,
-#cart>a:nth-child(3)>button:nth-child(1) {
+#cart>a:nth-child(3)>button:nth-child(1),
+#answer-3>button:nth-child(3) {
     display: inline-block;
     padding: 5px 10px;
     font-size: 17px;
@@ -15,6 +16,10 @@
     border: none;
     border-radius: 15px;
     box-shadow: 0 9px #999;
+}
+
+#answer-3>button:nth-child(3) {
+    box-shadow: 0 6px#999;
 }
 
 #menuItems article>button {

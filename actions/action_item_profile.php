@@ -13,6 +13,9 @@
   $item = MenuItem::getMenuItem($db, intval($_GET['id']));
   $target_file = loadItemPhoto($item);
 
+  $name = $_POST['item_name'];
+  $name = preg_replace ("/[^a-zA-Z\s]/", '', $name); 
+
   MenuItem::updateMenuItem($db, $_POST['item_name'], $_POST['item_price'], $target_file, $item->id);
 
 

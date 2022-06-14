@@ -7,22 +7,22 @@
   <section id="profile">
     <form action="../actions/action_profile.php" method="post" id="profile-info" class="form-container-reg">
       <div id="name">
-        <label><b>Name</b><input type="text" name="name" placeholder="name" value= "<?php echo $user->name ?>" required></label>   
+        <label><b>Name</b><input type="text" name="name" placeholder="name" value= "<?php echo htmlentities($user->name) ?>" required></label>   
       </div>
       <div id="phone">
         <label><b>Phone</b><input type="tel" name="phone" placeholder="phone" value= "<?php echo $user->phone ?>" required></label>   
       </div>
       <div id="email">
-        <label><b>Email</b><input type="text" name="email" placeholder="email" value= "<?php echo $user->email ?>" required></label>   
+        <label><b>Email</b><input type="email" name="email" placeholder="email" value= "<?php echo $user->email ?>" required></label>   
       </div>
       <div id="state"> 
-        <label><b>State</b><input type="text" name="state" placeholder="State" value="<?php echo $user->state ?>" required></label>   
+        <label><b>State</b><input type="text" name="state" placeholder="State" value="<?php echo htmlentities($user->state) ?>" required></label>   
       </div>
       <div id="city"> 
-        <label><b>City</b><input type="text" name="city" placeholder="City" value="<?php echo $user->city ?>" required></label>   
+        <label><b>City</b><input type="text" name="city" placeholder="City" value="<?php echo htmlentities($user->city) ?>" required></label>   
       </div>
       <div id="street"> 
-        <label><b>Street</b><input type="text" name="street" placeholder="Street" value="<?php echo $user->street ?>" required></label>   
+        <label><b>Street</b><input type="text" name="street" placeholder="Street" value="<?php echo htmlentities($user->street) ?>" required></label>   
       </div>
       <div id="postal-code">  
         <label><b>Postal Code</b><input type="number" name="postal-code" placeholder="Postal Code" value="<?php echo $user->postalcode ?>" required></label>   
@@ -40,7 +40,7 @@
       <?php foreach($orders as $order) { 
         $restaurant = Restaurant::getRestaurant($db, $order->idRestaurant);
         ?>
-        <?=$restaurant->name?> - <?=$order->orderTime?> - <?=$order->totalPrice?>€ - <?=$order->state?><br>
+        <?=htmlentities($restaurant->name)?> - <?=$order->orderTime?> - <?=$order->totalPrice?>€ - <?=$order->state?><br>
       <?php } ?>
     </div>
   </section>
