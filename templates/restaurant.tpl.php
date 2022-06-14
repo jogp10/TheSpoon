@@ -130,7 +130,6 @@
               <p><?=htmlentities($comment->answer)?></p>
             </div>
           <?php } else if ($session->getId()==$restOwner->idUser) { ?>
-            <button type="sumbit">Answer</button>
             <form action="../actions/action_answer.php" method="post" id="answer-<?= $session->getId() ?>">
               <input type="hidden" name="idReview" value="<?php echo $comment->id ?>">
               <label><input type="text" name="answer" placeholder="Answer here..."></label>
