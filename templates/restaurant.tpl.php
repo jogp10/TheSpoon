@@ -93,6 +93,9 @@
       <button type="submit">Save</button>
     </form>
     <a href="../pages/register_menu_item.php?id=<?=$restaurant->id?>" method="get">Add dishes to the restaurant</a>
+    <div>
+      <a href="../pages/view_orders.php?id=<?=$restaurant->id?>" method="get">View Orders</a>
+    </div>
   </section>
 <?php } ?>
 
@@ -274,4 +277,17 @@
       <button type="submit">Unfavorite</button>
     </form>
   </section>
+<?php } ?>
+
+<?php function drawOrders(array $orders) { ?>
+  <h3>Orders:</h3>
+
+  <section id="orders">
+    <?php foreach ($orders as $order) { ?>
+      <article data-id="<?=$order->id?>">
+        <p>Ordered at: <?= $order->orderTime ?>  Total: <?= $order->totalPrice ?>€</p>
+      </article>
+    <?php } ?>
+  </section>
+
 <?php } ?>

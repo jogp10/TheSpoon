@@ -36,4 +36,20 @@
         );
     }
 
+    static function getOrders(PDO $db, int $id) : array {
+      $stmt = $db->prepare('SELECT * FROM Orders WHERE idRestaurant = ?');
+      $stmt->execute(array($id));
+
+      $orders = array();
+      while ($order = $stmt->fetch()) {
+        $orders[] = new Order(
+          (int) $order['idOrders'],
+          $order['OrderTime'],
+          (int) $order['PriceTotal']
+        );
+      }
+
+      return $orders;
+    }
+
   }
