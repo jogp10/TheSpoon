@@ -95,7 +95,7 @@
         <label><b>Street</b><input type="text" name="street" placeholder="Street" value="<?php echo htmlentities($restaurant->street) ?>" required></label>   
       </div>
       <div id="postal-code">  
-        <label><b>Postal Code</b><input type="number" name="postal-code" placeholder="Postal Code" value="<?php echo $user->postalcode ?>" required></label>   
+        <label><b>Postal Code</b><input type="number" name="postal-code" placeholder="Postal Code" value="<?php echo $restaurant->postalcode ?>" required></label>   
       </div>
       
       <label><b>Photo</b><br>
