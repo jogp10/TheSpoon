@@ -1,25 +1,7 @@
-// When the user scrolls the page, execute myFunction
-window.onscroll = function() { myFunction() };
-
-// Get the header
-var topnav = document.getElementsByClassName("topnav");
-
-// Get the offset position of the navbar
-var sticky = topnav.offsetTop;
-
-// Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
-function myFunction() {
-    if (window.pageYOffset > sticky) {
-        topnav.classList.add("sticky");
-    } else {
-        topnav.classList.remove("sticky");
-    }
-}
-
 function openLogInForm() {
     const loginForm = document.getElementById("loginForm");
     loginForm.style.display = "block";
-    if(loginForm.offsetHeight > window.innerHeight) {
+    if (loginForm.offsetHeight > window.innerHeight) {
         loginForm.style.height = window.innerHeight + 'px';
         loginForm.style.overflowY = 'scroll';
     }
@@ -33,7 +15,7 @@ function closeLogInForm() {
 function openRegisterForm() {
     const registerForm = document.getElementById("registerForm");
     registerForm.style.display = "block";
-    if(registerForm.offsetHeight > window.innerHeight) {
+    if (registerForm.offsetHeight > window.innerHeight) {
         registerForm.style.height = window.innerHeight + 'px';
         registerForm.style.overflowY = 'scroll';
     }
