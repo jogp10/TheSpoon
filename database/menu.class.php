@@ -32,7 +32,7 @@
       );
     }
 
-    public function getMenuId(PDO $db, int $id) : int {
+    static function getMenuId(PDO $db, int $id) : int {
       $stmt = $db->prepare(
         'SELECT * 
         FROM    Menu

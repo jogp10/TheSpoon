@@ -11,7 +11,7 @@
 
   $db = getDatabaseConnection();
 
-  $target_file = "../images/dog.jpg";
+  $target_file = "../images/default.jpg";
   $idMenu = Menu::getMenuId($db, intval($_GET['id']));
 
   $name = $_POST['item_name'];
